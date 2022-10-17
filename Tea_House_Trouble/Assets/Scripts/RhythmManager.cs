@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class RythmManager : MonoBehaviour, PlayerControlls.IActionsActions
+public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
     public AudioSource Song;
     public GameObject Note;
+    public GameObject SpawnPointA;
+    public GameObject SpawnPointW;
+    public GameObject SpawnPointS;
+    public GameObject SpawnPointD;
     public TextMeshProUGUI Feedback;
     public TextMeshProUGUI scoreText;
+    public int NoteCounter;
 
     [Header("Infos")]
     public int CurrentNote;
@@ -26,11 +31,24 @@ public class RythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public Color[] Colors;
     public int[] successValues;
 
+    [System.Serializable]
+    public class NoteData { public NoteID Note; public float Start; public float Length = 1; }
+
     [Header("Notes")]
-    public float[] NotesTime;
-    public string[] NotesKind;
+    public NoteData[] SavedNotes;
+    public float[] NotesTime; // Outdated
+    public string[] NotesKind; // Outdated
 
     private PlayerControlls Controlls;
+
+    public enum NoteID
+    {
+        none = 0,
+        A = 1,
+        W = 2,
+        S = 3,
+        D = 4
+    }
 
     private void Awake()
     {
@@ -63,29 +81,21 @@ public class RythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
         {
-            GameObject go;
-            if (NotesKind[spawnNote] == "a")
-            {
-                go = Instantiate(Note, new Vector3(-3, -8, 0), Quaternion.Euler(0, 0, 180));
-              //  go.GetComponent<SpriteRenderer>().color = Colors[0];
-            }
-            if (NotesKind[spawnNote] == "s")
-            {
-                go = Instantiate(Note, new Vector3(-1, -8, 0), Quaternion.Euler(0, 0, -90));
-              //  go.GetComponent<SpriteRenderer>().color = Colors[1];
-            }
-            if (NotesKind[spawnNote] == "w")
-            {
-                go = Instantiate(Note, new Vector3(1, -8, 0), Quaternion.Euler(0, 0, 90));
-              //  go.GetComponent<SpriteRenderer>().color = Colors[2];
-            }
-            if (NotesKind[spawnNote] == "d")
-            {
-                go = Instantiate(Note, new Vector3(3, -8, 0), Quaternion.Euler(0, 0, 0));
-              //  go.GetComponent<SpriteRenderer>().color = Colors[3];
-            }
+            //GameObject nextNote;
 
-            spawnNote++;
+            //nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
+            //nextNote.name = "Note A " +NoteCounter++;
+
+            //nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
+            //nextNote.name = "Note W " +NoteCounter++;
+
+            //nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
+            //nextNote.name = "Note S " +NoteCounter++;
+
+            //nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
+            //nextNote.name = "Note D " +NoteCounter++;
+            
+            //spawnNote++;
         }
     }
 
