@@ -6,25 +6,31 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    private UIDocument doc;
-    private Button startButton;
-    private Button exitButton;
+    private VisualElement root;
+    private VisualElement controls;
+
+    private Button playButton, controlsButton, exitButton, controlsCloseButton;
 
     private void Awake()
     {
-        doc = GetComponent<UIDocument>();
-        startButton = doc.rootVisualElement.Q<Button>("StartButton");
-        exitButton = doc.rootVisualElement.Q<Button>("ExitButton");
+        root = GetComponent<UIDocument>().rootVisualElement;
+        controls = root.Q<VisualElement>("Controls");
+        playButton = root.Q<Button>("PlayButton");
+        controlsButton = root.Q<Button>("ControlsButton");
+        exitButton = root.Q<Button>("ExitButton");
+        controlsCloseButton = root.Q<Button>("ControlsCloseButton");
 
-        startButton.clicked += StartButtonOnClicked;
+        playButton.clicked += PlayButtonOnClicked;
+        controlsButton.clicked += delegate { controls.SetActive(true); };
         exitButton.clicked += ExitButtonOnClicked;
+        controlsCloseButton.clicked += delegate { controls.SetActive(false); };
+
+        controls.SetActive(false);
     }
 
-    private void StartButtonOnClicked()
+    private void PlayButtonOnClicked()
     {
-        SceneManager.LoadScene("SampleScene");
-        Destroy(this);
-        Debug.Log("Start Button clicked");
+        SceneManager.LoadScene("GameScene");
     }
 
     private void ExitButtonOnClicked()
