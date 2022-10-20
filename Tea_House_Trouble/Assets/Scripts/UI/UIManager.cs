@@ -33,9 +33,6 @@ public class UIManager : MonoBehaviour
         exitButton.clicked += Application.Quit;
         mainMenuButton.clicked += OpenMainMenu;
 
-        //PlayerController.OnPlayerDeath -= OpenLooseScreen;
-        //PlayerController.OnPlayerDeath += OpenLooseScreen;
-
         //WinObject.Win -= OpenWinScreen;
         //WinObject.Win += OpenWinScreen;
 
@@ -65,10 +62,6 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void OpenLooseScreen() => ConfigureWindow(lostText, replayText, RestartGame); //Expression-Body-Syntax, für Funktionen die eine Anweisung lang sind
-
-    private void OpenWinScreen() => ConfigureWindow(winText, replayText, RestartGame);
-
     private void ResumeGame()
     {
         Time.timeScale = 1f;
@@ -78,6 +71,6 @@ public class UIManager : MonoBehaviour
     private void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("NormanScene");
     }
 }
