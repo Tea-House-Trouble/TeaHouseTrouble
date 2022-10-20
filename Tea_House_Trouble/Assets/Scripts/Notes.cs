@@ -37,7 +37,6 @@ public class Notes : MonoBehaviour
         //transform.position += Vector3.left * Time.deltaTime * (Rhy.Tempo / 60);
         if (transform.position.x > 0)
         {
-
             //Time.timeScale = 0;
             //Rhy.Song.Pause();
         }

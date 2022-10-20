@@ -13,6 +13,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public GameObject SpawnPointW;
     public GameObject SpawnPointS;
     public GameObject SpawnPointD;
+
+    [SerializeField] GameObject TriggerZoneA;
+    [SerializeField] GameObject TriggerZoneW;
+    [SerializeField] GameObject TriggerZoneS;
+    [SerializeField] GameObject TriggerZoneD;
+
+    Collider ColTriggerZoneA;
+    Collider ColTriggerZoneW;
+    Collider ColTriggerZoneS;
+    Collider ColTriggerZoneD;
+
     public TextMeshProUGUI Feedback;
     public TextMeshProUGUI scoreText;
     public int NoteCounter;
@@ -56,10 +67,21 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //if (Controlls == null)
         //{
         Controlls = new PlayerControlls();
-        //    Controlls.Actions.SetCallbacks(this);
+        Controlls.Actions.SetCallbacks(this);
         //}
         tempoScale = 60 / Tempo;
         Cursor.visible = false;
+        
+        ColTriggerZoneW = TriggerZoneW.GetComponent<Collider>();
+        ColTriggerZoneS = TriggerZoneS.GetComponent<Collider>();
+        ColTriggerZoneA = TriggerZoneA.GetComponent<Collider>();
+        ColTriggerZoneD = TriggerZoneD.GetComponent<Collider>();
+
+        ColTriggerZoneW.enabled = false;
+        ColTriggerZoneS.enabled = false;
+        ColTriggerZoneA.enabled = false;
+        ColTriggerZoneD.enabled = false;
+
     }
 
     private void OnEnable()
@@ -109,89 +131,90 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //}
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy" && Controlls.Actions.Up.ReadValue<int>() == 1)
-        {
-            if (Controlls.Actions.Up.ReadValue<int>() > 1)
-            {
-                Destroy(Note);
-                Debug.Log("Kill Note");
-            }
-        }
-    }
-
     public void Hit(InputAction.CallbackContext context, string Input)
     {
-        if (context.started)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
-                {
-                    //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-                    Feedback.text = "PERFECT!";
-                    Score += successValues[0];
-                    scoreText.text = "" + Score;
-                    break;
-                }
-                else
-                {
-                    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
-                    {
-                        //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-                        Feedback.text = "Great!";
-                        Score += successValues[1];
-                        scoreText.text = "" + Score;
-                        break;
-                    }
-                    else
-                    {
+        Debug.Log("Hit Key " + Input);
+        //if (context.started)
+        //{
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
+        //        {
+        //            //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+        //            Feedback.text = "PERFECT!";
+        //            Score += successValues[0];
+        //            scoreText.text = "" + Score;
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
+        //            {
+        //                //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+        //                Feedback.text = "Great!";
+        //                Score += successValues[1];
+        //                scoreText.text = "" + Score;
+        //                break;
+        //            }
+        //            else
+        //            {
 
-                        if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * tempoScale) && Input == NotesKind[CurrentNote + i])
-                        {
-                            //Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-                            Feedback.text = "ok";
-                            Score += successValues[2];
-                            scoreText.text = "" + Score;
-                            break;
-                        }
-                        else
-                        {
-                            if (NotesTime[CurrentNote + i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
-                            {
-                                //Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
-                                Feedback.text = "Nope";
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (NotesTime[CurrentNote * i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
-                {
-                    break;
-                }
-            }
-        }
+        //                if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * tempoScale) && Input == NotesKind[CurrentNote + i])
+        //                {
+        //                    //Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+        //                    Feedback.text = "ok";
+        //                    Score += successValues[2];
+        //                    scoreText.text = "" + Score;
+        //                    break;
+        //                }
+        //                else
+        //                {
+        //                    if (NotesTime[CurrentNote + i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
+        //                    {
+        //                        //Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
+        //                        Feedback.text = "Nope";
+        //                        break;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        if (NotesTime[CurrentNote * i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
+    }
+
+    public IEnumerator ColCoroutine(Collider collider)
+    {
+        Debug.Log("Enu Start");
+        collider.enabled = true;
+        yield return new WaitForSeconds(1);
+        collider.enabled = false;
     }
 
     public void OnUp(InputAction.CallbackContext context)
     {
         Hit(context, "w");
+        StartCoroutine(ColCoroutine(ColTriggerZoneW));
     }
 
     public void OnDown(InputAction.CallbackContext context)
     {
         Hit(context, "s");
+        StartCoroutine(ColCoroutine(ColTriggerZoneS));
     }
 
     public void OnRight(InputAction.CallbackContext context)
     {
         Hit(context, "d");
+        StartCoroutine(ColCoroutine(ColTriggerZoneD));
     }
 
     public void OnLeft(InputAction.CallbackContext context)
     {
         Hit(context, "a");
+        StartCoroutine(ColCoroutine(ColTriggerZoneA));
     }
 }
