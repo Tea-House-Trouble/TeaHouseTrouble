@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
@@ -39,7 +40,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float[] NotesTime; // Outdated
     public string[] NotesKind; // Outdated
 
-    private PlayerControlls Controlls;
+    public PlayerControlls Controlls;
 
     public enum NoteID
     {
@@ -52,14 +53,23 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     private void Awake()
     {
-        if (Controlls == null)
-        {
-            Controlls = new PlayerControlls();
-            Controlls.Enable();
-            Controlls.Actions.SetCallbacks(this);
-        }
+        //if (Controlls == null)
+        //{
+        Controlls = new PlayerControlls();
+        //    Controlls.Actions.SetCallbacks(this);
+        //}
         tempoScale = 60 / Tempo;
         Cursor.visible = false;
+    }
+
+    private void OnEnable()
+    {
+        Controlls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        Controlls.Disable();
     }
 
     void Update()
@@ -70,32 +80,44 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             songPlaying = true;
         }
 
-        currentTime = Time.time;
-        if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
+        //currentTime = Time.time;
+        //if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
+        //{
+        //    if (NotesTime.Length - 1 > CurrentNote)
+        //    {
+        //        CurrentNote++;
+        //    }
+        //}
+
+        //if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
+        //{
+        //    GameObject nextNote;
+
+        //    nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
+        //    nextNote.name = "Note A " +NoteCounter++;
+
+        //    nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
+        //    nextNote.name = "Note W " +NoteCounter++;
+
+        //    nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
+        //    nextNote.name = "Note S " +NoteCounter++;
+
+        //    nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
+        //    nextNote.name = "Note D " +NoteCounter++;
+
+        //    spawnNote++;
+        //}
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy" && Controlls.Actions.Up.ReadValue<int>() == 1)
         {
-            if (NotesTime.Length - 1 > CurrentNote)
+            if (Controlls.Actions.Up.ReadValue<int>() > 1)
             {
-                CurrentNote++;
+                Destroy(Note);
+                Debug.Log("Kill Note");
             }
-        }
-
-        if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
-        {
-            //GameObject nextNote;
-
-            //nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
-            //nextNote.name = "Note A " +NoteCounter++;
-
-            //nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
-            //nextNote.name = "Note W " +NoteCounter++;
-
-            //nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
-            //nextNote.name = "Note S " +NoteCounter++;
-
-            //nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
-            //nextNote.name = "Note D " +NoteCounter++;
-            
-            //spawnNote++;
         }
     }
 
@@ -107,7 +129,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             {
                 if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
                 {
-                    Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+                    //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
                     Feedback.text = "PERFECT!";
                     Score += successValues[0];
                     scoreText.text = "" + Score;
@@ -117,7 +139,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 {
                     if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
                     {
-                        Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+                        //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
                         Feedback.text = "Great!";
                         Score += successValues[1];
                         scoreText.text = "" + Score;
@@ -128,7 +150,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
                         if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * tempoScale) && Input == NotesKind[CurrentNote + i])
                         {
-                            Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+                            //Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
                             Feedback.text = "ok";
                             Score += successValues[2];
                             scoreText.text = "" + Score;
@@ -138,7 +160,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         {
                             if (NotesTime[CurrentNote + i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
                             {
-                                Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
+                                //Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
                                 Feedback.text = "Nope";
                                 break;
                             }
