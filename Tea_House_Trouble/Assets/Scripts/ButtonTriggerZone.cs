@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -51,11 +52,12 @@ public class ButtonTriggerZone : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Enter Triggerzone");
 
-            if (Controlls.Actions.Up.ReadValue<int>() > 1)
-            {
-                Destroy(other.gameObject);
-                Debug.Log("Kill Note");
-            }
+            //if (Controlls.Actions.Up.ReadValue<int>() > 1)
+            //{
+            //    Destroy(other.gameObject);
+            //    Debug.Log("Kill Note");
+            //}
+            
         }
     }
 }
