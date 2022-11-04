@@ -41,7 +41,7 @@ public class ButtonTriggerZone : MonoBehaviour
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             Debug.Log("Enter Collider");
-            //Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 
