@@ -16,7 +16,7 @@ public class PlayerAutoRun : MonoBehaviour
 
     private void Update()
     {
-        transform.position = transform.position + new Vector3(1, 0, 0);
+        transform.position = transform.position + new Vector3(0.4f, 0, 0);
         //if (goingForward)
         //{
         //    progress += Time.deltaTime / duration;
