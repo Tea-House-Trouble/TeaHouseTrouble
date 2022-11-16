@@ -4,9 +4,6 @@ using UnityEngine;
 
 
 namespace PathCreation {
-    /// A vertex path is a collection of points (vertices) that lie along a bezier path.
-    /// This allows one to do things like move at a constant speed along the path,
-    /// which is not possible with a bezier path directly due to how they're constructed mathematically.
 
     /// This class also provides methods for getting the position along the path at a certain distance or time
     /// (where time = 0 is the start of the path, and time = 1 is the end of the path).
