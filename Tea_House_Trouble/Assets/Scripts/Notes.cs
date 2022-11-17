@@ -12,16 +12,17 @@ public class Notes : MonoBehaviour
     public float spawnTime;
     public float spawnDelay;
 
+    public RhythmManager.NoteID MyNoteID;
 
-    private void Awake()
-    {
-        Rhy = FindObjectOfType<RhythmManager>();
-    }
+    //private void Awake()
+    //{
+    //    Rhy = FindObjectOfType<RhythmManager>();
+    //}
 
-    private void Start()
-    {
-        InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
-    }
+    //private void Start()
+    //{
+    //    InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+    //}
 
     public void SpawnObject()
     {
@@ -32,17 +33,17 @@ public class Notes : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //transform.position += Vector3.left * Time.deltaTime * (Rhy.Tempo / 60);
-        if (transform.position.x > 0)
-        {
-            //Time.timeScale = 0;
-            //Rhy.Song.Pause();
-        }
-        if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Update()
+    //{
+    //    //transform.position += Vector3.left * Time.deltaTime * (Rhy.Tempo / 60);
+    //    if (transform.position.x > 0)
+    //    {
+    //        //Time.timeScale = 0;
+    //        //Rhy.Song.Pause();
+    //    }
+    //    if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
