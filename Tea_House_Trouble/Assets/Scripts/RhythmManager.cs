@@ -143,8 +143,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Debug.Log("Hit Key " + Input);
         if (context.started)
         {
-            //for (int i = 0; i < 3; i++)
-            //{
+            for (int i = 0; i < 3; i++)
+            {
+                  //if (Vector3.Distance(Note, TriggerZoneA))
             //    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
             //    {
             //        //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
@@ -155,14 +156,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             //    }
             //    else
             //    {
-            //        if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
-            //        {
-            //            //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-            //            Feedback.text = "Great!";
-            //            Score += successValues[1];
-            //            scoreText.text = "" + Score;
-            //            break;
-            //        }
+            if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
+            {
+                //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+                Feedback.text = "Great!";
+                Score += successValues[1];
+                scoreText.text = "" + Score;
+                //break;
+            }
             //        else
             //        {
 
@@ -189,7 +190,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             //    {
             //        break;
             //    }
-            //}
+            }
         }
     }
 
