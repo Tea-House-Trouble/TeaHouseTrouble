@@ -14,6 +14,8 @@ public class Notes : MonoBehaviour
 
     public RhythmManager.NoteID MyNoteID;
 
+    public TMPro.TMP_Text DistanceText;
+
     public void Destroy()
     {
        Destroy(gameObject);

@@ -12,6 +12,7 @@ public class ButtonTriggerZone : MonoBehaviour
     public PlayerControlls Controlls;
     private PlayerInput playerInput;
 
+    public Transform LineTransform;
     /// <summary>
     /// Prüft ob eine Passsende Note im Trigger ist, wenn ein Button gedrückt wurde. Distance beschreibt wie weit die Z Werte abweichen (Forgivness)
     /// </summary>
@@ -21,9 +22,10 @@ public class ButtonTriggerZone : MonoBehaviour
         {
             if (note.MyNoteID == PressedNote)
             {
-                distance = Mathf.Abs(transform.InverseTransformPoint(note.transform.position).z - transform.localPosition.z);
+                distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
                 Debug.DrawLine(transform.position, note.transform.position);
-                Debug.Log(transform.InverseTransformPoint(note.transform.position));
+                Debug.Log(transform.InverseTransformPoint(note.transform.position) + ", Distance: " + distance + transform.localPosition);
+                Enemys.Remove(note);
                 note.Destroy();
                 return true;
             }
@@ -42,6 +44,15 @@ public class ButtonTriggerZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //foreach (Notes note in Enemys)
+        //{
+        //    if (note == null) continue;
+
+        //    float distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
+        //    distance = Mathf.Round(distance * 100f) / 100f;
+        //    note.DistanceText.text = distance.ToString();
+        //}
+
         //if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
         //{
         //    Destroy(gameObject);

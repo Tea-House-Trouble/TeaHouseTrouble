@@ -11,21 +11,21 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public GameObject Ocha;
     public AudioSource Song;
     public GameObject Note;
-    public GameObject SpawnPointA;
-    public GameObject SpawnPointW;
-    public GameObject SpawnPointS;
-    public GameObject SpawnPointD;
+    //public GameObject SpawnPointA;
+    //public GameObject SpawnPointW;
+    //public GameObject SpawnPointS;
+    //public GameObject SpawnPointD;
 
-    [SerializeField] GameObject TriggerZoneA;
-    [SerializeField] GameObject TriggerZoneW;
-    [SerializeField] GameObject TriggerZoneS;
-    [SerializeField] GameObject TriggerZoneD;
+    //[SerializeField] GameObject TriggerZoneA;
+    //[SerializeField] GameObject TriggerZoneW;
+    //[SerializeField] GameObject TriggerZoneS;
+    //[SerializeField] GameObject TriggerZoneD;
     [SerializeField] ButtonTriggerZone TestTrigger;
 
-    Collider ColTriggerZoneA;
-    Collider ColTriggerZoneW;
-    Collider ColTriggerZoneS;
-    Collider ColTriggerZoneD;
+    //Collider ColTriggerZoneA;
+    //Collider ColTriggerZoneW;
+    //Collider ColTriggerZoneS;
+    //Collider ColTriggerZoneD;
 
     public TextMeshProUGUI Feedback;
     public TextMeshProUGUI scoreText;
@@ -86,15 +86,15 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         tempoScale = 60 / Tempo;
         //Cursor.visible = false;
 
-        ColTriggerZoneW = TriggerZoneW.GetComponent<Collider>();
-        ColTriggerZoneS = TriggerZoneS.GetComponent<Collider>();
-        ColTriggerZoneA = TriggerZoneA.GetComponent<Collider>();
-        ColTriggerZoneD = TriggerZoneD.GetComponent<Collider>();
+        //ColTriggerZoneW = TriggerZoneW.GetComponent<Collider>();
+        //ColTriggerZoneS = TriggerZoneS.GetComponent<Collider>();
+        //ColTriggerZoneA = TriggerZoneA.GetComponent<Collider>();
+        //ColTriggerZoneD = TriggerZoneD.GetComponent<Collider>();
 
-        ColTriggerZoneW.enabled = false;
-        ColTriggerZoneS.enabled = false;
-        ColTriggerZoneA.enabled = false;
-        ColTriggerZoneD.enabled = false;
+        //ColTriggerZoneW.enabled = false;
+        //ColTriggerZoneS.enabled = false;
+        //ColTriggerZoneA.enabled = false;
+        //ColTriggerZoneD.enabled = false;
 
     }
 
@@ -213,63 +213,63 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             //    Debug.Log("Its Perfect_Hit");
             //}
 
-            for (int i = 0; i < 3; i++)
-            {
-            //    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
-            //    {
-            //        //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-            //        Feedback.text = "PERFECT!";
-            //        Score += successValues[0];
-            //        scoreText.text = "" + Score;
-            //        break;
-            //    }
-            //    else
-            //    {
-            //if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
+            //for (int i = 0; i < 3; i++)
             //{
-            //    //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-            //    Feedback.text = "Great!";
-            //    Score += successValues[1];
-            //    scoreText.text = "" + Score;
-            //    //break;
-            //}
-            //        else
-            //        {
+            ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
+            ////    {
+            ////        //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+            ////        Feedback.text = "PERFECT!";
+            ////        Score += successValues[0];
+            ////        scoreText.text = "" + Score;
+            ////        break;
+            ////    }
+            ////    else
+            ////    {
+            ////if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
+            ////{
+            ////    //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+            ////    Feedback.text = "Great!";
+            ////    Score += successValues[1];
+            ////    scoreText.text = "" + Score;
+            ////    //break;
+            ////}
+            ////        else
+            ////        {
 
-            //            if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * tempoScale) && Input == NotesKind[CurrentNote + i])
-            //            {
-            //                //Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-            //                Feedback.text = "ok";
-            //                Score += successValues[2];
-            //                scoreText.text = "" + Score;
-            //                break;
-            //            }
-            //            else
-            //            {
-            //                if (NotesTime[CurrentNote + i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
-            //                {
-            //                    //Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
-            //                    Feedback.text = "Nope";
-            //                    break;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    if (NotesTime[CurrentNote * i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
-            //    {
-            //        break;
-            //    }
-            }
+            ////            if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * tempoScale) && Input == NotesKind[CurrentNote + i])
+            ////            {
+            ////                //Debug.Log("Ok" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+            ////                Feedback.text = "ok";
+            ////                Score += successValues[2];
+            ////                scoreText.text = "" + Score;
+            ////                break;
+            ////            }
+            ////            else
+            ////            {
+            ////                if (NotesTime[CurrentNote + i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
+            ////                {
+            ////                    //Debug.Log("Nope!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote + i] - 1) * tempoScale));
+            ////                    Feedback.text = "Nope";
+            ////                    break;
+            ////                }
+            ////            }
+            ////        }
+            ////    }
+            ////    if (NotesTime[CurrentNote * i] - 1 != NotesTime[CurrentNote + i + 1] - 1)
+            ////    {
+            ////        break;
+            ////    }
+            //}
         }
     }
 
-    public IEnumerator ColCoroutine(Collider collider)
-    {
-        Debug.Log("Enu Start");
-        collider.enabled = true;
-        yield return new WaitForSeconds(1);
-        collider.enabled = false;
-    }
+    //public IEnumerator ColCoroutine(Collider collider)
+    //{
+    //    Debug.Log("Enu Start");
+    //    collider.enabled = true;
+    //    yield return new WaitForSeconds(1);
+    //    collider.enabled = false;
+    //}
 
     public void OnUp(InputAction.CallbackContext context)
     {
@@ -278,7 +278,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (context.started)
         {
             Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
-            StartCoroutine(ColCoroutine(ColTriggerZoneW));
+            //StartCoroutine(ColCoroutine(ColTriggerZoneW));
         }
     }
 
@@ -289,7 +289,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (context.started)
         {
             Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
-            StartCoroutine(ColCoroutine(ColTriggerZoneS));
+            //StartCoroutine(ColCoroutine(ColTriggerZoneS));
         }
     }
 
@@ -300,7 +300,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (context.started)
         {
             Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
-            StartCoroutine(ColCoroutine(ColTriggerZoneD));
+            //StartCoroutine(ColCoroutine(ColTriggerZoneD));
         }
     }
 
@@ -311,7 +311,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (context.started)
         {
             Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
-            StartCoroutine(ColCoroutine(ColTriggerZoneA));
+            //StartCoroutine(ColCoroutine(ColTriggerZoneA));
         }
     }
 }
