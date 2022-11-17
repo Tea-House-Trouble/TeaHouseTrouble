@@ -50,6 +50,7 @@ MonoBehaviour:
   stopSpawning: 0
   spawnTime: 1
   spawnDelay: 3
+  MyNoteID: 0
 --- !u!1 &1128259827070813107
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   stopSpawning: 0
   spawnTime: 3
   spawnDelay: 2
+  MyNoteID: 0
 --- !u!1 &1128259827202336982
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +339,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -494,6 +496,7 @@ MonoBehaviour:
   stopSpawning: 0
   spawnTime: 3
   spawnDelay: 3
+  MyNoteID: 0
 --- !u!1 &1128259827364115183
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +900,7 @@ MonoBehaviour:
   stopSpawning: 0
   spawnTime: 5
   spawnDelay: 3
+  MyNoteID: 0
 --- !u!1001 &1128259826774961425
 PrefabInstance:
   m_ObjectHideFlags: 0
