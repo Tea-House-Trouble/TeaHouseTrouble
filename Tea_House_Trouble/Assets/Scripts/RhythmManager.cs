@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
+    public GameObject Ocha;
     public AudioSource Song;
     public GameObject Note;
     public GameObject SpawnPointA;
@@ -39,6 +40,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float Tempo;
     public float preBeats;
     private float tempoScale;
+    private float objectDistance;
     public float Forgivness;
     public Color[] Colors;
     public int[] successValues;
@@ -143,9 +145,16 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Debug.Log("Hit Key " + Input);
         if (context.started)
         {
+            for (float i = 0.3f; i < objectDistance;)
+            {
+                float Distance = (TriggerZoneA.transform.worldToLocalMatrix * Note.transform.position).z - TriggerZoneA.transform.localPosition.z;
+                Feedback.text = "PERFECT!";
+                Score += successValues[0];
+                scoreText.text = "" + Score;
+            }
+
             for (int i = 0; i < 3; i++)
             {
-                  //if (Vector3.Distance(Note, TriggerZoneA))
             //    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
             //    {
             //        //Debug.Log("Perfect!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
@@ -156,14 +165,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             //    }
             //    else
             //    {
-            if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
-            {
-                //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
-                Feedback.text = "Great!";
-                Score += successValues[1];
-                scoreText.text = "" + Score;
-                //break;
-            }
+            //if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.8 * tempoScale) && Input == NotesKind[CurrentNote + i])
+            //{
+            //    //Debug.Log("Great!" + context.control + " Delay: " + (Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale));
+            //    Feedback.text = "Great!";
+            //    Score += successValues[1];
+            //    scoreText.text = "" + Score;
+            //    //break;
+            //}
             //        else
             //        {
 
@@ -208,6 +217,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
+            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
             StartCoroutine(ColCoroutine(ColTriggerZoneW));
         }
     }
@@ -218,6 +228,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
+            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
             StartCoroutine(ColCoroutine(ColTriggerZoneS));
         }
     }
@@ -228,6 +239,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
+            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
             StartCoroutine(ColCoroutine(ColTriggerZoneD));
         }
     }
@@ -238,6 +250,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
+            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
             StartCoroutine(ColCoroutine(ColTriggerZoneA));
         }
     }
