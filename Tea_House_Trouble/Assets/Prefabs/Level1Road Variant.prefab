@@ -160,7 +160,7 @@ PrefabInstance:
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[4].x
-      value: 135.76952
+      value: 135.76953
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
@@ -250,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[11].z
-      value: -1097.8097
+      value: -1097.8098
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[12].z
-      value: -1107.1273
+      value: -1107.1274
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
@@ -270,37 +270,37 @@ PrefabInstance:
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[13].z
-      value: -1154.2142
+      value: -1154.2144
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[14].x
-      value: 222.99629
+      value: 222.9963
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[14].z
-      value: -1146.842
+      value: -1146.8423
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[15].x
-      value: 171.91814
+      value: 171.91815
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[15].z
-      value: -1127.0511
+      value: -1127.0513
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[16].x
-      value: 50.668926
+      value: 50.66894
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[16].z
-      value: -1080.0714
+      value: -1080.0715
       objectReference: {fileID: 0}
     - target: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
@@ -440,7 +440,47 @@ PrefabInstance:
     - target: {fileID: 6536663974478019119, guid: 3c6af2877b762364a82e8d87a03cbfab,
         type: 3}
       propertyPath: m_Name
-      value: Level1Road
+      value: Level1Road Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6536663974478019112, guid: 3c6af2877b762364a82e8d87a03cbfab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c6af2877b762364a82e8d87a03cbfab, type: 3}
+--- !u!114 &6758571081994681092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6536663974478019118, guid: 3c6af2877b762364a82e8d87a03cbfab,
+    type: 3}
+  m_PrefabInstance: {fileID: 539765478187319594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758571081994681093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6758571081994681093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6536663974478019119, guid: 3c6af2877b762364a82e8d87a03cbfab,
+    type: 3}
+  m_PrefabInstance: {fileID: 539765478187319594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2040957563653096468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758571081994681093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b275c3b78f8717c4cbc60f74a3247f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 6758571081994681092}
+  autoUpdate: 1
+  roadWidth: 0.4
+  thickness: 0.15
+  flattenSurface: 0
+  roadMaterial: {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
+  undersideMaterial: {fileID: 2100000, guid: 50f508cabc77ae54aa1c5037353e4b4e, type: 2}
+  textureTiling: 1
+  meshHolder: {fileID: 0}
