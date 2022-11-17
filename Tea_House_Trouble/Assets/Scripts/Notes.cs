@@ -14,6 +14,11 @@ public class Notes : MonoBehaviour
 
     public RhythmManager.NoteID MyNoteID;
 
+    public void Destroy()
+    {
+       Destroy(gameObject);
+    }
+
     //private void Awake()
     //{
     //    Rhy = FindObjectOfType<RhythmManager>();
@@ -24,14 +29,14 @@ public class Notes : MonoBehaviour
     //    InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
     //}
 
-    public void SpawnObject()
-    {
-        Instantiate(Note, transform.position, Quaternion.identity);
-        if (stopSpawning)
-        {
-            CancelInvoke("SpawnObject");
-        }
-    }
+    //public void SpawnObject()
+    //{
+    //    Instantiate(Note, transform.position, Quaternion.identity);
+    //    if (stopSpawning)
+    //    {
+    //        CancelInvoke("SpawnObject");
+    //    }
+    //}
 
     //private void Update()
     //{

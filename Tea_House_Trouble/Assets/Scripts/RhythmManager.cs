@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
@@ -19,6 +20,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] GameObject TriggerZoneW;
     [SerializeField] GameObject TriggerZoneS;
     [SerializeField] GameObject TriggerZoneD;
+    [SerializeField] ButtonTriggerZone TestTrigger;
 
     Collider ColTriggerZoneA;
     Collider ColTriggerZoneW;
@@ -40,8 +42,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float Tempo;
     public float preBeats;
     private float tempoScale;
-    private float objectDistance;
-    public float Forgivness;
+    //public float Forgivness;
+
+    [Space]
+    public float HitQualityPerfect = 0.3f;
+    public float HitQualityGreat = 0.5f;
+    public float HitQualityGood = 0.7f;
+
+    [Space]
     public Color[] Colors;
     public int[] successValues;
 
@@ -64,10 +72,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         D = 4
     }
 
+    public enum HitQuality
+    {
+        None = 0,
+        Perfect = 1,
+        Great = 2,
+        Good = 3,
+        Miss = 4
+    }
+
     private void Awake()
     {
         tempoScale = 60 / Tempo;
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         ColTriggerZoneW = TriggerZoneW.GetComponent<Collider>();
         ColTriggerZoneS = TriggerZoneS.GetComponent<Collider>();
@@ -140,18 +157,61 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //}
     }
 
-    public void Hit(InputAction.CallbackContext context, string Input)
+    public HitQuality GetHitQuality(float distance)
+    {
+        if (distance < 0.3f)
+            return HitQuality.Perfect;
+
+        if (distance < 0.5f)
+            return HitQuality.Great;
+
+        if (distance < 0.7f)
+            return HitQuality.Good;
+
+            return HitQuality.Miss;
+    }
+
+    public void Hit(InputAction.CallbackContext context, NoteID Input)
     {
         Debug.Log("Hit Key " + Input);
         if (context.started)
         {
-            for (float i = 0.3f; i < objectDistance;)
+            if (TestTrigger.WasNoteHit(Input, out float distance))
             {
-                float Distance = (TriggerZoneA.transform.worldToLocalMatrix * Note.transform.position).z - TriggerZoneA.transform.localPosition.z;
-                Feedback.text = "PERFECT!";
-                Score += successValues[0];
+                switch (GetHitQuality(distance))
+                {
+                    case HitQuality.None:
+                        break;
+                    case HitQuality.Perfect:
+                        Feedback.text = "PERFECT!";
+                        Score += successValues[0];
+                        break;
+                    case HitQuality.Great:
+                        Feedback.text = "GREAT!";
+                        Score += successValues[1];
+                        break;
+                    case HitQuality.Good:
+                        Feedback.text = "GOOD!";
+                        Score += successValues[2];
+                        break;
+                    case HitQuality.Miss:
+                        Feedback.text = "MISS!";
+                        break;
+                    default:
+                        break;
+                }
+                
                 scoreText.text = "" + Score;
+                Debug.Log($"Its {GetHitQuality(distance)} Hit");
             }
+            //for (float i = 0f; i > 0.3f;)
+            //{
+            //    float Distance = (TestTrigger.transform.worldToLocalMatrix * Note.transform.position).z - TestTrigger.transform.localPosition.z;
+            //    Feedback.text = "PERFECT!";
+            //    Score += successValues[0];
+            //    scoreText.text = "" + Score;
+            //    Debug.Log("Its Perfect_Hit");
+            //}
 
             for (int i = 0; i < 3; i++)
             {
@@ -213,7 +273,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     public void OnUp(InputAction.CallbackContext context)
     {
-        Hit(context, "w");
+        Hit(context, NoteID.W);
 
         if (context.started)
         {
@@ -224,7 +284,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     public void OnDown(InputAction.CallbackContext context)
     {
-        Hit(context, "s");
+        Hit(context, NoteID.S);
 
         if (context.started)
         {
@@ -235,7 +295,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     public void OnRight(InputAction.CallbackContext context)
     {
-        Hit(context, "d");
+        Hit(context, NoteID.D);
 
         if (context.started)
         {
@@ -246,7 +306,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     public void OnLeft(InputAction.CallbackContext context)
     {
-        Hit(context, "a");
+        Hit(context, NoteID.A);
 
         if (context.started)
         {

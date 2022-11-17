@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5276675157964152098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5276675157964152096}
+  - component: {fileID: 5276675157964152099}
+  - component: {fileID: 5276675157964152097}
+  m_Layer: 0
+  m_Name: RythmManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5276675157964152096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6369404, y: 5.6869087, z: 1.4425983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5276675157964152099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b359aa24ffd05ae4b8557ac432328993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ocha: {fileID: 0}
+  Song: {fileID: 0}
+  Note: {fileID: 1135183149804999825, guid: a37aa4b4c560d81408734c5fb351b8ca, type: 3}
+  SpawnPointA: {fileID: 0}
+  SpawnPointW: {fileID: 0}
+  SpawnPointS: {fileID: 0}
+  SpawnPointD: {fileID: 0}
+  TriggerZoneA: {fileID: 0}
+  TriggerZoneW: {fileID: 0}
+  TriggerZoneS: {fileID: 0}
+  TriggerZoneD: {fileID: 0}
+  TestTrigger: {fileID: 0}
+  Feedback: {fileID: 0}
+  scoreText: {fileID: 0}
+  NoteCounter: 0
+  CurrentNote: 0
+  currentTime: 0
+  songPlaying: 0
+  Score: 0
+  Tempo: 85
+  preBeats: 0
+  HitQualityPerfect: 18
+  HitQualityGreat: 20
+  HitQualityGood: 25
+  Colors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.48129225, b: 1, a: 0}
+  - {r: 1, g: 0.6011123, b: 0, a: 0}
+  - {r: 0.059362773, g: 0.5471698, b: 0.08395814, a: 0}
+  successValues: 0a0000000500000002000000
+  SavedNotes:
+  - Note: 1
+    Start: 4
+    Length: 5
+  - Note: 2
+    Start: 6
+    Length: 0
+  - Note: 3
+    Start: 2
+    Length: 0
+  - Note: 4
+    Start: 8
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  - Note: 0
+    Start: 0
+    Length: 0
+  NotesTime:
+  - 5
+  - 6
+  - 7
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  NotesKind:
+  - w
+  - s
+  - d
+  - a
+  - s
+  - d
+  - w
+  - a
+  - a
+  - w
+--- !u!114 &5276675157964152097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7ef91abe8ea8ecd4a8f46cc51f13a5f6,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5276675157964152099}
+        m_TargetAssemblyTypeName: RhythmManager, Assembly-CSharp
+        m_MethodName: OnUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 79a25d34-e692-4836-b8bf-d229b7ef3649
+    m_ActionName: Actions/Up[/Keyboard/upArrow,/Keyboard/w,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5276675157964152099}
+        m_TargetAssemblyTypeName: RhythmManager, Assembly-CSharp
+        m_MethodName: OnDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a5279466-8c50-4030-8351-3280d30f3a96
+    m_ActionName: Actions/Down[/Keyboard/downArrow,/Keyboard/s,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5276675157964152099}
+        m_TargetAssemblyTypeName: RhythmManager, Assembly-CSharp
+        m_MethodName: OnLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2362b19-a246-4885-bc22-114d56b4ef9b
+    m_ActionName: Actions/Left[/Keyboard/leftArrow,/Keyboard/a,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5276675157964152099}
+        m_TargetAssemblyTypeName: RhythmManager, Assembly-CSharp
+        m_MethodName: OnRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 796c2511-ec2d-4ab9-a3d9-4841fe5b9b63
+    m_ActionName: Actions/Right[/Keyboard/rightArrow,/Keyboard/d,/XInputControllerWindows/buttonEast]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Actions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
