@@ -8,7 +8,7 @@ public class OCHA_BM_ANIMTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(""))
+        if (Input.GetButtonDown("Jump"))
         {
             Ocha.GetComponent<Animator>().Play("Hit_LaneBC_4m");
         }
