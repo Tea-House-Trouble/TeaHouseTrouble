@@ -21,6 +21,7 @@ public class Daruma_Anim_Script : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("DarumaHit");
             DAR_Animator.Play("Hit");
         }
     }
