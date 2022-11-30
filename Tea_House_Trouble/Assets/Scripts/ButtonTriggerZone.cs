@@ -41,7 +41,6 @@ public class ButtonTriggerZone : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //foreach (Notes note in Enemys)
