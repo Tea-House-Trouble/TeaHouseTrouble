@@ -40,7 +40,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     private float tempoScale;
 
     [Space]
-    [Header ("Forgivness")]
+    [Header("Forgivness")]
     public float HitQualityPerfect = 0.3f;
     public float HitQualityGood = 0.5f;
     public float HitQualityBad = 0.7f;
@@ -54,6 +54,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     [Space]
     public int[] successValues;
+    public float elapsedTime;
 
     [System.Serializable]
     public class NoteData { public NoteID Note; public float Start; public float Length = 1; }
@@ -113,41 +114,50 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     void Update()
     {
-        if (Time.time >= preBeats * tempoScale && songPlaying == false)
+        if (ChainCounterMessage.activeSelf)
         {
-            Song.Play();
-            songPlaying = true;
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime >= 2)
+            {
+                ChainCounterMessage.SetActive(false);
+            }
+
+            if (Time.time >= preBeats * tempoScale && songPlaying == false)
+            {
+                Song.Play();
+                songPlaying = true;
+            }
+
+            //currentTime = Time.time;
+            //if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
+            //{
+            //    if (NotesTime.Length - 1 > CurrentNote)
+            //    {
+            //        CurrentNote++;
+            //    }
+            //}
+
+            //if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
+            //{
+            //    GameObject nextNote;
+
+            //    nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
+            //    nextNote.name = "Note A " + NoteCounter++;
+
+            //    nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
+            //    nextNote.name = "Note W " + NoteCounter++;
+
+            //    nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
+            //    nextNote.name = "Note S " + NoteCounter++;
+
+            //    nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
+            //    nextNote.name = "Note D " + NoteCounter++;
+
+            //    spawnNote++;
+            //}
         }
-
-        //currentTime = Time.time;
-        //if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
-        //{
-        //    if (NotesTime.Length - 1 > CurrentNote)
-        //    {
-        //        CurrentNote++;
-        //    }
-        //}
-
-        //if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
-        //{
-        //    GameObject nextNote;
-
-        //    nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
-        //    nextNote.name = "Note A " + NoteCounter++;
-
-        //    nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
-        //    nextNote.name = "Note W " + NoteCounter++;
-
-        //    nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
-        //    nextNote.name = "Note S " + NoteCounter++;
-
-        //    nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
-        //    nextNote.name = "Note D " + NoteCounter++;
-
-        //    spawnNote++;
-        //}
     }
-
     public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
@@ -159,7 +169,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (distance < 0.7f)
             return HitQuality.Bad;
 
-            return HitQuality.Miss;
+        return HitQuality.Miss;
     }
 
     public void Hit(InputAction.CallbackContext context, NoteID Input)
@@ -179,6 +189,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         ChainCounter++;
                         ChainCounterMessage.SetActive(true);
                         chainCounterNumberText.text = "" + ChainCounter;
+                        elapsedTime = 0;
                         break;
                     case HitQuality.Good:
                         Feedback.text = "GOOD!";
@@ -186,6 +197,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         ChainCounter++;
                         ChainCounterMessage.SetActive(true);
                         chainCounterNumberText.text = "" + ChainCounter;
+                        elapsedTime = 0;
                         break;
                     case HitQuality.Bad:
                         Feedback.text = "Bad!";
@@ -193,6 +205,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         ChainCounter++;
                         ChainCounterMessage.SetActive(true);
                         chainCounterNumberText.text = "" + ChainCounter;
+                        elapsedTime = 0;
                         break;
                     case HitQuality.Miss:
                         Feedback.text = "MISS!";
@@ -230,7 +243,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
-            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
+            Ocha.GetComponent<Animator>().Play("Hit");
         }
     }
 
@@ -240,7 +253,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
-            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
+            Ocha.GetComponent<Animator>().Play("Hit");
         }
     }
 
@@ -250,7 +263,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
-            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
+            Ocha.GetComponent<Animator>().Play("Hit");
         }
     }
 
@@ -260,7 +273,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (context.started)
         {
-            Ocha.GetComponent<Animator>().Play("Hit_LaneBC_3m");
+            Ocha.GetComponent<Animator>().Play("Hit");
         }
     }
 }
