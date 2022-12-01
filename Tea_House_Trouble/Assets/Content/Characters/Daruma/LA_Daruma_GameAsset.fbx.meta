@@ -1,26 +1,23 @@
 fileFormatVersion: 2
-guid: 85f4b965a87bd124eac2c041d5755181
+guid: f862af121495ccd40b543980934d1f82
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -8508090780967603326
-    second: Daruma_BaseRig.001|LB_Daruma_Spawn_01
+      74: 6503539966900562010
+    second: Daruma_BaseRig.001|LA_Daruma_Idle
   - first:
-      74: -5636542694271563850
-    second: Daruma_BaseRig.001|LC_Daruma_Hit
+      74: -4036472378663133838
+    second: Daruma_BaseRig.001|LA_Daruma_Miss
   - first:
-      74: -8335028666960087959
-    second: Daruma_BaseRig.001|LC_Daruma_Idle
+      74: 5244610907544072187
+    second: Daruma_BaseRig.001|LA_Daruma_Spawn_02
   - first:
-      74: 4052566754956699835
-    second: Daruma_BaseRig.001|LC_Daruma_Miss
+      74: -7356218963896464039
+    second: Daruma_BaseRig.001|LA_Daruma_TPose
   - first:
-      74: 9204708825916752667
-    second: Daruma_BaseRig.001|LC_Daruma_Spawn_02
-  - first:
-      74: 1618995402109809579
-    second: Daruma_BaseRig.001|LC_Daruma_TPose
+      74: 5023098352630746188
+    second: Daruma_BaseRig.001|LB_Daruma_Hit
   - first:
       74: -1779296069119342747
     second: Daruma_BaseRig.001|Daruma_BaseRigAction_L_Daruma_BaseRig.blend
@@ -29,7 +26,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MAT_Daruma_Body
-    second: {fileID: 2100000, guid: 9a1eb03ad8ab86a4f93c9cebd109c27b, type: 2}
+    second: {fileID: 2100000, guid: d32136e039300c5438573202069e600c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -64,11 +61,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Daruma_BaseRig.001|LB_Daruma_Spawn_01
-      takeName: Daruma_BaseRig.001|LB_Daruma_Spawn_01
+      name: Daruma_BaseRig.001|LA_Daruma_Idle
+      takeName: Daruma_BaseRig.001|LA_Daruma_Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 173
+      lastFrame: 123
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -93,8 +90,109 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Daruma_BaseRig.001|LC_Daruma_Hit
-      takeName: Daruma_BaseRig.001|LC_Daruma_Hit
+      name: Daruma_BaseRig.001|LA_Daruma_Miss
+      takeName: Daruma_BaseRig.001|LA_Daruma_Miss
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Daruma_BaseRig.001|LA_Daruma_Spawn_02
+      takeName: Daruma_BaseRig.001|LA_Daruma_Spawn_02
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.82790697
+        functionName: GhostFlamesEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Daruma_BaseRig.001|LA_Daruma_TPose
+      takeName: Daruma_BaseRig.001|LA_Daruma_TPose
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.4976744
+        functionName: GhostFlames
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Daruma_BaseRig.001|LB_Daruma_Hit
+      takeName: Daruma_BaseRig.001|LB_Daruma_Hit
       internalID: 0
       firstFrame: 0
       lastFrame: 80
@@ -117,14 +215,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.85146916
+      - time: 0.83720934
         functionName: DarumaDeathDespawn
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.82769233
+      - time: 0.8558139
         functionName: DarumaDeathFX
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -133,136 +231,6 @@ ModelImporter:
         messageOptions: 0
       - time: 0
         functionName: GhostFlamesEnd
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Daruma_BaseRig.001|LC_Daruma_Idle
-      takeName: Daruma_BaseRig.001|LC_Daruma_Idle
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 123
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Daruma_BaseRig.001|LC_Daruma_Miss
-      takeName: Daruma_BaseRig.001|LC_Daruma_Miss
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 59
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Daruma_BaseRig.001|LC_Daruma_Spawn_02
-      takeName: Daruma_BaseRig.001|LC_Daruma_Spawn_02
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 59
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events:
-      - time: 0.8277154
-        functionName: GhostFlamesEnd
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Daruma_BaseRig.001|LC_Daruma_TPose
-      takeName: Daruma_BaseRig.001|LC_Daruma_TPose
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 59
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events:
-      - time: 0.49812734
-        functionName: GhostFlames
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
