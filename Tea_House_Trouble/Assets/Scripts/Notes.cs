@@ -7,6 +7,8 @@ public class Notes : MonoBehaviour
 {
     public RhythmManager Rhy;
 
+    //public GameObject shortNote;
+    //public GameObject longNote;
     public GameObject Note;
     public bool stopSpawning = false;
     public float spawnTime;
@@ -14,10 +16,17 @@ public class Notes : MonoBehaviour
 
     public RhythmManager.NoteID MyNoteID;
 
-    //private void Awake()
-    //{
-    //    Rhy = FindObjectOfType<RhythmManager>();
-    //}
+    public TMPro.TMP_Text DistanceText;
+
+    public void Destroy()
+    {
+       Destroy(gameObject);
+    }
+
+    private void Awake()
+    {
+        Rhy = FindObjectOfType<RhythmManager>();
+    }
 
     //private void Start()
     //{
@@ -26,11 +35,17 @@ public class Notes : MonoBehaviour
 
     public void SpawnObject()
     {
-        Instantiate(Note, transform.position, Quaternion.identity);
-        if (stopSpawning)
-        {
-            CancelInvoke("SpawnObject");
-        }
+        //Instantiate(shortNote, transform.position, Quaternion.identity);
+        //if (stopSpawning)
+        //{
+        //    CancelInvoke("SpawnObject");
+        //}
+
+        //Instantiate(longNote, transform.position, Quaternion.identity);
+        //if (stopSpawning)
+        //{
+        //    CancelInvoke("SpawnObject");
+        //}
     }
 
     //private void Update()
@@ -40,10 +55,6 @@ public class Notes : MonoBehaviour
     //    {
     //        //Time.timeScale = 0;
     //        //Rhy.Song.Pause();
-    //    }
-    //    if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
-    //    {
-    //        Destroy(gameObject);
     //    }
     //}
 }
