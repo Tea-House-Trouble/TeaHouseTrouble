@@ -873,7 +873,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &146464474
 PrefabInstance:
@@ -1275,7 +1275,7 @@ PrefabInstance:
     - target: {fileID: 291541260366898806, guid: 50a60e0a499f12f4bb89d17a8c32bcc1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 291541260366898806, guid: 50a60e0a499f12f4bb89d17a8c32bcc1,
         type: 3}
@@ -3157,7 +3157,7 @@ Transform:
   - {fileID: 18849698}
   - {fileID: 458386193}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -46.711, z: 0}
 --- !u!1001 &541360846
 PrefabInstance:
@@ -4681,6 +4681,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 998943020}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1005689579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.495271
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.622985
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99459136
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.10386572
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 11.924
+      objectReference: {fileID: 0}
+    - target: {fileID: 932379321401822735, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149307941515135029, guid: 4c2d47781d9d64e409306e62023075dd,
+        type: 3}
+      propertyPath: m_Name
+      value: Teahouse
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4c2d47781d9d64e409306e62023075dd, type: 3}
 --- !u!1001 &1018622138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5781,7 +5850,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1251977880
 MonoBehaviour:
@@ -7338,7 +7407,7 @@ Transform:
   - {fileID: 475961014}
   - {fileID: 727996677}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1906031567
 PrefabInstance:
