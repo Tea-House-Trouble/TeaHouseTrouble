@@ -6,8 +6,8 @@ using UnityEngine;
 /*
  Breakdown
    1.MainCam starts as baseCam
-   2.Rightclick sets back to baseCam
-   3.Leftclick on determined objects changes VirtualCam priorities
+   2.Rightclick sets back to baseCam & deactivates UIElements
+   3.Leftclick on determined objects changes VirtualCam priorities & activates set UI Elements
  */
 public class CameraTransitionManager : MonoBehaviour {
 
@@ -20,6 +20,7 @@ public class CameraTransitionManager : MonoBehaviour {
 
     private CinemachineVirtualCamera currentCam;
     private CinemachineVirtualCamera targetCam = null;
+    private bool isMoving = false;
 
 
     private void Start() {
