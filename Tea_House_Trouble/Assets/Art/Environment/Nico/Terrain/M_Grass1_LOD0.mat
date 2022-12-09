@@ -12,14 +12,11 @@ Material:
     type: 3}
   m_ValidKeywords:
   - _ADDITIONAL_LIGHTS
-  - _ADDITIONAL_LIGHTS_VERTEX
   - _ADDITIONAL_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
   - _SOFT_SHADOWS
-  m_InvalidKeywords:
-  - _ADDITIONAL_LIGHTS_VERTEX__ADDITIONAL_LIGHTS
-  - _LIGHTMAP_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -69,6 +66,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_9f803fe4b9904e32a3f676ffbd62466c_Texture_1:
+        m_Texture: {fileID: 2800000, guid: fbad358e3b0a5d54499312824195b226, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_a5e0556c8d6843ec9bf22b2cb16a2938_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_05e7f44715f447988d7505a89d3936d9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: b96965f96c6e44744a2919a59dcf33c9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6df97a3eeac64d8489d26bdb711c9fe1_Texture_1:
+        m_Texture: {fileID: 2800000, guid: b9fc5bac7e6b99248928984b611e879a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -93,6 +106,7 @@ Material:
     - _ADDITIONAL_LIGHT_SHADOWS: 1
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlendOp: 0
     - _BumpScale: 1
     - _CastShadows: 0
     - _ClearCoatMask: 0
@@ -117,24 +131,31 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SOFT_SHADOWS: 1
+    - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Wind_Speed: 0.8
-    - _Wind_strength: 0.15
+    - _Wind_Speed: 2.5
+    - _Wind_strength: 0.3
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bottom_color: {r: 0.3137255, g: 0.3675326, b: 0.3882353, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.49056602, g: 0.21982911, b: 0.21982911, a: 1}
+    - _Base_Color_1: {r: 0.17080855, g: 0.2830189, b: 0.15886438, a: 0}
+    - _Base_Color_2: {r: 0.7209301, g: 0, b: 1, a: 0}
+    - _Bottom_color: {r: 0.31181028, g: 0.46226418, b: 0.36310136, a: 0}
+    - _Color: {r: 0.49056596, g: 0.21982905, b: 0.21982905, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Noise_Scale: {r: 0, g: 0, b: 0, a: 0}
+    - _Noise_scale: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Random_Color: {r: 1, g: 0, b: 0.11764718, a: 1}
+    - _Random_color: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Top_color: {r: 0.29071733, g: 0.43957922, b: 0.4433962, a: 1}
+    - _Top_color: {r: 0.25169095, g: 0.5283019, b: 0.392939, a: 1}
     - _Wind_direction: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5784889237315588783

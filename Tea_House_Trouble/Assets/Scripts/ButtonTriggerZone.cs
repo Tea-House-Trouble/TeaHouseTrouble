@@ -7,9 +7,33 @@ using UnityEngine.InputSystem;
 
 public class ButtonTriggerZone : MonoBehaviour
 {
-    
+    List<Notes> Enemys = new List<Notes>();
+
     public PlayerControlls Controlls;
     private PlayerInput playerInput;
+
+    public Transform LineTransform;
+    /// <summary>
+    /// Prüft ob eine Passsende Note im Trigger ist, wenn ein Button gedrückt wurde. Distance beschreibt wie weit die Z Werte abweichen (Forgivness)
+    /// </summary>
+    public bool WasNoteHit(RhythmManager.NoteID PressedNote, out float distance)
+    {
+        foreach (Notes note in Enemys)
+        {
+            if (note.MyNoteID == PressedNote)
+            {
+                distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
+                Debug.DrawLine(transform.position, note.transform.position);
+                Debug.Log(transform.InverseTransformPoint(note.transform.position) + ", Distance: " + distance + transform.localPosition);
+                Enemys.Remove(note);
+                note.Destroy();
+                return true;
+            }
+        }
+
+        distance = -1f;
+        return false;
+    }
 
     private void Awake()
     {
@@ -17,13 +41,21 @@ public class ButtonTriggerZone : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
-        {
-            Destroy(gameObject);
-        }
+        //foreach (Notes note in Enemys)
+        //{
+        //    if (note == null) continue;
+
+        //    float distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
+        //    distance = Mathf.Round(distance * 100f) / 100f;
+        //    note.DistanceText.text = distance.ToString();
+        //}
+
+        //if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void OnEnable()
@@ -36,28 +68,19 @@ public class ButtonTriggerZone : MonoBehaviour
         Controlls.Disable();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Enemy"))
-        {
-            Debug.Log("Enter Collider");
-            Destroy(collision.gameObject);
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            Destroy(other.gameObject);
+            Enemys.Add(other.GetComponent<Notes>());
+
             Debug.Log("Enter Triggerzone");
 
-            //if (Controlls.Actions.Up.ReadValue<int>() > 1)
-            //{
-            //    Destroy(other.gameObject);
-            //    Debug.Log("Kill Note");
-            //}
-            
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Enemys.Remove(other.GetComponent<Notes>());
     }
 }
