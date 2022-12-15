@@ -28,18 +28,20 @@ public class Notes : MonoBehaviour
         Rhy = FindObjectOfType<RhythmManager>();
     }
 
-    //private void Start()
-    //{
-    //    InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
-    //}
+    private void Start()
+    {
+        InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+    }
 
     public void SpawnObject()
     {
-        //Instantiate(shortNote, transform.position, Quaternion.identity);
-        //if (stopSpawning)
-        //{
-        //    CancelInvoke("SpawnObject");
-        //}
+        CSVReader.Spawn.Equals(gameObject, spawnTime);
+
+        Instantiate(Note, transform.position, Quaternion.identity);
+        if (stopSpawning)
+        {
+            CancelInvoke("SpawnObject");
+        }
 
         //Instantiate(longNote, transform.position, Quaternion.identity);
         //if (stopSpawning)
