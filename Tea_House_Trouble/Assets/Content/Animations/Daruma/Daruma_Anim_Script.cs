@@ -6,7 +6,8 @@ public class Daruma_Anim_Script : MonoBehaviour
    Animator DAR_Animator;
    [SerializeField] ParticleSystem GroundGhostFlames;
    [SerializeField] ParticleSystem DeathVFX;
-   [SerializeField] GameObject Body;
+    [SerializeField] ParticleSystem Hit;
+    [SerializeField] GameObject Body;
    [SerializeField] GameObject Face;
    public float AutoDespawnTimer;
    
@@ -22,7 +23,12 @@ public class Daruma_Anim_Script : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Debug.Log("DarumaHit");
-            DAR_Animator.Play("Hit");
+            if (DAR_Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                Hit.Play();
+            }
+                DAR_Animator.Play("Hit");
+            
         }
     }
 
