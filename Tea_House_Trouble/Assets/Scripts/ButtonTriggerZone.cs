@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Rendering.LookDev;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ButtonTriggerZone : MonoBehaviour
 {
-    List<Notes> Enemys = new List<Notes>();
+    List<Note> Enemys = new List<Note>();
 
     public PlayerControlls Controlls;
     private PlayerInput playerInput;
@@ -18,7 +16,7 @@ public class ButtonTriggerZone : MonoBehaviour
     /// </summary>
     public bool WasNoteHit(RhythmManager.NoteID PressedNote, out float distance)
     {
-        foreach (Notes note in Enemys)
+        foreach (Note note in Enemys)
         {
             if (note.MyNoteID == PressedNote)
             {
@@ -43,19 +41,7 @@ public class ButtonTriggerZone : MonoBehaviour
 
     void Update()
     {
-        //foreach (Notes note in Enemys)
-        //{
-        //    if (note == null) continue;
-
-        //    float distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
-        //    distance = Mathf.Round(distance * 100f) / 100f;
-        //    note.DistanceText.text = distance.ToString();
-        //}
-
-        //if (transform.position.x < PlayerAutoRun.PlayerTransform.position.x)
-        //{
-        //    Destroy(gameObject);
-        //}
+        
     }
 
     private void OnEnable()
@@ -72,7 +58,7 @@ public class ButtonTriggerZone : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            Enemys.Add(other.GetComponent<Notes>());
+            Enemys.Add(other.GetComponent<Note>());
 
             Debug.Log("Enter Triggerzone");
 
@@ -81,6 +67,6 @@ public class ButtonTriggerZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Enemys.Remove(other.GetComponent<Notes>());
+        Enemys.Remove(other.GetComponent<Note>());
     }
 }

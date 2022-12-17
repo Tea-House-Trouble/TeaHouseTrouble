@@ -1378,13 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 3
-  DistanceText: {fileID: 0}
 --- !u!65 &542353765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2035,13 +2029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 1
-  DistanceText: {fileID: 0}
 --- !u!65 &877693086
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2255,13 +2243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 2
-  DistanceText: {fileID: 0}
 --- !u!65 &1121201566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2293,13 +2275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 3
-  DistanceText: {fileID: 0}
 --- !u!65 &1218028382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2851,13 +2827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 4
-  DistanceText: {fileID: 0}
 --- !u!65 &1435391728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3049,456 +3019,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2471355220285825008, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471355220285825008, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnTime
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471355220285825008, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030086801931947759, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030086801931947759, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698942539058649126, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698942539058649126, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698942539058649126, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[0].Note
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[1].Note
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[2].Note
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[3].Note
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[4].Note
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[5].Note
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[6].Note
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[7].Note
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[8].Note
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[9].Note
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[10].Note
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[11].Note
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[12].Note
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[13].Note
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[14].Note
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[15].Note
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[16].Note
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[17].Note
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[0].second
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[1].second
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[2].second
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[3].second
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[4].second
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[5].second
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[6].second
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[7].second
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[8].second
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[9].second
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[10].second
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[11].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[12].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[12].second
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[13].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[13].second
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[14].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[14].second
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[15].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[15].second
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[16].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[16].second
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[17].minute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[17].second
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[0].identifier
-      value: 0:5 W (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[1].identifier
-      value: 0:10 A (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[2].identifier
-      value: 0:15 S (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[3].identifier
-      value: 0:20 D (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[4].identifier
-      value: 0:25 W (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[5].identifier
-      value: 0:30 A (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[6].identifier
-      value: 0:35 S (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[7].identifier
-      value: 0:40 D (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[8].identifier
-      value: 0:45 W (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[9].identifier
-      value: 0:50 A (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[0].enemyLenght
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[10].identifier
-      value: 0:55 S (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[11].identifier
-      value: 1:0 D (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[12].identifier
-      value: 1:5 W (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[13].identifier
-      value: 1:10 A (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[14].identifier
-      value: 1:15 S (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[15].identifier
-      value: 1:20 D (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[16].identifier
-      value: 1:25 W (17)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[17].identifier
-      value: 1:30 A (18)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[1].enemyLenght
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[2].enemyLenght
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[3].enemyLenght
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[4].enemyLenght
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[5].enemyLenght
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[6].enemyLenght
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[7].enemyLenght
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[8].enemyLenght
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[9].enemyLenght
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[10].enemyLenght
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[11].enemyLenght
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[12].enemyLenght
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[13].enemyLenght
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[14].enemyLenght
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[15].enemyLenght
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[16].enemyLenght
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771454110951, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: mySpawnList.spawn.Array.data[17].enemyLenght
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771842882000, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888950771842882000, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 4498373099051393368, guid: a7999f86c949aad4db6a12bc8c184e5b,
+        type: 3}
+      propertyPath: noteParent
+      value: 
+      objectReference: {fileID: 1540988535}
     - target: {fileID: 8888950772789332152, guid: a7999f86c949aad4db6a12bc8c184e5b,
         type: 3}
       propertyPath: m_RootOrder
@@ -3564,11 +3089,6 @@ PrefabInstance:
       propertyPath: pathCreator
       value: 
       objectReference: {fileID: 251202324}
-    - target: {fileID: 8888950772789332156, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
-      propertyPath: distanceTravelled
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8888950772789332157, guid: a7999f86c949aad4db6a12bc8c184e5b,
         type: 3}
       propertyPath: m_Name
@@ -3584,13 +3104,371 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8888950773174767639, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8888950773293514705, guid: a7999f86c949aad4db6a12bc8c184e5b,
-        type: 3}
+    - target: {fileID: 0}
+      propertyPath: spawnTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnDelay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnDelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[0].Note
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[1].Note
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[2].Note
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[3].Note
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[4].Note
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[5].Note
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[6].Note
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[7].Note
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[8].Note
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[9].Note
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[10].Note
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[11].Note
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[12].Note
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[13].Note
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[14].Note
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[15].Note
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[16].Note
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[17].Note
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[0].second
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[1].second
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[2].second
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[3].second
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[4].second
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[5].second
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[6].second
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[7].second
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[8].second
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[9].second
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[10].second
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[11].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[12].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[12].second
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[13].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[13].second
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[14].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[14].second
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[15].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[15].second
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[16].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[16].second
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[17].minute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[17].second
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[0].identifier
+      value: 0:5 W (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[1].identifier
+      value: 0:10 A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[2].identifier
+      value: 0:15 S (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[3].identifier
+      value: 0:20 D (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[4].identifier
+      value: 0:25 W (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[5].identifier
+      value: 0:30 A (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[6].identifier
+      value: 0:35 S (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[7].identifier
+      value: 0:40 D (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[8].identifier
+      value: 0:45 W (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[9].identifier
+      value: 0:50 A (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[0].enemyLenght
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[10].identifier
+      value: 0:55 S (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[11].identifier
+      value: 1:0 D (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[12].identifier
+      value: 1:5 W (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[13].identifier
+      value: 1:10 A (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[14].identifier
+      value: 1:15 S (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[15].identifier
+      value: 1:20 D (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[16].identifier
+      value: 1:25 W (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[17].identifier
+      value: 1:30 A (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[1].enemyLenght
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[2].enemyLenght
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[3].enemyLenght
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[4].enemyLenght
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[5].enemyLenght
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[6].enemyLenght
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[7].enemyLenght
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[8].enemyLenght
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[9].enemyLenght
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[10].enemyLenght
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[11].enemyLenght
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[12].enemyLenght
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[13].enemyLenght
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[14].enemyLenght
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[15].enemyLenght
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[16].enemyLenght
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySpawnList.spawn.Array.data[17].enemyLenght
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spawnDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -3602,6 +3480,37 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1965820536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1540988534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1540988535}
+  m_Layer: 0
+  m_Name: NoteParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1540988535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540988534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681525676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,13 +3694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rhy: {fileID: 1348013449}
-  Note: {fileID: 0}
-  stopSpawning: 1
-  spawnTime: 0
-  spawnDelay: 0
   MyNoteID: 3
-  DistanceText: {fileID: 0}
 --- !u!65 &1690931099
 BoxCollider:
   m_ObjectHideFlags: 0

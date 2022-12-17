@@ -25,13 +25,7 @@ public class CSVReader : MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    public class SpawnList
-    {
-        public Spawn[] spawn;
-    }
-
-    public SpawnList mySpawnList = new SpawnList();
+    public Spawn[] spawnList;
 
     // Start is called before the first frame update
     void Start()
@@ -40,49 +34,47 @@ public class CSVReader : MonoBehaviour
     }
 
     [ContextMenu("Read CSV")]
-    void ReadCSV()
+    public void ReadCSV()
     {
-        string[] Lines = textAssetData.text.Split(new String[] { "\n" }, StringSplitOptions.None);
+        string[] Lines = textAssetData.text.Split(new String[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
         string[][] data = new string[Lines.Length][];
 
-        Debug.Log(data.Length);
-        int tableSize = data.Length / columnAmount - 1;
-        mySpawnList.spawn = new Spawn[tableSize];
+        spawnList = new Spawn[data.Length - 1];
 
-        for (int i = 1; i < tableSize + 1; i++) // Use = 1 ignore from your Header
+        for (int i = 1; i < data.Length; i++) // Use = 1 ignore from your Header
         {
-            Debug.Log(data[columnAmount * i]);
+            Debug.Log(Lines[i]);
 
             data[i] = Lines[i].Split(';');
 
 
-            mySpawnList.spawn[i - 1] = new Spawn();
+            spawnList[i - 1] = new Spawn();
 
             string timeString = data[i][0];
 
             string[] timeElements = timeString.Split(':');
 
-            if (!int.TryParse(timeElements[0].Trim(), out mySpawnList.spawn[i - 1].minute))
+            if (!int.TryParse(timeElements[0].Trim(), out spawnList[i - 1].minute))
             {
                 Debug.Log("Line " + i + " Time Elements 0 : " + timeElements[0].Trim());
             }
 
-            if (!int.TryParse(timeElements[1].Trim(), out mySpawnList.spawn[i - 1].second))
+            if (!int.TryParse(timeElements[1].Trim(), out spawnList[i - 1].second))
             {
                 Debug.Log("Line " + i + " Time Elements 1 : " + timeElements[1].Trim());
             }
 
-            if (!int.TryParse(data[i][1].Trim(), out mySpawnList.spawn[i - 1].enemyLenght))
+            if (!int.TryParse(data[i][1].Trim(), out spawnList[i - 1].enemyLenght))
             {
                 Debug.Log("Line " + i + " Enemy Lenght : " + data[i][1].Trim());
             }
 
-            if (!Enum.TryParse(data[i][2].Trim(), out mySpawnList.spawn[i - 1].Note))
+            if (!Enum.TryParse(data[i][2].Trim(), out spawnList[i - 1].Note))
             {
                 Debug.Log("Line " + i + " NoteID : " + data[i][2].Trim());
             }
 
-            mySpawnList.spawn[i - 1].identifier = mySpawnList.spawn[i - 1].ToString();
+            spawnList[i - 1].identifier = spawnList[i - 1].ToString();
         }
     }
 }
