@@ -12,8 +12,17 @@ public class CSVReader : MonoBehaviour
     [System.Serializable]
     public class Spawn
     {
-        public string time;
+        [HideInInspector] public string identifier;
         public int enemyLenght;
+
+        public int minute;
+        public int second;
+
+        public RhythmManager.NoteID Note;
+        public override string ToString()
+        {
+            return $"{minute}:{second} {Note} ({enemyLenght})";
+        }
     }
 
     [System.Serializable]
@@ -33,33 +42,47 @@ public class CSVReader : MonoBehaviour
     [ContextMenu("Read CSV")]
     void ReadCSV()
     {
-        string[] data = textAssetData.text.Split(new String[] { ";", "\n" }, StringSplitOptions.None);
+        string[] Lines = textAssetData.text.Split(new String[] { "\n" }, StringSplitOptions.None);
+        string[][] data = new string[Lines.Length][];
 
+        Debug.Log(data.Length);
         int tableSize = data.Length / columnAmount - 1;
         mySpawnList.spawn = new Spawn[tableSize];
 
-        for (int i = 0; i < tableSize; i++)
+        for (int i = 1; i < tableSize + 1; i++) // Use = 1 ignore from your Header
         {
-            mySpawnList.spawn[i] = new Spawn();
-            mySpawnList.spawn[i].time = data[columnAmount * (i + 1)];
-            
-            string timeString = data[columnAmount * (i + 1)];
+            Debug.Log(data[columnAmount * i]);
+
+            data[i] = Lines[i].Split(';');
+
+
+            mySpawnList.spawn[i - 1] = new Spawn();
+
+            string timeString = data[i][0];
 
             string[] timeElements = timeString.Split(':');
 
-            int minute = int.Parse(timeElements[0]);
-            int second = int.Parse(timeElements[1]);
-
-            //Debug.Log(data[columnAmount * (i + 1)]);
-            mySpawnList.spawn[i].enemyLenght = int.Parse(data[columnAmount * (i + 1) + 1].Trim());
-            if(int.TryParse(data[columnAmount * (i + 1) + 1].Trim(), out int taktlenght))
+            if (!int.TryParse(timeElements[0].Trim(), out mySpawnList.spawn[i - 1].minute))
             {
-                mySpawnList.spawn[i].enemyLenght = taktlenght;
+                Debug.Log("Line " + i + " Time Elements 0 : " + timeElements[0].Trim());
             }
-            //else
-            //{
-            //    Debug.Log(data[columnAmount * (i + 1) + 1].Trim());
-            //}
+
+            if (!int.TryParse(timeElements[1].Trim(), out mySpawnList.spawn[i - 1].second))
+            {
+                Debug.Log("Line " + i + " Time Elements 1 : " + timeElements[1].Trim());
+            }
+
+            if (!int.TryParse(data[i][1].Trim(), out mySpawnList.spawn[i - 1].enemyLenght))
+            {
+                Debug.Log("Line " + i + " Enemy Lenght : " + data[i][1].Trim());
+            }
+
+            if (!Enum.TryParse(data[i][2].Trim(), out mySpawnList.spawn[i - 1].Note))
+            {
+                Debug.Log("Line " + i + " NoteID : " + data[i][2].Trim());
+            }
+
+            mySpawnList.spawn[i - 1].identifier = mySpawnList.spawn[i - 1].ToString();
         }
     }
 }

@@ -128,34 +128,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Song.Play();
                 songPlaying = true;
             }
-
-            //currentTime = Time.time;
-            //if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
-            //{
-            //    if (NotesTime.Length - 1 > CurrentNote)
-            //    {
-            //        CurrentNote++;
-            //    }
-            //}
-
-            //if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
-            //{
-            //    GameObject nextNote;
-
-            //    nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note A " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note W " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note S " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note D " + NoteCounter++;
-
-            //    spawnNote++;
-            //}
         }
     }
     public HitQuality GetHitQuality(float distance)
@@ -230,12 +202,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
     }
 
-    public IEnumerator DisplayChainCounter(GameObject gameObject)
-    {
-        Debug.Log("Enu Start");
-        yield return new WaitForSeconds(1);
-        ChainCounterMessage.SetActive(false);
-    }
+    //public IEnumerator DisplayChainCounter(GameObject gameObject)
+    //{
+    //    Debug.Log("Enu Start");
+    //    yield return new WaitForSeconds(1);
+    //    ChainCounterMessage.SetActive(false);
+    //}
 
     public void OnUp(InputAction.CallbackContext context)
     {

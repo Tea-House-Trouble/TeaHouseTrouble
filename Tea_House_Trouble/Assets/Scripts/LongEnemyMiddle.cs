@@ -6,7 +6,13 @@ public class LongEnemyMiddle : MonoBehaviour
 {
     private bool wasPressedHold = false;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        wasPressedHold = true;
+        other.gameObject.tag.Equals("Enemy");
+    }
+
+    private void OnTriggerExit(Collider other)
     {
         wasPressedHold = true;
         other.gameObject.tag.Equals("Enemy");
