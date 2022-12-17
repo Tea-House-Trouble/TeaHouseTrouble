@@ -40,13 +40,23 @@ public class SpawnController : MonoBehaviour
 
         if (elapsedTime >= spawnTime)
         {
-            SpawnNextNote();
-            PrepareNextNote();
+            do
+            {
+                SpawnNextNote();
+                PrepareNextNote();
+            } 
+            while (elapsedTime >= spawnTime);
         }
     }
 
     private void PrepareNextNote()
     {
+        if (noteCounter >= csvReader.spawnList.Length)
+        {
+            spawnTime = elapsedTime + 60f;
+            return;
+        }
+
         nextSpawnData = csvReader.spawnList[noteCounter];
         spawnTime = nextSpawnData.minute * 60f + nextSpawnData.second;
 

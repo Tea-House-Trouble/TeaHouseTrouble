@@ -5,7 +5,12 @@ using System;
 
 public class CSVReader : MonoBehaviour
 {
-    const int columnAmount = 2;
+    public const int columnAmount = 3;
+
+    public const string expectedHeader = "Time,EnemyLength,NoteID";
+    public const int columnTime = 0;
+    public const int columnLenght = 1;
+    public const int columnNoteID = 2;
 
     public TextAsset textAssetData;
 
@@ -27,12 +32,6 @@ public class CSVReader : MonoBehaviour
 
     public Spawn[] spawnList;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ReadCSV();
-    }
-
     [ContextMenu("Read CSV")]
     public void ReadCSV()
     {
@@ -43,14 +42,14 @@ public class CSVReader : MonoBehaviour
 
         for (int i = 1; i < data.Length; i++) // Use = 1 ignore from your Header
         {
-            Debug.Log(Lines[i]);
+           // Debug.Log(Lines[i]);
 
-            data[i] = Lines[i].Split(';');
+            data[i] = Lines[i].Split(',');
 
 
             spawnList[i - 1] = new Spawn();
 
-            string timeString = data[i][0];
+            string timeString = data[i][columnTime];
 
             string[] timeElements = timeString.Split(':');
 
@@ -64,14 +63,14 @@ public class CSVReader : MonoBehaviour
                 Debug.Log("Line " + i + " Time Elements 1 : " + timeElements[1].Trim());
             }
 
-            if (!int.TryParse(data[i][1].Trim(), out spawnList[i - 1].enemyLenght))
+            if (!int.TryParse(data[i][columnLenght].Trim(), out spawnList[i - 1].enemyLenght))
             {
-                Debug.Log("Line " + i + " Enemy Lenght : " + data[i][1].Trim());
+                Debug.Log("Line " + i + " Enemy Lenght : " + data[i][columnLenght].Trim());
             }
 
-            if (!Enum.TryParse(data[i][2].Trim(), out spawnList[i - 1].Note))
+            if (!Enum.TryParse(data[i][columnNoteID].Trim(), out spawnList[i - 1].Note))
             {
-                Debug.Log("Line " + i + " NoteID : " + data[i][2].Trim());
+                Debug.Log("Line " + i + " NoteID : " + data[i][columnNoteID].Trim());
             }
 
             spawnList[i - 1].identifier = spawnList[i - 1].ToString();
