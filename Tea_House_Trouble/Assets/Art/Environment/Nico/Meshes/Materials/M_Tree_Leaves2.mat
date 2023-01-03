@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Tealeaves
-  m_Shader: {fileID: -6465566751694194690, guid: c126a8e3ba2b6c54287796a23365908f,
+  m_Name: M_Tree_Leaves2
+  m_Shader: {fileID: -6465566751694194690, guid: 7dbc550ae9ee85a4d94e21ade30954c0,
     type: 3}
   m_ValidKeywords:
   - _ADDITIONAL_LIGHTS
@@ -21,7 +21,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses: []
@@ -85,7 +85,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_a37888d17e58471eb68f3e9eb6897de6_Texture_1:
-        m_Texture: {fileID: 2800000, guid: c26567270a6d660499caccf4ee0bfff8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7dd411504bfe53d4f8471b613ff09fd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -129,8 +129,7 @@ Material:
     - _MAIN_LIGHT_SHADOWS: 1
     - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _Metallic: 0
-    - _Move_Offset: 0.5
-    - _Move_offset: 1
+    - _Move_offset: 0.4
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -143,7 +142,6 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Wind_Speed: 2
-    - _Wind_Strength: 0.15
     - _Wind_strength: 0.3
     - _WorkflowMode: 1
     - _ZTest: 4
@@ -155,16 +153,14 @@ Material:
     - _Base_Color_2: {r: 0.7209301, g: 0, b: 1, a: 0}
     - _Bottom_color: {r: 0.31181028, g: 0.46226418, b: 0.36310136, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_1: {r: 0.15574937, g: 0.26415092, b: 0.23519148, a: 0}
-    - _Color_2: {r: 0.20745817, g: 0.3962264, b: 0.25527945, a: 0}
+    - _Color_1: {r: 0.3227272, g: 0.3962264, b: 0.22988608, a: 0}
+    - _Color_2: {r: 0.4528302, g: 0.4528302, b: 0.18583126, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Noise_scale: {r: 0.1, g: 0.05, b: 0, a: 0}
+    - _Noise_scale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _Random_Color: {r: 1, g: 0, b: 0.11764718, a: 1}
     - _Random_color: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Top_color: {r: 0.25169095, g: 0.5283019, b: 0.392939, a: 1}
-    - _Wind_Direction: {r: 1, g: 1, b: 0, a: 0}
-    - _Wind_Direction_1: {r: 0, g: 0, b: 1, a: 0}
     - _Wind_direction: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5784889237315588783
