@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8509257409029367917
+--- !u!114 &-5224258028453738052
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,26 +20,37 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Middle_Rock3
-  m_Shader: {fileID: -6465566751694194690, guid: 87482e9fecfca234eb2df91c4e34963e,
-    type: 3}
-  m_ValidKeywords: []
+  m_Name: M_Menu_Card_Scrolls
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ValidKeywords:
+  - _METALLICSPECGLOSSMAP
+  - _NORMALMAP
+  - _OCCLUSIONMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 3877c03c824046f449e67e30b395f2ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 68949c0d7e64da14190eded0e41ffacf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a30bd4b906f33f46b2a4c7406b0cec0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 5766437357b29b04fad3854f1c153926, type: 3}
+        m_Texture: {fileID: 2800000, guid: b948f3e30357b96488c466cbe6f363ec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Color:
+        m_Texture: {fileID: 2800000, guid: 2a30bd4b906f33f46b2a4c7406b0cec0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -58,52 +69,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Grass_Base_Color:
-        m_Texture: {fileID: 2800000, guid: a9ace4eee01d7314d8e3eea5b4d5f63c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Grass_Smoothness:
-        m_Texture: {fileID: 2800000, guid: 78483a19caa1db343bce44b6f3065663, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 68949c0d7e64da14190eded0e41ffacf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a30bd4b906f33f46b2a4c7406b0cec0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: faf910eddfa962c48a1be7f0d720cedf, type: 3}
+        m_Texture: {fileID: 2800000, guid: b1b30961c9eae554e954fcde26aa5d56, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: b948f3e30357b96488c466cbe6f363ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 4c98d95a0eba4d4419e0d4b46cf39b24, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3877c03c824046f449e67e30b395f2ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Rock_AO:
-        m_Texture: {fileID: 2800000, guid: dd464be1f6288e24fbb50f7857d7c1e6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Rock_Base_Color:
-        m_Texture: {fileID: 2800000, guid: b1816706fe103e245adef5c366e648a5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Rock_Normal:
-        m_Texture: {fileID: 2800000, guid: 685d160a4ecff9d478099bd7fb167856, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Rock_Smoothness:
-        m_Texture: {fileID: 2800000, guid: a8d85511344e8c74c803745585dfa149, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_17a0e92af22947479662f5e341f702ce_Texture_1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_c657011605fa4c95b6ec87678c60645d_Texture_1:
-        m_Texture: {fileID: 0}
+    - _Smoothness:
+        m_Texture: {fileID: 2800000, guid: b1b30961c9eae554e954fcde26aa5d56, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -124,44 +111,44 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AO_Power: 1
     - _AlphaClip: 0
-    - _Amount: 1
-    - _BUILTIN_QueueControl: -1
-    - _BUILTIN_QueueOffset: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 2
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emission: 1
     - _EnvironmentReflections: 1
+    - _Fresnel_Power: 4
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Normal_Power: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Rock_Normal_Strength: 1
-    - _Rock_Smoothness_Strength: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
+    - _Smoothness_Level: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Strength: 3
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.93333334, g: 0.8901961, b: 1, a: 1}
-    - _Color: {r: 0.93333334, g: 0.8901961, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Offset: {r: 0, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Fresnel_Color: {r: 3.231291, g: 0.5711119, b: 0.5711119, a: 0}
+    - _Glow_Frequency: {r: -0.5, g: 0.5, b: 0, a: 0}
+    - _Glow_Spectrum: {r: 0.3, g: 0.5, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
