@@ -14,7 +14,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     public GameObject Ocha;
     public AudioSource Song;
-    public GameObject Note;
+    //public GameObject Note;
     public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
@@ -123,11 +123,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 ChainCounterMessage.SetActive(false);
             }
         }
-            if (songPlaying == false && Time.time >= preBeats * tempoScale)
-            {
-                Song.Play();
-                songPlaying = true;
-            }
+        if (songPlaying == false && Time.time >= preBeats * tempoScale)
+        {
+            Song.Play();
+            songPlaying = true;
+        }
     }
     public HitQuality GetHitQuality(float distance)
     {
@@ -183,6 +183,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(false);
                     chainCounterNumberText.text = "" + ChainCounter;
                     break;
+                //case EnemyDeadZone.Destroy(gameObject)
+                //    Feedback.text = "MISS!";
+                //    ChainCounter = 0;
+                //    ChainCounterMessage.SetActive(false);
+                //    chainCounterNumberText.text = "" + ChainCounter;
                 default:
                     break;
             }
