@@ -9,6 +9,11 @@ public class SpawnController : MonoBehaviour
 
     [Space]
     [SerializeField] Note shortEnemyPrefab;
+    //[SerializeField] Note shortEnemyPrefabW;
+    //[SerializeField] Note shortEnemyPrefabS;
+    //[SerializeField] Note shortEnemyPrefabD;
+    //[SerializeField] Note longEnemyPrefab2Seconds;
+    //[SerializeField] Note longEnemyPrefab4Seconds;
 
     [Space]
     [SerializeField] Transform spawnPointA;
@@ -68,8 +73,29 @@ public class SpawnController : MonoBehaviour
         Note newNote = Instantiate(shortEnemyPrefab, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
         newNote.transform.SetParent(noteParent, worldPositionStays: true);
 
+        //Note newNoteW = Instantiate(shortEnemyPrefabA, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+        //newNoteA.transform.SetParent(noteParent, worldPositionStays: true);
+
+        //Note newNoteS = Instantiate(shortEnemyPrefabA, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+        //newNoteA.transform.SetParent(noteParent, worldPositionStays: true);
+
+        //Note newNoteD = Instantiate(shortEnemyPrefabA, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+        //newNoteA.transform.SetParent(noteParent, worldPositionStays: true);
+
+        //Note newLongNote = Instantiate(longEnemyPrefab2Seconds, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+        //newLongNote.transform.SetParent(noteParent, worldPositionStays: true);
+
         newNote.gameObject.name = nextSpawnData.ToString();
         newNote.MyNoteID = nextSpawnData.Note;
+
+        //newNoteW.gameObject.name = nextSpawnData.ToString();
+        //newNoteW.MyNoteID = nextSpawnData.Note;
+
+        //newNoteS.gameObject.name = nextSpawnData.ToString();
+        //newNoteS.MyNoteID = nextSpawnData.Note;
+
+        //newNoteD.gameObject.name = nextSpawnData.ToString();
+        //newNoteD.MyNoteID = nextSpawnData.Note;
     }
 
     private Transform GetSpawnPoint(RhythmManager.NoteID note)
