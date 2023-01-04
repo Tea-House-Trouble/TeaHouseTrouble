@@ -549,7 +549,7 @@ MonoBehaviour:
   thickness: 0.15
   flattenSurface: 1
   roadMaterial: {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
-  undersideMaterial: {fileID: 2100000, guid: 50f508cabc77ae54aa1c5037353e4b4e, type: 2}
+  undersideMaterial: {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
   textureTiling: 1
   meshHolder: {fileID: 1012807640}
 --- !u!114 &251202324
@@ -740,7 +740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6937281e9fb1fc64d9f1b8651ff62282, type: 3}
---- !u!43 &337662560
+--- !u!43 &320689292
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2015,6 +2015,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8383874406846532628, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383874406972081546, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2601feb3776368946af2f23e647f2f05, type: 3}
 --- !u!1 &877693083 stripped
@@ -2088,8 +2098,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
-  - {fileID: 2100000, guid: 50f508cabc77ae54aa1c5037353e4b4e, type: 2}
-  - {fileID: 2100000, guid: 50f508cabc77ae54aa1c5037353e4b4e, type: 2}
+  - {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
+  - {fileID: 2100000, guid: 4b78135c780299f4fbfc4c52981d8821, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2118,7 +2128,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012807640}
-  m_Mesh: {fileID: 337662560}
+  m_Mesh: {fileID: 320689292}
 --- !u!4 &1012807643
 Transform:
   m_ObjectHideFlags: 0
