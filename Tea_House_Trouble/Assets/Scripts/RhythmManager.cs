@@ -5,18 +5,16 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using UnityEditor.Rendering.LookDev;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
+    public static event System.Action<NoteID> ButtonPressed;
+
+
     public GameObject Ocha;
     public AudioSource Song;
     public GameObject Note;
-    //public GameObject shortNote;
-    //public GameObject longNote;
-    public GameObject SpawnPointA;
-    public GameObject SpawnPointW;
-    public GameObject SpawnPointS;
-    public GameObject SpawnPointD;
     public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
@@ -29,7 +27,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     [Header("Infos")]
     public int CurrentNote;
-    private int spawnNote;
     public float currentTime;
     public bool songPlaying;
     public float Score;
@@ -54,7 +51,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     [Space]
     public int[] successValues;
-    public float elapsedTime;
+    public float ChainCounterElapsedTime;
 
     [System.Serializable]
     public class NoteData { public NoteID Note; public float Start; public float Length = 1; }
@@ -65,6 +62,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public string[] NotesKind; // Outdated
 
     public PlayerControlls Controlls;
+
+    private float lastPressedTime;
+    private NoteID lastPressedNote;
 
     public enum NoteID
     {
@@ -116,47 +116,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         if (ChainCounterMessage.activeSelf)
         {
-            elapsedTime += Time.deltaTime;
+            ChainCounterElapsedTime += Time.deltaTime;
 
-            if (elapsedTime >= 2)
+            if (ChainCounterElapsedTime >= 2)
             {
                 ChainCounterMessage.SetActive(false);
             }
-
-            if (Time.time >= preBeats * tempoScale && songPlaying == false)
+        }
+            if (songPlaying == false && Time.time >= preBeats * tempoScale)
             {
                 Song.Play();
                 songPlaying = true;
             }
-
-            //currentTime = Time.time;
-            //if (Time.time - (preBeats * tempoScale) >= ((NotesTime[CurrentNote] - 1) * tempoScale) + (Forgivness * tempoScale))
-            //{
-            //    if (NotesTime.Length - 1 > CurrentNote)
-            //    {
-            //        CurrentNote++;
-            //    }
-            //}
-
-            //if ((Time.time - (preBeats * tempoScale)) * Tempo / 60 + 12 >= (NotesTime[spawnNote] - 1) && NotesTime.Length - 1 > spawnNote)
-            //{
-            //    GameObject nextNote;
-
-            //    nextNote = Instantiate(Note, SpawnPointA.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note A " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointW.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note W " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointS.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note S " + NoteCounter++;
-
-            //    nextNote = Instantiate(Note, SpawnPointD.transform.position, Quaternion.identity);
-            //    nextNote.name = "Note D " + NoteCounter++;
-
-            //    spawnNote++;
-            //}
-        }
     }
     public HitQuality GetHitQuality(float distance)
     {
@@ -172,108 +143,112 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
-    public void Hit(InputAction.CallbackContext context, NoteID Input)
+    public void Hit(NoteID Input)
     {
-        Debug.Log("Hit Key " + Input);
-        if (context.started)
-        {
-            if (TestTrigger.WasNoteHit(Input, out float distance))
-            {
-                switch (GetHitQuality(distance))
-                {
-                    case HitQuality.None:
-                        break;
-                    case HitQuality.Perfect:
-                        Feedback.text = "PERFECT!";
-                        Score += successValues[0] * MultiplikationPerfect + Mathf.Pow(1 + ChainCounter / 100, 2);
-                        ChainCounter++;
-                        ChainCounterMessage.SetActive(true);
-                        chainCounterNumberText.text = "" + ChainCounter;
-                        elapsedTime = 0;
-                        break;
-                    case HitQuality.Good:
-                        Feedback.text = "GOOD!";
-                        Score += successValues[1] * MultiplikationGood + Mathf.Pow(1 + ChainCounter / 100, 2);
-                        ChainCounter++;
-                        ChainCounterMessage.SetActive(true);
-                        chainCounterNumberText.text = "" + ChainCounter;
-                        elapsedTime = 0;
-                        break;
-                    case HitQuality.Bad:
-                        Feedback.text = "Bad!";
-                        Score += successValues[2] * MultiplikationBad + Mathf.Pow(1 + ChainCounter / 100, 2);
-                        ChainCounter++;
-                        ChainCounterMessage.SetActive(true);
-                        chainCounterNumberText.text = "" + ChainCounter;
-                        elapsedTime = 0;
-                        break;
-                    case HitQuality.Miss:
-                        Feedback.text = "MISS!";
-                        ChainCounter = 0;
-                        ChainCounterMessage.SetActive(false);
-                        chainCounterNumberText.text = "" + ChainCounter;
-                        break;
-                    default:
-                        break;
-                }
+        Debug.Log("Hit Key " + Input, this);
 
-                //ChainCounterMessage.SetActive(false);
-                scoreText.text = ((int)Score).ToString();
-                //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
-                Debug.Log($"Its {GetHitQuality(distance)} Hit");
+        if (TestTrigger.WasNoteHit(Input, out float distance))
+        {
+            switch (GetHitQuality(distance))
+            {
+                case HitQuality.None:
+                    break;
+                case HitQuality.Perfect:
+                    Feedback.text = "PERFECT!";
+                    Score += successValues[0] * MultiplikationPerfect + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    ChainCounter++;
+                    ChainCounterMessage.SetActive(true);
+                    chainCounterNumberText.text = "" + ChainCounter;
+                    ChainCounterElapsedTime = 0;
+                    break;
+                case HitQuality.Good:
+                    Feedback.text = "GOOD!";
+                    Score += successValues[1] * MultiplikationGood + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    ChainCounter++;
+                    ChainCounterMessage.SetActive(true);
+                    chainCounterNumberText.text = "" + ChainCounter;
+                    ChainCounterElapsedTime = 0;
+                    break;
+                case HitQuality.Bad:
+                    Feedback.text = "Bad!";
+                    Score += successValues[2] * MultiplikationBad + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    ChainCounter++;
+                    ChainCounterMessage.SetActive(true);
+                    chainCounterNumberText.text = "" + ChainCounter;
+                    ChainCounterElapsedTime = 0;
+                    break;
+                case HitQuality.Miss:
+                    Feedback.text = "MISS!";
+                    ChainCounter = 0;
+                    ChainCounterMessage.SetActive(false);
+                    chainCounterNumberText.text = "" + ChainCounter;
+                    break;
+                default:
+                    break;
             }
 
-            //  Dient noch als evtl. Rechenhilfe
-            //for (int i = 0; i < 3; i++)
-            ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
-
+            //ChainCounterMessage.SetActive(false);
+            scoreText.text = ((int)Score).ToString();
+            //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
+            Debug.Log($"Its {GetHitQuality(distance)} Hit");
         }
+
+        //  Dient noch als evtl. Rechenhilfe
+        //for (int i = 0; i < 3; i++)
+        ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
+
+
     }
 
-    public IEnumerator DisplayChainCounter(GameObject gameObject)
-    {
-        Debug.Log("Enu Start");
-        yield return new WaitForSeconds(1);
-        ChainCounterMessage.SetActive(false);
-    }
+    //public IEnumerator DisplayChainCounter(GameObject gameObject)
+    //{
+    //    Debug.Log("Enu Start");
+    //    yield return new WaitForSeconds(1);
+    //    ChainCounterMessage.SetActive(false);
+    //}
 
     public void OnUp(InputAction.CallbackContext context)
     {
-        Hit(context, NoteID.W);
-
         if (context.started)
-        {
-            Ocha.GetComponent<Animator>().Play("Hit");
-        }
+            OnButtonPressed(NoteID.W);
     }
 
     public void OnDown(InputAction.CallbackContext context)
     {
-        Hit(context, NoteID.S);
-
         if (context.started)
-        {
-            Ocha.GetComponent<Animator>().Play("Hit");
-        }
+            OnButtonPressed(NoteID.S);
     }
 
     public void OnRight(InputAction.CallbackContext context)
     {
-        Hit(context, NoteID.D);
-
         if (context.started)
-        {
-            Ocha.GetComponent<Animator>().Play("Hit");
-        }
+            OnButtonPressed(NoteID.D);
     }
 
     public void OnLeft(InputAction.CallbackContext context)
     {
-        Hit(context, NoteID.A);
-
         if (context.started)
-        {
-            Ocha.GetComponent<Animator>().Play("Hit");
-        }
+            OnButtonPressed(NoteID.A);
+
+    }
+
+    private void OnButtonPressed(NoteID note)
+    {
+        if (lastPressedNote == note && lastPressedTime == Time.timeSinceLevelLoad)
+            return;
+
+        Hit(note);
+
+        ButtonPressed?.Invoke(note);
+
+        StartAttackAnimation(note);
+
+        lastPressedTime = Time.timeSinceLevelLoad;
+        lastPressedNote = note;
+    }
+
+    private void StartAttackAnimation(NoteID note)
+    {
+        Ocha.GetComponent<Animator>().Play("Hit");
     }
 }

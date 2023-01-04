@@ -10,7 +10,7 @@ public class EnemyDeadZone : MonoBehaviour
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             Debug.Log("Enter Collider" + collision.gameObject.name);
-            collision.gameObject.GetComponent<Notes>().Destroy();
+            collision.gameObject.GetComponent<Note>().Destroy();
         }
     }
 
@@ -18,7 +18,7 @@ public class EnemyDeadZone : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            other.GetComponent<Notes>().Destroy();
+            other.GetComponent<Note>().Destroy();
             Debug.Log("Enter Triggerzone" + other.gameObject.name);
         }
     }

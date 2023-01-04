@@ -14355,9 +14355,91 @@ Transform:
   - {fileID: 4516931379666618213}
   - {fileID: 8426773511874164266}
   - {fileID: 8111701218188336740}
+  - {fileID: 3500141752512845960}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &3502831989000707230
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8321333392276103170}
+    m_Modifications:
+    - target: {fileID: 1090678147105552, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_Name
+      value: VFX_SwordHitMiniBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.286
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22fa20736cf0f58499aa7a38647e91da, type: 3}
+--- !u!4 &3500141752512845960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4379644762096662, guid: 22fa20736cf0f58499aa7a38647e91da,
+    type: 3}
+  m_PrefabInstance: {fileID: 3502831989000707230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3612753502720951966 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198047375795165696, guid: 22fa20736cf0f58499aa7a38647e91da,
+    type: 3}
+  m_PrefabInstance: {fileID: 3502831989000707230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4117948488181178510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14473,6 +14555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundGhostFlames: {fileID: 8426773511874164270}
   DeathVFX: {fileID: 8232677322545007444}
+  Hit: {fileID: 3612753502720951966}
   Body: {fileID: 3599518974484546790}
   Face: {fileID: 7920700698868634390}
   AutoDespawnTimer: 20
