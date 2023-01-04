@@ -9,6 +9,7 @@ public class SpawnController : MonoBehaviour
 
     [Space]
     [SerializeField] Note shortEnemyPrefab;
+    [SerializeField] Note longEnemyPrefab;
 
     [Space]
     [SerializeField] Transform spawnPointA;
@@ -67,6 +68,9 @@ public class SpawnController : MonoBehaviour
     {
         Note newNote = Instantiate(shortEnemyPrefab, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
         newNote.transform.SetParent(noteParent, worldPositionStays: true);
+
+        //Note newLongNote = Instantiate(longEnemyPrefab, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+        //newLongNote.transform.SetParent(noteParent, worldPositionStays: true);
 
         newNote.gameObject.name = nextSpawnData.ToString();
         newNote.MyNoteID = nextSpawnData.Note;
