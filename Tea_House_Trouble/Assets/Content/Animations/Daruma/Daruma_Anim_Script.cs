@@ -3,59 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Daruma_Anim_Script : MonoBehaviour
 {
-   Animator DAR_Animator;
-   [SerializeField] ParticleSystem GroundGhostFlames;
-   [SerializeField] ParticleSystem DeathVFX;
+    Animator DAR_Animator;
+    [SerializeField] ParticleSystem GroundGhostFlames;
+    [SerializeField] ParticleSystem DeathVFX;
     [SerializeField] ParticleSystem Hit;
     [SerializeField] GameObject Body;
-   [SerializeField] GameObject Face;
-   public float AutoDespawnTimer;
-   
+    [SerializeField] GameObject Face;
+    public float AutoDespawnTimer;
 
-   void Start()
+
+    void Start()
     {
         DAR_Animator = gameObject.GetComponent<Animator>();
-        StartCoroutine (Despawn());
-     }
+        StartCoroutine(Despawn());
+    }
 
-    void Update()
+    public void Destroy()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            Debug.Log("DarumaHit");
-            if (DAR_Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            {
-                Hit.Play();
-            }
-                DAR_Animator.Play("Hit");
-            
-        }
+        Debug.Log("DarumaHit");
+        
+        Hit.Play();
+       
+        DAR_Animator.Play("Hit");
     }
 
     public void GhostFlames()
-        {
-            GroundGhostFlames.Play();
-        }
+    {
+        GroundGhostFlames.Play();
+    }
 
     public void GhostFlamesEnd()
-        {
-            GroundGhostFlames.Stop();
-        }
+    {
+        GroundGhostFlames.Stop();
+    }
 
     public void DarumaDeathFX()
-        {
-            DeathVFX.Play();
-        }
+    {
+        DeathVFX.Play();
+    }
 
     public void DarumaDeathDespawn()
-        {
-            Body.SetActive(false);
-            Face.SetActive(false);
-        }
+    {
+        Body.SetActive(false);
+        Face.SetActive(false);
+    }
 
     IEnumerator Despawn()
-        {
-            yield return new WaitForSeconds (AutoDespawnTimer);
-            Destroy(gameObject);
-        }
+    {
+        yield return new WaitForSeconds(AutoDespawnTimer);
+        Destroy(gameObject);
+    }
 }

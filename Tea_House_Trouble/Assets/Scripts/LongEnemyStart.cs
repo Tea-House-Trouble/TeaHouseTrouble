@@ -7,6 +7,6 @@ public class LongEnemyStart : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.gameObject.tag.Equals("Enemy");
-        other.gameObject.GetComponent<Note>().Destroy();
+        other.gameObject.GetComponent<Daruma_Anim_Script>().Destroy();
     }
 }

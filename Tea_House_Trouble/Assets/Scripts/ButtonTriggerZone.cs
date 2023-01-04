@@ -14,7 +14,7 @@ public class ButtonTriggerZone : MonoBehaviour
     /// <summary>
     /// Prüft ob eine Passsende Note im Trigger ist, wenn ein Button gedrückt wurde. Distance beschreibt wie weit die Z Werte abweichen (Forgivness)
     /// </summary>
-    public bool WasNoteHit(RhythmManager.NoteID PressedNote, out float distance)
+    public bool WasNoteHit(RhythmManager.NoteID PressedNote, out float distance, out Note HitNote)
     {
         foreach (Note note in Enemys)
         {
@@ -23,14 +23,17 @@ public class ButtonTriggerZone : MonoBehaviour
                 distance = Mathf.Abs(LineTransform.InverseTransformPoint(note.transform.position).z - LineTransform.localPosition.z);
                 Debug.DrawLine(transform.position, note.transform.position);
                 Debug.Log(transform.InverseTransformPoint(note.transform.position) + ", Distance: " + distance + transform.localPosition);
+                HitNote = note;
                 Enemys.Remove(note);
-                note.Destroy();
+                //note(gameObject);
                 return true;
             }
         }
 
         distance = -1f;
+        HitNote = null;
         return false;
+
     }
 
     private void Awake()
