@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
-using UnityEditor.Rendering.LookDev;
+//using UnityEditor.Rendering.LookDev;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
@@ -141,6 +141,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (ChainCounterElapsedTime >= 2)
             {
                 ChainCounterMessage.SetActive(false);
+                Feedback.gameObject.SetActive(false);
+            }
+            else
+            {
+                Feedback.gameObject.SetActive(true);
             }
         }
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
@@ -180,7 +185,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
-                    
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
