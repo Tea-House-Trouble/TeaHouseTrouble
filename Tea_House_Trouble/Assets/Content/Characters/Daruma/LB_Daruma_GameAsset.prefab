@@ -14333,9 +14333,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8321333392276103170}
+  - component: {fileID: 3379893269907159051}
+  - component: {fileID: 7726967071024108483}
   m_Layer: 0
   m_Name: LB_Daruma_GameAsset
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14359,6 +14361,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &3379893269907159051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8660562878140971704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce819675d5b7494b8ce65fa6784738e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyNoteID: 3
+  AnimationObjekt: {fileID: 1989215565091185461}
+  BaseRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+--- !u!65 &7726967071024108483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8660562878140971704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1682785871217892964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14425,6 +14455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LB_Daruma_GameAsset
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: db6bc7d9d01f3f941bc1221a89b61d26,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6bc7d9d01f3f941bc1221a89b61d26, type: 3}
