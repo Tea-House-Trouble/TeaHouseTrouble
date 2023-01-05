@@ -13,6 +13,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
 
     public GameObject Ocha;
+    public GameObject FANLeft;
+    public GameObject FANRight;
+    Animator OCHA_Animator;
+    Animator LeftFAN_Animator;
+    Animator RightFAN_Animator;
     public AudioSource Song;
     public GameObject Note;
     public GameObject ChainCounterMessage;
@@ -61,6 +66,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float[] NotesTime; // Outdated
     public string[] NotesKind; // Outdated
 
+    [Space]
+    [SerializeField] ParticleSystem Hit01;
+    [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem LeftFANHit01;
+    [SerializeField] ParticleSystem LeftFANHit02;
+    [SerializeField] ParticleSystem RightFANHit01;
+    [SerializeField] ParticleSystem RightFANHit02;
+
     public PlayerControlls Controlls;
 
     private float lastPressedTime;
@@ -82,6 +95,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Good = 2,
         Bad = 3,
         Miss = 4
+    }
+
+    void Start()
+    {
+        OCHA_Animator = Ocha.GetComponent<Animator>();
+        LeftFAN_Animator = FANLeft.GetComponent<Animator>();
+        RightFAN_Animator = FANRight.GetComponent<Animator>();
     }
 
     private void Awake()
@@ -123,11 +143,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 ChainCounterMessage.SetActive(false);
             }
         }
-            if (songPlaying == false && Time.time >= preBeats * tempoScale)
-            {
-                Song.Play();
-                songPlaying = true;
-            }
+        if (songPlaying == false && Time.time >= preBeats * tempoScale)
+        {
+            Song.Play();
+            songPlaying = true;
+        }
     }
     public HitQuality GetHitQuality(float distance)
     {
@@ -147,7 +167,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         Debug.Log("Hit Key " + Input, this);
 
-        if (TestTrigger.WasNoteHit(Input, out float distance))
+        if (TestTrigger.WasNoteHit(Input, out float distance, out Note HitNote))
         {
             switch (GetHitQuality(distance))
             {
@@ -160,6 +180,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
+                    
+                    if (HitNote != null)
+                        HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Good:
                     Feedback.text = "GOOD!";
@@ -168,6 +191,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
+
+                    if (HitNote != null)
+                        HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Bad:
                     Feedback.text = "Bad!";
@@ -176,13 +202,24 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
+
+                    if (HitNote != null)
+                        HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Miss:
                     Feedback.text = "MISS!";
                     ChainCounter = 0;
                     ChainCounterMessage.SetActive(false);
                     chainCounterNumberText.text = "" + ChainCounter;
+
+                    if (HitNote != null)
+                        HitNote.StartDeathSequenz();
                     break;
+                //case EnemyDeadZone.Destroy(gameObject)
+                //    Feedback.text = "MISS!";
+                //    ChainCounter = 0;
+                //    ChainCounterMessage.SetActive(false);
+                //    chainCounterNumberText.text = "" + ChainCounter;
                 default:
                     break;
             }
@@ -210,25 +247,84 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public void OnUp(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             OnButtonPressed(NoteID.W);
+            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+
+            {
+
+                OCHA_Animator.Play("Hit02");
+                Hit02.Play();
+            }
+            else
+            {
+                OCHA_Animator.Play("Hit01");
+                Hit01.Play();
+            }
+
+        }
+
     }
 
     public void OnDown(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             OnButtonPressed(NoteID.S);
+            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+
+            {
+
+                OCHA_Animator.Play("Hit02");
+                Hit02.Play();
+            }
+            else
+            {
+                OCHA_Animator.Play("Hit01");
+                Hit01.Play();
+            }
+        }
     }
 
     public void OnRight(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             OnButtonPressed(NoteID.D);
+
+            if (RightFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+            {
+                RightFAN_Animator.Play("Hit02");
+                RightFANHit02.Play();
+            }
+
+            else
+            {
+                RightFAN_Animator.Play("Hit01");
+                RightFANHit01.Play();
+            }
+        }
     }
 
     public void OnLeft(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             OnButtonPressed(NoteID.A);
+
+            if (LeftFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+            {
+                LeftFAN_Animator.Play("Hit02");
+                LeftFANHit02.Play();
+            }
+
+            else
+            {
+                LeftFAN_Animator.Play("Hit01");
+                LeftFANHit01.Play();
+            }
+
+        }
 
     }
 

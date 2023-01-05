@@ -8,8 +8,12 @@ public class SpawnController : MonoBehaviour
     [SerializeField] Transform noteParent;
 
     [Space]
-    [SerializeField] Note shortEnemyPrefab;
-    [SerializeField] Note longEnemyPrefab;
+    [SerializeField] Note shortEnemyPrefabA;
+    [SerializeField] Note shortEnemyPrefabW;
+    [SerializeField] Note shortEnemyPrefabS;
+    [SerializeField] Note shortEnemyPrefabD;
+    //[SerializeField] Note longEnemyPrefab2Seconds;
+    //[SerializeField] Note longEnemyPrefab4Seconds;
 
     [Space]
     [SerializeField] Transform spawnPointA;
@@ -45,7 +49,7 @@ public class SpawnController : MonoBehaviour
             {
                 SpawnNextNote();
                 PrepareNextNote();
-            } 
+            }
             while (elapsedTime >= spawnTime);
         }
     }
@@ -66,14 +70,48 @@ public class SpawnController : MonoBehaviour
 
     private void SpawnNextNote()
     {
-        Note newNote = Instantiate(shortEnemyPrefab, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
-        newNote.transform.SetParent(noteParent, worldPositionStays: true);
+        if (nextSpawnData.Note == RhythmManager.NoteID.A)
+        {
+            Note newNoteA = Instantiate(shortEnemyPrefabA, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+            newNoteA.transform.SetParent(noteParent, worldPositionStays: true);
 
-        //Note newLongNote = Instantiate(longEnemyPrefab, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+            newNoteA.gameObject.name = nextSpawnData.ToString();
+            newNoteA.MyNoteID = nextSpawnData.Note;
+            PrepareNextNote();
+        }
+
+        if (nextSpawnData.Note == RhythmManager.NoteID.W)
+        {
+            Note newNoteW = Instantiate(shortEnemyPrefabW, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+            newNoteW.transform.SetParent(noteParent, worldPositionStays: true);
+
+            newNoteW.gameObject.name = nextSpawnData.ToString();
+            newNoteW.MyNoteID = nextSpawnData.Note;
+            PrepareNextNote();
+        }
+
+        if (nextSpawnData.Note == RhythmManager.NoteID.S)
+        {
+            Note newNoteS = Instantiate(shortEnemyPrefabS, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+            newNoteS.transform.SetParent(noteParent, worldPositionStays: true);
+
+            newNoteS.gameObject.name = nextSpawnData.ToString();
+            newNoteS.MyNoteID = nextSpawnData.Note;
+            PrepareNextNote();
+        }
+
+        if (nextSpawnData.Note == RhythmManager.NoteID.D)
+        {
+            Note newNoteD = Instantiate(shortEnemyPrefabD, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
+            newNoteD.transform.SetParent(noteParent, worldPositionStays: true);
+
+            newNoteD.gameObject.name = nextSpawnData.ToString();
+            newNoteD.MyNoteID = nextSpawnData.Note;
+            PrepareNextNote();
+        }
+
+        //Note newLongNote = Instantiate(longEnemyPrefab2Seconds, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);
         //newLongNote.transform.SetParent(noteParent, worldPositionStays: true);
-
-        newNote.gameObject.name = nextSpawnData.ToString();
-        newNote.MyNoteID = nextSpawnData.Note;
     }
 
     private Transform GetSpawnPoint(RhythmManager.NoteID note)

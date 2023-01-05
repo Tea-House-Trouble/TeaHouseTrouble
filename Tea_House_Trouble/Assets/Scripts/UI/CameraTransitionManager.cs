@@ -26,7 +26,7 @@ public class CameraTransitionManager : MonoBehaviour {
         Button stayButton = Stay.GetComponent<Button>();
         stayButton.onClick.AddListener(TaskOnClickStay);
     }
-
+    
      void Update() {
         if (Input.GetMouseButtonDown(0)) { CheckHit(); }
         if (Input.GetMouseButtonDown(1)) { BackToBase(); }
