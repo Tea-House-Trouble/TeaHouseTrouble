@@ -33,6 +33,7 @@ public class CameraTransitionManager : MonoBehaviour {
     }
 
     void CheckHit() {
+        Debug.Log("CLICK");
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
@@ -45,8 +46,14 @@ public class CameraTransitionManager : MonoBehaviour {
                 case "SM_Menu_Card":
                     targetCam = menuCam;
                     break;
+                case "MenuScoreTarget":
+                    targetCam = menuCam;
+                    break;
 
                 case "SM_Shamisen":
+                    targetCam = instrumentCam;
+                    break;
+                case "InstrumentOptionsTarget":
                     targetCam = instrumentCam;
                     break;
 

@@ -24,18 +24,7 @@ using UnityEngine.UI;
 */
 public class UIMainMenuManager : MonoBehaviour
 {
-    //public GameObject basePos;
-    //public GameObject teapotPos;
-    //public GameObject menuCardPos;
-    //public GameObject instrumentPos;
-    //public GameObject doorPos;
-
-    public GameObject StartMenu;
-    public GameObject ScoreMenu;
-    public GameObject OptionMenu;
-    public GameObject ExitMenu;
-
-    public List<GameObject> AllMenus;
+    public GameObject StartMenu,ScoreMenu,OptionMenu,ExitMenu;
 
     private bool isMoving = false;
 
@@ -46,8 +35,10 @@ public class UIMainMenuManager : MonoBehaviour
     private void Deactivate(GameObject SetMenu) { SetMenu.SetActive(false); }
 
     private void BaseDeactivate() {
-        for(int i = 0; i<AllMenus.Count; ++i) { Deactivate(AllMenus[i]);
-        }
+        StartMenu.SetActive(false);
+        ScoreMenu.SetActive(false);
+        OptionMenu.SetActive(false);
+        ExitMenu.SetActive(false);
     }
 
     private void MovementCheck() {

@@ -9,33 +9,23 @@ using UnityEngine.UI;
 
 public class UIOptions : MonoBehaviour
 {
-    public Button Control;
-    public Button Audio;
-    public Button Visual;
+    public Button Control, Audio, Visual;
+    public GameObject OptionsPanel;
 
     public GameObject ControlPanel;
 
     public GameObject AudioPanel;
-    public Toggle ThemeOne;
-    public Toggle ThemeTwo;
-    public Slider MusicSlider;
-    public Slider VFXSlider;
-    public Slider TotalSlider;
+    public Toggle ThemeOne,ThemeTwo;
+    public Slider MusicSlider, VFXSlider, TotalSlider;
     
     public GameObject VisualPanel;
-    public Toggle Fullscreen;
-    public Toggle Windowed;
-    public Slider BrightnessSlider;
-    public Slider ContrastSlider;
-    public Slider DetailsSlider;
+    public Toggle Fullscreen, Windowed;
+    public Slider BrightnessSlider, ContrastSlider, DetailsSlider;
 
-    private float musicVolume;
-    private float vfxVolume;
-    private float totalVolume;
 
-    private float brightness;
-    private float contrast;
-    private float details;
+    /*private float musicVolume, vfxVolume, totalVolume;
+
+    private float brightness, contrast, details;*/
 
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }
     private void Deactivate(GameObject SetMenu) { SetMenu.SetActive(false); }
@@ -85,14 +75,14 @@ public class UIOptions : MonoBehaviour
         Toggle themeTwoToggle = ThemeTwo.GetComponent<Toggle>();
         themeTwoToggle.onValueChanged.AddListener(ThemeTwoChange);
 
-        Slider musicSlider = MusicSlider.GetComponent<Slider>();
+        /*Slider musicSlider = MusicSlider.GetComponent<Slider>();
         musicSlider.onValueChanged.AddListener(MusicValueUpdate);
 
         Slider vfxSlider = VFXSlider.GetComponent<Slider>();
         vfxSlider.onValueChanged.AddListener(VFXValueUpdate);
 
         Slider totalSlider = TotalSlider.GetComponent<Slider>();
-        totalSlider.onValueChanged.AddListener(TotalValueUpdate);
+        totalSlider.onValueChanged.AddListener(TotalValueUpdate);*/
     }
     void TaskOnClickVisual() {
         DisplayThis(VisualPanel);
@@ -103,23 +93,23 @@ public class UIOptions : MonoBehaviour
         Toggle windowedToggle = Windowed.GetComponent<Toggle>();
         windowedToggle.onValueChanged.AddListener(WindowedChange);
 
-        Slider brightnessSlider = BrightnessSlider.GetComponent<Slider>();
+        /*Slider brightnessSlider = BrightnessSlider.GetComponent<Slider>();
         brightnessSlider.onValueChanged.AddListener(BrightnessValueUpdate);
 
         Slider contrastSlider = ContrastSlider.GetComponent<Slider>();
         contrastSlider.onValueChanged.AddListener(ContrastValueUpdate);
 
         Slider detailsSlider = DetailsSlider.GetComponent<Slider>();
-        detailsSlider.onValueChanged.AddListener(DetailsValueUpdate);
+        detailsSlider.onValueChanged.AddListener(DetailsValueUpdate);*/
 
     }
 
-        void MusicValueUpdate(float sliderValue) { ValueUpdate(sliderValue, musicVolume); }
+        /*void MusicValueUpdate(float sliderValue) { ValueUpdate(sliderValue, musicVolume); }
         void VFXValueUpdate(float sliderValue) { ValueUpdate(sliderValue, vfxVolume); }
         void TotalValueUpdate(float sliderValue) { ValueUpdate(sliderValue, totalVolume); }
         void BrightnessValueUpdate(float sliderValue) { ValueUpdate(sliderValue, brightness); }
         void ContrastValueUpdate(float sliderValue) { ValueUpdate(sliderValue, contrast); }
-        void DetailsValueUpdate(float sliderValue) { ValueUpdate(sliderValue, details); }
+        void DetailsValueUpdate(float sliderValue) { ValueUpdate(sliderValue, details); }*/
 
         void ThemeOneChange(bool themeOne) { ToggleSwitch(themeOne, ThemeTwo); }
         void ThemeTwoChange(bool themeTwo) { ToggleSwitch(themeTwo, ThemeOne); }
