@@ -1,26 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 public class UIInGameManager : MonoBehaviour
 {
-
+    private bool SceneIsPaused = false;
     private VisualElement root, pauseVisual, victoryVisual, defeatVisual, optionsContainer, buttonContainer;
     private Button continueButton, optionsButton, difficultyButton, replayButton, mainMenuButton, exitButton;
-    private Label messageLabel;
-    private Action onContinue;
+    //private Label messageLabel;
+    //private Action onContinue;
 
     private void Awake() {
         root = GetComponent<UIDocument>().rootVisualElement;
         continueButton = root.Q<Button>("ContinueButton");
         optionsButton = root.Q<Button>("OptionsButton");
         difficultyButton = root.Q<Button>("DifficultyButton");
-        replayButton = root.Q<Button>("RelayButton");
+        replayButton = root.Q<Button>("ReplayButton");
         mainMenuButton = root.Q<Button>("MainMenuButton");
         exitButton = root.Q<Button>("ExitButton");
 
@@ -30,7 +27,7 @@ public class UIInGameManager : MonoBehaviour
         optionsContainer = root.Q<VisualElement>("OptionsContainer");
         buttonContainer = root.Q<VisualElement>("ButtonContainer");
 
-        messageLabel = root.Q<Label>("MessageText");
+        //messageLabel = root.Q<Label>("MessageText");
 
         continueButton.clicked += OnContinue;
         optionsButton.clicked += OnOptions;
@@ -49,26 +46,29 @@ public class UIInGameManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-            PauseGame();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+
+        if (SceneIsPaused == false){
+                Debug.Log("PAUSE");
+                PauseGame(); }
+            
+        else { OnContinue(); }
+        } 
     }
-    private void SetUpMenus() {
+    private void ResetMenus() {
         root.SetActive(false);
         pauseVisual.SetActive(false);
         victoryVisual.SetActive(false);
         defeatVisual.SetActive(false);
         buttonContainer.SetActive(false);
 }
-    /*private void ActivateButtons() {
-        root.Query<Button>().ForEach(Activate);
-    }
-    private void Activate(Button button) { button.SetActive(true); }*/
 
-    private void PauseGame() { 
-        root.SetActive(true);
+    private void PauseGame() {
         pauseVisual.SetActive(true);
         buttonContainer.SetActive(true);
+        Time.timeScale = 0f;
+        SceneIsPaused = true;
+        root.SetActive(true);
     }
 
     private void OnOptions() {
@@ -78,6 +78,7 @@ public class UIInGameManager : MonoBehaviour
     private void OnContinue() {
         Time.timeScale = 1f;
         root.SetActive(false);
+        SceneIsPaused = false;
     }
 
     private void OnDifficulty() {
