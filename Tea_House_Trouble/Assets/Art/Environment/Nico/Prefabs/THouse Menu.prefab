@@ -3582,8 +3582,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Menu_Card
       objectReference: {fileID: 0}
+    - target: {fileID: 643195734305754982, guid: 1f6566c3dc02c1340b7676165d49113d,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f6566c3dc02c1340b7676165d49113d, type: 3}
+--- !u!1 &1566306433268285400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 643195734305754982, guid: 1f6566c3dc02c1340b7676165d49113d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2112668144144887998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4326315091448798361
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566306433268285400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7988974678954122277, guid: adde88a03800b9e46a19c5ca5a8893ba, type: 3}
 --- !u!4 &2231379458767267170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 263117188232582620, guid: 1f6566c3dc02c1340b7676165d49113d,
@@ -3717,6 +3742,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Shamisen
       objectReference: {fileID: 0}
+    - target: {fileID: 531985402497598231, guid: 49ef862c09807454696801a9894ebe1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
     - target: {fileID: 876562878547646893, guid: 49ef862c09807454696801a9894ebe1b,
         type: 3}
       propertyPath: m_RootOrder
@@ -3780,6 +3810,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4346988721720866748}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4265584847681828011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 531985402497598231, guid: 49ef862c09807454696801a9894ebe1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4346988721720866748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8531625238481957688
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265584847681828011}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1668341396521059741, guid: d87729b0185124a468794937a4930bbf, type: 3}
 --- !u!1001 &5118827600814756634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4477,8 +4527,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Teakettle
       objectReference: {fileID: 0}
+    - target: {fileID: 8935966345141011388, guid: f54c5a109e9b2c747b5c91743a7ece54,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f54c5a109e9b2c747b5c91743a7ece54, type: 3}
+--- !u!1 &3788991857214343869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8935966345141011388, guid: f54c5a109e9b2c747b5c91743a7ece54,
+    type: 3}
+  m_PrefabInstance: {fileID: 5230889250792278273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &750919506019965575
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788991857214343869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1013231042249831361, guid: 564a81bdf7558264d93971ec04ffca2f, type: 3}
 --- !u!4 &4602367281315155975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8595470252207872262, guid: f54c5a109e9b2c747b5c91743a7ece54,
@@ -4562,6 +4637,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_ExitDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 7545461099212679408, guid: 5578a302fef975e4393db608b84ad6c7,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5578a302fef975e4393db608b84ad6c7, type: 3}
 --- !u!4 &212907637062351420 stripped
@@ -4570,3 +4650,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6992236542726522998}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &702481220472266886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7545461099212679408, guid: 5578a302fef975e4393db608b84ad6c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6992236542726522998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &69848620312950257
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702481220472266886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4424822053958796635, guid: a0142cbe0c6121a498fb0fc113787692, type: 3}

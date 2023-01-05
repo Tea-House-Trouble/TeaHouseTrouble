@@ -5,18 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIStartGame : MonoBehaviour {
-    public GameObject StartPanel;
-    public Button Play;
-    public GameObject ControlPanel;
-    public Button DanceMat;
-    public Button Keyboard;
-    public Button Controller;
-    public Button Touch;
-    public GameObject DifficultyPanel;
-    public Button Easy;
-    public Button Medium;
-    public Button Hard;
-    public Button Ultra;
+    public GameObject StartPanel, DifficultyPanel; // ,ControlPanel;
+    public Button Play,Easy,Medium,Hard;//Ultra; ,DanceMat, Keyboard, Controller, Touch;
 
     private int choosenControls = 0;
     private int choosenDifficulty = 0;
@@ -30,7 +20,10 @@ public class UIStartGame : MonoBehaviour {
     private void Deactivate(GameObject SetMenu) { SetMenu.SetActive(false); }
 
     void TaskOnClickPlay() {
+        SceneManager.LoadScene("NewGameScene");
+        /*
         Activate(ControlPanel);
+
         Button danceMatButton = DanceMat.GetComponent<Button>();
         danceMatButton.onClick.AddListener(TaskOnClickDanceMat);        
         
@@ -67,7 +60,8 @@ public class UIStartGame : MonoBehaviour {
         ultraButton.onClick.AddListener(TaskOnClickUltra);
 
         Deactivate(ControlPanel);
-    }
+    
+    Activate(DifficultyPanel);
     void TaskOnClickEasy() { }
     void TaskOnClickMedium() { }
     void TaskOnClickHard() { }
@@ -76,6 +70,8 @@ public class UIStartGame : MonoBehaviour {
     void StartGame(int difficulty) {
         choosenDifficulty = difficulty;
         SceneManager.LoadScene("NormanScene");
+    }*/
+    
     }
 }
 

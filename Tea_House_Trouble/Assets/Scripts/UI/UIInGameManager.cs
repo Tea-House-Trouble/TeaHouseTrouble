@@ -9,27 +9,31 @@ using UnityEngine.Events;
 
 public class UIInGameManager : MonoBehaviour
 {
-    private const string lostText = "You lost.";
-    private const string replayText = "PLAY AGAIN";
-    private const string winText = "You won.";
-    private const string pauseText = "Game Paused";
-    private const string continueText = "CONTINUE GAME";
 
-    private VisualElement root;
-    private Button playButton, mainMenuButton, exitButton, controlsCloseButton;
+    private VisualElement root, pauseVisual, victoryVisual, defeatVisual;
+    private Button continueButton, difficultyButton, replayButton, mainMenuButton, exitButton;
     private Label messageLabel;
     private Action onContinue;
 
     private void Awake() {
         root = GetComponent<UIDocument>().rootVisualElement;
-        playButton = root.Q<Button>("PlayButton");
+        continueButton = root.Q<Button>("ContinueButton");
+        difficultyButton = root.Q<Button>("DifficultyButton");
+        replayButton = root.Q<Button>("RelayButton");
         mainMenuButton = root.Q<Button>("MainMenuButton");
         exitButton = root.Q<Button>("ExitButton");
+
+        pauseVisual = root.Q<VisualElement>("PauseContainer");
+        victoryVisual = root.Q<VisualElement>("VicturyContainer");
+        defeatVisual = root.Q<VisualElement>("DefeatContainer");
+
         messageLabel = root.Q<Label>("MessageText");
 
-        playButton.clicked += onContinue;
+        continueButton.clicked += OnContinue;
+        difficultyButton.clicked += OnDifficulty;
+        replayButton.clicked += OnReplay;
+        mainMenuButton.clicked += OnOpenMainMenu;
         exitButton.clicked += Application.Quit;
-        mainMenuButton.clicked += OpenMainMenu;
 
         //WinObject.Win -= OpenWinScreen;
         //WinObject.Win += OpenWinScreen;
@@ -39,30 +43,30 @@ public class UIInGameManager : MonoBehaviour
 
     private void Update() {
         if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-            ConfigureWindow(pauseText, continueText, ResumeGame);
+            PauseGame();
         }
     }
 
-    private void ConfigureWindow(string messageText, string buttonText, Action continueFunction) {
-        Time.timeScale = 0f;
-        messageLabel.text = messageText;
-        playButton.text = buttonText;
-        onContinue = continueFunction;
+    private void PauseGame() { 
         root.SetActive(true);
     }
 
-    private void OpenMainMenu() {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-    }
 
-    private void ResumeGame() {
+    private void OnContinue() {
         Time.timeScale = 1f;
         root.SetActive(false);
     }
 
-    private void RestartGame() {
+    private void OnDifficulty() {
+
+    }
+
+    private void OnReplay() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("NormansScene");
+        SceneManager.LoadScene("NewGameScene");
+    }
+    private void OnOpenMainMenu() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }

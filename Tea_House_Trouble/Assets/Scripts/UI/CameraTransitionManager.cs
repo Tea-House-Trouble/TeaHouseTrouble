@@ -14,11 +14,7 @@ public class CameraTransitionManager : MonoBehaviour {
 
 
     public Camera camera;
-    public CinemachineVirtualCamera baseCam;
-    public CinemachineVirtualCamera teapotCam;
-    public CinemachineVirtualCamera menuCam;
-    public CinemachineVirtualCamera instrumentCam;
-    public CinemachineVirtualCamera doorCam;
+    public CinemachineVirtualCamera baseCam, teapotCam,menuCam,instrumentCam, doorCam;
 
     public Button Stay;
 
@@ -33,7 +29,7 @@ public class CameraTransitionManager : MonoBehaviour {
 
      void Update() {
         if (Input.GetMouseButtonDown(0)) { CheckHit(); }
-        if (Input.GetMouseButtonDown(1)) { SwitchCameraOnClick(baseCam); }
+        if (Input.GetMouseButtonDown(1)) { BackToBase(); }
     }
 
     void CheckHit() {
@@ -42,20 +38,19 @@ public class CameraTransitionManager : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, 1000f) && (hit.transform.CompareTag("UIButton"))) {
             switch (hit.transform.name) {
-                case "SM_Teapot":
+                case "SM_Teakettle":
                     targetCam = teapotCam;
-                    
                     break;
 
-                case "SM_Menucard":
+                case "SM_Menu_Card":
                     targetCam = menuCam;
                     break;
 
-                case "SM_Instrument":
+                case "SM_Shamisen":
                     targetCam = instrumentCam;
                     break;
 
-                case "SM_Door":
+                case "SM_ExitDoor":
                     targetCam = doorCam;
                     break;
             }
@@ -68,6 +63,18 @@ public class CameraTransitionManager : MonoBehaviour {
          currentCam = target;
          currentCam.Priority++;
          currentCam.GetComponent<Collider>().enabled=true;
+    }
+
+    void BackToBase() {
+        teapotCam.Priority = 0;
+        menuCam.Priority = 0;
+        instrumentCam.Priority = 0;
+        doorCam.Priority = 0;
+        teapotCam.GetComponent<Collider>().enabled = false;
+        instrumentCam.GetComponent<Collider>().enabled = false;
+        doorCam.GetComponent<Collider>().enabled = false;
+        baseCam.Priority = 1;
+        baseCam.GetComponent<Collider>().enabled = true;
     }
     void TaskOnClickStay() { SwitchCameraOnClick(baseCam); }
 }
