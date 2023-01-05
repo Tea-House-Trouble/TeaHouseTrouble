@@ -2318,6 +2318,11 @@ PrefabInstance:
       propertyPath: endOfPathInstruction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8383874405672731595, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8383874406794174056, guid: 2601feb3776368946af2f23e647f2f05,
         type: 3}
       propertyPath: speed
@@ -2348,10 +2353,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8383874406972081544, guid: 2601feb3776368946af2f23e647f2f05,
+    - target: {fileID: 8383874406846530536, guid: 2601feb3776368946af2f23e647f2f05,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383874406846530536, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383874406846530536, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2601feb3776368946af2f23e647f2f05, type: 3}
@@ -2987,12 +3002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359aa24ffd05ae4b8557ac432328993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1348013452 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4203871129649788763, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1707142137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1421452111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,6 +3379,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3413552982649548047, guid: a7999f86c949aad4db6a12bc8c184e5b,
+        type: 3}
+      propertyPath: textAssetData
+      value: 
+      objectReference: {fileID: 4900000, guid: bfcb4aec48b76f84c8e446eab0eee8d1, type: 3}
     - target: {fileID: 4498373099051393368, guid: a7999f86c949aad4db6a12bc8c184e5b,
         type: 3}
       propertyPath: noteParent
@@ -3469,7 +3483,7 @@ PrefabInstance:
     - target: {fileID: 8888950772789332158, guid: a7999f86c949aad4db6a12bc8c184e5b,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8888950773174767633, guid: a7999f86c949aad4db6a12bc8c184e5b,
         type: 3}
@@ -3792,27 +3806,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RythmManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152098, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: Note
-      value: 
-      objectReference: {fileID: 8660562878140971704, guid: 88e78f20108128841bd941fc938139cc,
-        type: 3}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: Ocha
       value: 
       objectReference: {fileID: 257737136}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: Song
-      value: 
-      objectReference: {fileID: 1348013452}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: Hit01
@@ -3870,11 +3868,6 @@ PrefabInstance:
       objectReference: {fileID: 1623942296}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
-      propertyPath: HitQualityGreat
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
       propertyPath: chainCounterText
       value: 
       objectReference: {fileID: 736315141}
@@ -3888,11 +3881,6 @@ PrefabInstance:
       propertyPath: chainCounterNumberText
       value: 
       objectReference: {fileID: 1345273154}
-    - target: {fileID: 6643139134256387842, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c, type: 3}
 --- !u!1001 &1756498710
