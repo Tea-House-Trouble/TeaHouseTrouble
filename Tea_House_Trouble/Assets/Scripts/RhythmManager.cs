@@ -180,7 +180,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     break;
                 case HitQuality.Perfect:
                     Feedback.text = "PERFECT!";
-                    Score += successValues[0] * MultiplikationPerfect + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    Score += successValues[0] * MultiplikationPerfect * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
@@ -191,7 +191,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     break;
                 case HitQuality.Good:
                     Feedback.text = "GOOD!";
-                    Score += successValues[1] * MultiplikationGood + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    Score += successValues[1] * MultiplikationGood * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
@@ -202,7 +202,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     break;
                 case HitQuality.Bad:
                     Feedback.text = "Bad!";
-                    Score += successValues[2] * MultiplikationBad + Mathf.Pow(1 + ChainCounter / 100, 2);
+                    Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;

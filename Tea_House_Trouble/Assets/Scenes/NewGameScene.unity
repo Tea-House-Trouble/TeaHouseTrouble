@@ -2773,12 +2773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359aa24ffd05ae4b8557ac432328993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1348013452 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4203871129649788763, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1707142137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1421452111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,27 +3577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RythmManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152098, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: Note
-      value: 
-      objectReference: {fileID: 8660562878140971704, guid: 88e78f20108128841bd941fc938139cc,
-        type: 3}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: Ocha
       value: 
       objectReference: {fileID: 257737136}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: Song
-      value: 
-      objectReference: {fileID: 1348013452}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: Hit01
@@ -3661,11 +3639,6 @@ PrefabInstance:
       objectReference: {fileID: 1623942296}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
-      propertyPath: HitQualityGreat
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
       propertyPath: chainCounterText
       value: 
       objectReference: {fileID: 736315141}
@@ -3679,11 +3652,6 @@ PrefabInstance:
       propertyPath: chainCounterNumberText
       value: 
       objectReference: {fileID: 1345273154}
-    - target: {fileID: 6643139134256387842, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c, type: 3}
 --- !u!1001 &1756498710
