@@ -31,7 +31,7 @@ public class Note : MonoBehaviour
 
     IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 
