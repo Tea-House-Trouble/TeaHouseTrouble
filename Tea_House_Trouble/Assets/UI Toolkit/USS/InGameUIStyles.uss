@@ -1,0 +1,44 @@
+.unity-button {
+    height: 50%;
+    width: 17.5%;
+    margin: 0;
+    padding: 2%;
+    background-color: rgba(217, 185, 225, 0.5);
+    font-size: 24px;
+    -unity-font-style: normal;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Resources/Fonts%20&%20Materials/Kepolu.ttf?fileID=12800000&guid=35e58bd88332d4749b487e0936a9782c&type=3#Kepolu');
+    color: rgb(49, 33, 45);
+    border-width: 0;
+    border-radius: 5px;
+    -unity-font-definition: none;
+}
+
+.unity-button:hover {
+    background-color: rgb(217, 185, 225);
+    -unity-font-style: bold;
+}
+
+.unity-button:active {
+    background-color: rgb(29, 62, 113);
+    color: rgb(255, 255, 255);
+}
+
+.unity-button:disabled {
+    color: rgb(217, 185, 225);
+    background-color: rgba(49, 33, 45, 0.5);
+}
+
+.unity-label {
+    flex-grow: 0;
+    justify-content: flex-start;
+    width: 75%;
+    height: 50%;
+    border-radius: 10px;
+    background-color: rgba(29, 62, 113, 0.69);
+    font-size: 60px;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Resources/Fonts%20&%20Materials/Kepolu.ttf?fileID=12800000&guid=35e58bd88332d4749b487e0936a9782c&type=3#Kepolu');
+    -unity-font-style: italic;
+    -unity-text-align: middle-center;
+    color: rgb(162, 192, 236);
+    -unity-font-definition: none;
+}
