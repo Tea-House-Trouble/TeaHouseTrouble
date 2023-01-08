@@ -2767,11 +2767,11 @@
     "m_Guid": {
         "m_GuidSerialized": "b0ece4be-fcfc-4a73-8334-8296a25edc47"
     },
-    "m_Name": "Color",
+    "m_Name": "ColorAlpha",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Color",
-    "m_DefaultReferenceName": "_Color",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "ColorAlpha",
+    "m_DefaultReferenceName": "_ColorAlpha",
+    "m_OverrideReferenceName": "_Color",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -3118,10 +3118,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -111.93641662597656,
-            "y": 871.0050659179688,
-            "width": 0.0,
-            "height": 0.0
+            "x": -108.00000762939453,
+            "y": 875.0,
+            "width": 111.99999237060547,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -3484,7 +3484,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "dd73bcca64a84d8c968603ff79b86a0d",
     "m_Id": 0,
-    "m_DisplayName": "Color",
+    "m_DisplayName": "ColorAlpha",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
