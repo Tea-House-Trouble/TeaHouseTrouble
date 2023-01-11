@@ -7,12 +7,16 @@ public class AudioSettings : MonoBehaviour
     public AudioMixer mainMixer;
     public Slider masterSlider, musicSlider, sfxSlider;//, uiSlider;
 
-    public const string masterMixer = "TotalVolume";
+    public const string masterMixer = "MasterVolume";
     public const string musicMixer = "MusicVolume";
     public const string sfxMixer = "SFXVolume";
     //public const string uiMixer = "UIVolume";
 
     private void Awake() {
+        if (masterSlider == null)   { masterSlider = GameObject.Find("MasterSlider").GetComponent<Slider>(); }
+        if (musicSlider == null)    { musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();   }
+        if (sfxSlider == null)      { sfxSlider = GameObject.Find("SFXSlider").GetComponent<Slider>();       }
+
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);

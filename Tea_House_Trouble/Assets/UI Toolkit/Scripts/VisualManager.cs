@@ -8,7 +8,7 @@ public class VisualManager : MonoBehaviour
     public VisualSettings visualSettings;
 
     public const string brightnessValue = "Brightness";
-    //public const string contrastValue = "Contrast";
+    public const string contrastValue = "Contrast";
     //public const string detailsValue = "Details";
 
     private void Awake() {
@@ -20,10 +20,11 @@ public class VisualManager : MonoBehaviour
     }
 
     private void LoadVisualSettings() {
-        float brightness = PlayerPrefs.GetFloat(brightnessValue, 0.5f);
-        //float contrast = PlayerPrefs.GetFloat(contrastValue, 0.5f);
+        float brightness = PlayerPrefs.GetFloat(brightnessValue, 1.2f);
+        float contrast = PlayerPrefs.GetFloat(contrastValue, 0f);
         //float details = PlayerPrefs.GetFloat(detailsValue, 0.5f);
 
         visualSettings.brightnessSlider.value = brightness;
+        visualSettings.contrastSlider.value = contrast;
     }
 }

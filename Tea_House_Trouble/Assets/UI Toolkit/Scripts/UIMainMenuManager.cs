@@ -28,6 +28,7 @@ public class UIMainMenuManager : MonoBehaviour
 
     private bool isMoving = false;
 
+  
     private void Start() { BaseDeactivate(); }
 
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }

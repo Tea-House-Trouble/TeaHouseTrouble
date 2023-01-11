@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class CameraTransitionManager : MonoBehaviour {
 
 
-    public Camera camera;
+    //public Camera camera;
     public CinemachineVirtualCamera baseCam, teapotCam,menuCam,instrumentCam, doorCam;
 
     public Button Stay;
@@ -35,7 +35,7 @@ public class CameraTransitionManager : MonoBehaviour {
     void CheckHit() {
         Debug.Log("CLICK");
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = this.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 1000f) && (hit.transform.CompareTag("UIButton"))) {
             switch (hit.transform.name) {
@@ -78,6 +78,7 @@ public class CameraTransitionManager : MonoBehaviour {
         instrumentCam.Priority = 0;
         doorCam.Priority = 0;
         teapotCam.GetComponent<Collider>().enabled = false;
+        menuCam.GetComponent<Collider>().enabled = false;
         instrumentCam.GetComponent<Collider>().enabled = false;
         doorCam.GetComponent<Collider>().enabled = false;
         baseCam.Priority = 1;
