@@ -63,8 +63,8 @@ public class SpawnController : MonoBehaviour
         }
 
         nextSpawnData = csvReader.spawnList[noteCounter];
-        spawnTime = nextSpawnData.minute * 60f + nextSpawnData.second;
-
+        spawnTime = nextSpawnData.minute * 60f + nextSpawnData.second + nextSpawnData.miliSecond / 1000f;
+        Debug.Log(spawnTime + "NextSpawnTime");
         noteCounter++;
     }
 
