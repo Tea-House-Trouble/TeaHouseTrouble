@@ -140,7 +140,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
             if (ChainCounterElapsedTime >= 2)
             {
-                ChainCounterMessage.SetActive(false);
                 Feedback.gameObject.SetActive(false);
             }
             else
@@ -214,17 +213,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 case HitQuality.Miss:
                     Feedback.text = "MISS!";
                     ChainCounter = 0;
-                    ChainCounterMessage.SetActive(false);
+                    ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
-
-                    if (HitNote != null)
-                        HitNote.StartDeathSequenz();
+                    ChainCounterElapsedTime = 0;
                     break;
-                //case EnemyDeadZone.Destroy(gameObject)
-                //    Feedback.text = "MISS!";
-                //    ChainCounter = 0;
-                //    ChainCounterMessage.SetActive(false);
-                //    chainCounterNumberText.text = "" + ChainCounter;
                 default:
                     break;
             }
@@ -238,16 +230,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //  Dient noch als evtl. Rechenhilfe
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
-
-
     }
-
-    //public IEnumerator DisplayChainCounter(GameObject gameObject)
-    //{
-    //    Debug.Log("Enu Start");
-    //    yield return new WaitForSeconds(1);
-    //    ChainCounterMessage.SetActive(false);
-    //}
 
     public void OnUp(InputAction.CallbackContext context)
     {
