@@ -48,8 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ocha: {fileID: 0}
-  Song: {fileID: 0}
-  Note: {fileID: 1135183149804999825, guid: a37aa4b4c560d81408734c5fb351b8ca, type: 3}
+  FANLeft: {fileID: 0}
+  FANRight: {fileID: 0}
+  Song: {fileID: 4203871129649788763}
+  Note: {fileID: 8660562878140971704, guid: 88e78f20108128841bd941fc938139cc, type: 3}
   ChainCounterMessage: {fileID: 0}
   TestTrigger: {fileID: 0}
   Feedback: {fileID: 0}
@@ -70,7 +72,7 @@ MonoBehaviour:
   MultiplikationGood: 1.2
   MultiplikationBad: 0.7
   ChainCounter: 0
-  successValues: 0a0000000500000002000000
+  successValues: 640000006400000064000000
   ChainCounterElapsedTime: 0
   SavedNotes:
   - Note: 1
@@ -125,6 +127,12 @@ MonoBehaviour:
   - a
   - a
   - w
+  Hit01: {fileID: 0}
+  Hit02: {fileID: 0}
+  LeftFANHit01: {fileID: 0}
+  LeftFANHit02: {fileID: 0}
+  RightFANHit01: {fileID: 0}
+  RightFANHit02: {fileID: 0}
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5276675157964152098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398746bf933727f41b21bc82ed6a3730, type: 3}
   m_Name: 
