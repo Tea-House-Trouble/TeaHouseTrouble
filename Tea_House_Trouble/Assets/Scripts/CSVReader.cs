@@ -64,11 +64,11 @@ public class CSVReader : MonoBehaviour
             {
                 Debug.Log("Line " + i + " Time Elements 1 : " + timeElements[1].Trim());
             }
-            // ERROR OUT OF INDEX
-            //if (!int.TryParse(timeElements[2].Trim(), out spawnList[i - 1].miliSecond))
-            //{
-            //    Debug.Log("Line " + i + " Time Elements 2 : " + timeElements[2].Trim());
-            //}
+
+            if (!int.TryParse(timeElements[2].Trim(), out spawnList[i - 1].miliSecond))
+            {
+                Debug.Log("Line " + i + " Time Elements 2 : " + timeElements[2].Trim());
+            }
 
             if (!int.TryParse(data[i][columnLenght].Trim(), out spawnList[i - 1].enemyLenght))
             {

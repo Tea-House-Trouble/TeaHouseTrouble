@@ -202,7 +202,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 case HitQuality.Bad:
                     Feedback.text = "Bad!";
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
-                    ChainCounter++;
+                    ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
@@ -224,7 +224,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             //ChainCounterMessage.SetActive(false);
             scoreText.text = ((int)Score).ToString();
             //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
-            Debug.Log($"Its {GetHitQuality(distance)} Hit");
+            Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
         }
 
         //  Dient noch als evtl. Rechenhilfe
