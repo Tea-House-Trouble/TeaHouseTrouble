@@ -11,7 +11,7 @@ public class CSVReader : MonoBehaviour
     public const int columnTime = 0;
     public const int columnLenght = 1;
     public const int columnNoteID = 2;
-
+    
     public TextAsset textAssetData;
 
     [System.Serializable]
