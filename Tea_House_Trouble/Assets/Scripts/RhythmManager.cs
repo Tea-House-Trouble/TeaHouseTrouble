@@ -211,25 +211,27 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Miss:
-                    Feedback.text = "MISS!";
-                    ChainCounter = 0;
-                    ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
-                    ChainCounterElapsedTime = 0;
+                    MissedNote();
                     break;
                 default:
                     break;
             }
-
-            //ChainCounterMessage.SetActive(false);
             scoreText.text = ((int)Score).ToString();
-            //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
         }
 
         //  Dient noch als evtl. Rechenhilfe
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
+    }
+
+    public void MissedNote()
+    {
+        Feedback.text = "MISS!";
+        ChainCounter = 0;
+        ChainCounterMessage.SetActive(true);
+        chainCounterNumberText.text = "" + ChainCounter;
+        ChainCounterElapsedTime = 0;
     }
 
     public void OnUp(InputAction.CallbackContext context)
