@@ -11,6 +11,9 @@ public class ButtonTriggerZone : MonoBehaviour
     private PlayerInput playerInput;
 
     public Transform LineTransform;
+
+    public RhythmManager rhythmManager;
+
     /// <summary>
     /// Prüft ob eine Passsende Note im Trigger ist, wenn ein Button gedrückt wurde. Distance beschreibt wie weit die Z Werte abweichen (Forgivness)
     /// </summary>
@@ -44,7 +47,7 @@ public class ButtonTriggerZone : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void OnEnable()
@@ -63,13 +66,16 @@ public class ButtonTriggerZone : MonoBehaviour
         {
             Enemys.Add(other.GetComponent<Note>());
 
-            Debug.Log("Enter Triggerzone");
-
+            //Debug.Log("Enter Triggerzone");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Enemys.Remove(other.GetComponent<Note>());
+        if (other.gameObject.tag.Equals("Enemy"))
+        {
+            Enemys.Remove(other.GetComponent<Note>());
+            rhythmManager.MissedNote();
+        }
     }
 }
