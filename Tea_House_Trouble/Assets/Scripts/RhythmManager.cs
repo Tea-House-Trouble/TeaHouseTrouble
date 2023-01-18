@@ -19,7 +19,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     Animator LeftFAN_Animator;
     Animator RightFAN_Animator;
     public AudioSource Song;
-    public GameObject Note;
     public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
@@ -28,13 +27,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI chainCounterText;
     public TextMeshProUGUI chainCounterNumberText;
-    public int NoteCounter;
 
     [Header("Infos")]
-    public int CurrentNote;
-    public float currentTime;
     public bool songPlaying;
-    public float Score;
+    public static float Score;
 
     [Header("Settings")]
     public float Tempo;
@@ -58,14 +54,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public int[] successValues;
     public float ChainCounterElapsedTime;
 
-    [System.Serializable]
-    public class NoteData { public NoteID Note; public float Start; public float Length = 1; }
-
-    [Header("Notes")]
-    public NoteData[] SavedNotes;
-    public float[] NotesTime; // Outdated
-    public string[] NotesKind; // Outdated
-
     [Space]
     [SerializeField] ParticleSystem Hit01;
     [SerializeField] ParticleSystem Hit02;
@@ -73,6 +61,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] ParticleSystem LeftFANHit02;
     [SerializeField] ParticleSystem RightFANHit01;
     [SerializeField] ParticleSystem RightFANHit02;
+
+    [Space]
+    [Header("SFX Sounds")]
+    [SerializeField] AudioClip PerfectSwordHit;
+    [SerializeField] AudioClip GoodSwordHit;
+    [SerializeField] AudioClip BadSwordHit;
+    [SerializeField] AudioClip MissSwordHit;
+    [SerializeField] AudioClip PerfectFANHit;
+    [SerializeField] AudioClip GoodFANHit;
+    [SerializeField] AudioClip BadFANHit;
+    [SerializeField] AudioClip MissFANHit;
 
     public PlayerControlls Controlls;
 
@@ -184,6 +183,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
+
+                    //PerfectSwordHit.Play();
+                    //PerfectFANHit.Play();
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();

@@ -51,18 +51,13 @@ MonoBehaviour:
   FANLeft: {fileID: 0}
   FANRight: {fileID: 0}
   Song: {fileID: 4203871129649788763}
-  Note: {fileID: 8660562878140971704, guid: 88e78f20108128841bd941fc938139cc, type: 3}
   ChainCounterMessage: {fileID: 0}
   TestTrigger: {fileID: 0}
   Feedback: {fileID: 0}
   scoreText: {fileID: 0}
   chainCounterText: {fileID: 0}
   chainCounterNumberText: {fileID: 0}
-  NoteCounter: 0
-  CurrentNote: 0
-  currentTime: 0
   songPlaying: 0
-  Score: 0
   Tempo: 85
   preBeats: 0
   HitQualityPerfect: 15
@@ -74,65 +69,20 @@ MonoBehaviour:
   ChainCounter: 0
   successValues: 640000006400000064000000
   ChainCounterElapsedTime: 0
-  SavedNotes:
-  - Note: 1
-    Start: 4
-    Length: 5
-  - Note: 2
-    Start: 6
-    Length: 0
-  - Note: 3
-    Start: 2
-    Length: 0
-  - Note: 4
-    Start: 8
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  NotesTime:
-  - 5
-  - 6
-  - 7
-  - 7
-  - 8
-  - 9
-  - 10
-  - 11
-  - 12
-  - 13
-  NotesKind:
-  - w
-  - s
-  - d
-  - a
-  - s
-  - d
-  - w
-  - a
-  - a
-  - w
   Hit01: {fileID: 0}
   Hit02: {fileID: 0}
   LeftFANHit01: {fileID: 0}
   LeftFANHit02: {fileID: 0}
   RightFANHit01: {fileID: 0}
   RightFANHit02: {fileID: 0}
+  PerfectSwordHit: {fileID: 8300000, guid: 5c50d50d2bf75d043b71cdf78f3b5631, type: 3}
+  GoodSwordHit: {fileID: 8300000, guid: 02aedbe60906cd6469fa8e016038348b, type: 3}
+  BadSwordHit: {fileID: 8300000, guid: 205d9990b5fbde64dbc4ebb0c47a8672, type: 3}
+  MissSwordHit: {fileID: 8300000, guid: c544b29a3bcdd5c488172e41db4effc1, type: 3}
+  PerfectFANHit: {fileID: 8300000, guid: 90abeb1963356d64bb8671d6c8ef5744, type: 3}
+  GoodFANHit: {fileID: 8300000, guid: 03e05336edf9100499199c02d60d9542, type: 3}
+  BadFANHit: {fileID: 8300000, guid: 3b659e5129a5fce4d9370b41f444415e, type: 3}
+  MissFANHit: {fileID: 8300000, guid: be3b694fdcce8664db5e750b415bf9e5, type: 3}
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
