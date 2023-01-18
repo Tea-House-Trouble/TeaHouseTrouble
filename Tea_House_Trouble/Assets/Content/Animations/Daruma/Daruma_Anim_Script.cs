@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Daruma_Anim_Script : MonoBehaviour
 {
+    // Script by Kevin
+
     Animator DAR_Animator;
     [SerializeField] ParticleSystem GroundGhostFlames;
     [SerializeField] ParticleSystem DeathVFX;
