@@ -216,10 +216,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 default:
                     break;
             }
-
-            //ChainCounterMessage.SetActive(false);
             scoreText.text = ((int)Score).ToString();
-            //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
         }
 
