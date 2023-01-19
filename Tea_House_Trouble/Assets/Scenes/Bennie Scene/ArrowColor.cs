@@ -25,6 +25,7 @@ public class ArrowColor : MonoBehaviour
         material.SetFloat("_Intensity", intensityValue);
 
     }
+
     // Reduces the Intensity over time
     private void Update()
     {

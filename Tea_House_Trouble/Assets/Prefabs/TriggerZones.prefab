@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 793033499545101074}
   - component: {fileID: 6656238607650382994}
   - component: {fileID: 6152755719892419959}
+  - component: {fileID: 5336018553167144565}
   m_Layer: 0
   m_Name: ArrowDown
   m_TagString: Untagged
@@ -166,6 +167,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5336018553167144565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161361813630327047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da13cf4d67467094dbf72a3feb4fc7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 6abea5e9b4bd8324f88f0448dde72512, type: 2}
+  intensityGlow: 3
+  fadeSpeed: 5
 --- !u!1 &1516003858781217724
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +193,7 @@ GameObject:
   - component: {fileID: 1506250686930053717}
   - component: {fileID: 3107249781635393194}
   - component: {fileID: 592234415951162496}
+  - component: {fileID: 2870056937021695242}
   m_Layer: 0
   m_Name: ArrowUp
   m_TagString: Untagged
@@ -249,6 +266,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2870056937021695242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516003858781217724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da13cf4d67467094dbf72a3feb4fc7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: b3b96ea489a76b2478f32cb2fe641ed2, type: 2}
+  intensityGlow: 3
+  fadeSpeed: 5
 --- !u!1 &1567075781483857413
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,8 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a7b1f05cc254c6d4c80fd195ae2c14b6, type: 2}
   intensityGlow: 3
-  intensityValue: 0
-  fadeSpeed: 2
+  fadeSpeed: 5
 --- !u!1 &8383874405672731595
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +692,7 @@ GameObject:
   - component: {fileID: 3507455661994710881}
   - component: {fileID: 7138884069088265003}
   - component: {fileID: 8307725694829540834}
+  - component: {fileID: 8813098998629283604}
   m_Layer: 0
   m_Name: ArrowRight
   m_TagString: Untagged
@@ -733,3 +765,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8813098998629283604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461332003422260230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da13cf4d67467094dbf72a3feb4fc7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 7770b0f6cb2fa154d9b5d00166244593, type: 2}
+  intensityGlow: 3
+  fadeSpeed: 5

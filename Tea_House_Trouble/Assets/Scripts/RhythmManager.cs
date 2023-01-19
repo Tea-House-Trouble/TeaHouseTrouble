@@ -77,6 +77,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] AudioClip BadFANHit;
     [SerializeField] AudioClip MissFANHit;
 
+    [Space]
+    [Header("Arrow VFX")]
+    /*
+    public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;
+    */
+    public GameObject ArrowUp;
+    public GameObject ArrowDown;
+    public GameObject ArrowRight;
+    public GameObject ArrowLeft;
+
     public PlayerControlls Controlls;
 
     private float lastPressedTime;
@@ -99,6 +111,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Bad = 3,
         Miss = 4
     }
+   
 
     void Start()
     {
@@ -106,9 +119,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
         StartCoroutine(CountDownGameStart());
+        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
+    
 
-    private void Awake()
+private void Awake()
     {
         tempoScale = 60 / Tempo;
         //Cursor.visible = false;
@@ -175,13 +190,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
 
         //MusicTimeSlider.value = MusicTime;
-        //MusicTime += Time.deltaTime;
+        //MusicTime += Time.deltaTime;    
     }
+   
     public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-
+           
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -191,7 +207,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
-  
+
+    /*void Update()
+    {
+        if (distance < 0.3f)
+        {
+            material.SetFloat("_Intensity", LineIntensity);
+        }
+        else
+        {
+            material.SetFloat("_Intensity", 0);
+        }
+    }*/
 
     public void Hit(NoteID Input)
     {
@@ -264,8 +291,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ChainCounterElapsedTime = 0;
     }
 
-    public GameObject ArrowUp;
-
     public void OnUp(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -289,8 +314,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     }
 
-    public GameObject ArrowDown;
-
     public void OnDown(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -312,8 +335,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             arrowColor.PerformAction();
         }
     }
-
-    public GameObject ArrowRight;
 
     public void OnRight(InputAction.CallbackContext context)
     {
@@ -337,7 +358,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             arrowColor.PerformAction();
         }
     }
-    public GameObject ArrowLeft;
 
     public void OnLeft(InputAction.CallbackContext context)
     {
