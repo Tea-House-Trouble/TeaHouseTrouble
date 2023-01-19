@@ -3965,6 +3965,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd0d6e52220feda40ba9449acfc4ea16, type: 3}
+--- !u!198 &850408910 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4940940825690228093, guid: 63a2718f7f512374bbd4d96489b6a509,
+    type: 3}
+  m_PrefabInstance: {fileID: 342063432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &864640814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8242,6 +8248,11 @@ PrefabInstance:
       propertyPath: FANLeft
       value: 
       objectReference: {fileID: 1742112790}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: Sparkle
+      value: 
+      objectReference: {fileID: 850408910}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: FANRight
