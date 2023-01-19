@@ -22,7 +22,7 @@ public class CSVReader : MonoBehaviour
 
         public int minute;
         public int second;
-        public int miliSecond;
+        public float miliSecond;
 
         public RhythmManager.NoteID Note;
         public override string ToString()
@@ -46,7 +46,7 @@ public class CSVReader : MonoBehaviour
         {
            // Debug.Log(Lines[i]);
 
-            data[i] = Lines[i].Split(',');
+            data[i] = Lines[i].Split(';');
 
             // Read Data in CSV (Time, EnemyLenght, NoteID)
             spawnList[i - 1] = new Spawn();
@@ -65,7 +65,7 @@ public class CSVReader : MonoBehaviour
                 Debug.Log("Line " + i + " Time Elements 1 : " + timeElements[1].Trim());
             }
 
-            if (!int.TryParse(timeElements[2].Trim(), out spawnList[i - 1].miliSecond))
+            if (!float.TryParse(timeElements[2].Trim(), out spawnList[i - 1].miliSecond))
             {
                 Debug.Log("Line " + i + " Time Elements 2 : " + timeElements[2].Trim());
             }

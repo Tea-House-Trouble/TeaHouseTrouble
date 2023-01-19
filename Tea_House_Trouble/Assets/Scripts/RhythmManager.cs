@@ -11,7 +11,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
     public static event System.Action<NoteID> ButtonPressed;
 
-
     public GameObject Ocha;
     public GameObject FANLeft;
     public GameObject FANRight;
@@ -27,6 +26,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI chainCounterText;
     public TextMeshProUGUI chainCounterNumberText;
+    public TextMeshProUGUI GameStartTimerText;
 
     [Header("Infos")]
     public bool songPlaying;
@@ -53,6 +53,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     public int[] successValues;
     public float ChainCounterElapsedTime;
+    public int GameStartTimer;
+    private float MusicTime;
+    [SerializeField] Slider MusicTimeSlider;
 
     [Space]
     [SerializeField] ParticleSystem Hit01;
@@ -101,6 +104,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
+        StartCoroutine(CountDownGameStart());
     }
 
     private void Awake()
@@ -130,6 +134,20 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Controlls.Dispose();
         Controlls = null;
     }
+    IEnumerator CountDownGameStart()
+    {
+        while (GameStartTimer > 0)
+        {
+            GameStartTimerText.text = GameStartTimer.ToString();
+            yield return new WaitForSeconds(1);
+
+            GameStartTimer--;
+        }
+
+        GameStartTimerText.text = "GO!";
+        yield return new WaitForSeconds(1);
+        GameStartTimerText.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -146,11 +164,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Feedback.gameObject.SetActive(true);
             }
         }
+
+        //MusicTimeSlider
+
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
         {
             Song.Play();
             songPlaying = true;
         }
+
+        //MusicTimeSlider.value = MusicTime;
+        //MusicTime += Time.deltaTime;
     }
     public HitQuality GetHitQuality(float distance)
     {
@@ -244,7 +268,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
@@ -266,7 +289,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
