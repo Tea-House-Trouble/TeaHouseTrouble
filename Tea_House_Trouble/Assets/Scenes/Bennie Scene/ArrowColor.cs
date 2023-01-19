@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftColor : MonoBehaviour
+public class ArrowColor : MonoBehaviour
 {
     public Material material;
     public float intensityGlow = 3.0f;
-    public float intensityValue = 1.0f;
-    public float fadeSpeed = 0.1f;
+    private float intensityValue = 1.0f;
+    public float fadeSpeed = 5f;
 
     private float timer;
 
@@ -17,15 +17,15 @@ public class LeftColor : MonoBehaviour
         intensityValue = 0.0f;
     }
 
- 
+    // Trigger sets the Intensity as defined
     public void PerformAction()
 
     {
-         intensityValue = intensityGlow;
-         material.SetFloat("_Intensity", intensityValue);
+        intensityValue = intensityGlow;
+        material.SetFloat("_Intensity", intensityValue);
 
     }
-
+    // Reduces the Intensity over time
     private void Update()
     {
 
@@ -34,19 +34,7 @@ public class LeftColor : MonoBehaviour
             intensityValue = Mathf.Clamp(intensityValue - fadeSpeed * Time.deltaTime, 0, 10);
             material.SetFloat("_Intensity", intensityValue);
         }
-        /*
-           timer -= Time.deltaTime;
-           if (timer <= 0)
-           {
-              intensityValue = 0.0f;
-             timer = resetTime;
-           }
-        */
-    }//Mathf.Clamp(
+
+    }
 
 }
-
-
-    // Update is called once per frame
-   
-

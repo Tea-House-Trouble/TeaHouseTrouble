@@ -191,6 +191,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
+  
+
     public void Hit(NoteID Input)
     {
         Debug.Log("Hit Key " + Input, this);
@@ -262,6 +264,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ChainCounterElapsedTime = 0;
     }
 
+    public GameObject ArrowUp;
+
     public void OnUp(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -279,9 +283,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Hit01.Play();
             }
 
+            ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
 
     }
+
+    public GameObject ArrowDown;
 
     public void OnDown(InputAction.CallbackContext context)
     {
@@ -299,8 +307,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
+
+    public GameObject ArrowRight;
 
     public void OnRight(InputAction.CallbackContext context)
     {
@@ -319,6 +332,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 RightFAN_Animator.Play("Hit01");
                 RightFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
     public GameObject ArrowLeft;
@@ -341,8 +357,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFANHit01.Play();
             }
 
-            LeftColor leftColor = ArrowLeft.GetComponent<LeftColor>();
-            leftColor.PerformAction();
+            ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
 
         }
 
