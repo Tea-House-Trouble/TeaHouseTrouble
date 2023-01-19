@@ -57,6 +57,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     [SerializeField] ParticleSystem Hit01;
     [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem Sparkle;
     [SerializeField] ParticleSystem LeftFANHit01;
     [SerializeField] ParticleSystem LeftFANHit02;
     [SerializeField] ParticleSystem RightFANHit01;
@@ -185,6 +186,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterElapsedTime = 0;
 
                     //PerfectSwordHit.Play();
+                    Sparkle.Play();
                     //PerfectFANHit.Play();
 
                     if (HitNote != null)
