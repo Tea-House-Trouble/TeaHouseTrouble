@@ -60,6 +60,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     [SerializeField] ParticleSystem Hit01;
     [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem Sparkle;
     [SerializeField] ParticleSystem LeftFANHit01;
     [SerializeField] ParticleSystem LeftFANHit02;
     [SerializeField] ParticleSystem RightFANHit01;
@@ -209,6 +210,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterElapsedTime = 0;
 
                     //PerfectSwordHit.Play();
+                    Sparkle.Play();
                     //PerfectFANHit.Play();
 
                     if (HitNote != null)
@@ -319,6 +321,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             }
         }
     }
+    public GameObject ArrowLeft;
 
     public void OnLeft(InputAction.CallbackContext context)
     {
@@ -337,6 +340,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFAN_Animator.Play("Hit01");
                 LeftFANHit01.Play();
             }
+
+            LeftColor leftColor = ArrowLeft.GetComponent<LeftColor>();
+            leftColor.PerformAction();
 
         }
 
