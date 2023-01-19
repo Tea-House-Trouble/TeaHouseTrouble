@@ -299,6 +299,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             }
         }
     }
+    public GameObject ArrowLeft;
 
     public void OnLeft(InputAction.CallbackContext context)
     {
@@ -317,6 +318,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFAN_Animator.Play("Hit01");
                 LeftFANHit01.Play();
             }
+
+            LeftColor leftColor = ArrowLeft.GetComponent<LeftColor>();
+            leftColor.PerformAction();
 
         }
 
