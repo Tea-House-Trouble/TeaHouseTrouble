@@ -34,7 +34,7 @@ public class SpawnController : MonoBehaviour
 
     private void Awake()
     {
-        csvReader.ReadCSV();
+        //csvReader.ReadCSV();
         PrepareNextNote();
     }
 
