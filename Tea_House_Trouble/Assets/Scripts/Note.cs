@@ -9,12 +9,19 @@ public class Note : MonoBehaviour
 
     public GameObject AnimationObjekt;
 
+    Collider EnemyCollider;
+
     public Quaternion BaseRotation;
 
     //public void Destroy()
     //{
     //   Destroy(gameObject);
     //}
+
+    private void Start()
+    {
+        EnemyCollider = GetComponent<Collider>();
+    }
 
     private void Update()
     {
@@ -24,7 +31,7 @@ public class Note : MonoBehaviour
     public void StartDeathSequenz()
     {
         Daruma_Anim_Script DeathAnim = AnimationObjekt.GetComponent<Daruma_Anim_Script>();
-
+        EnemyCollider.enabled = false;
         DeathAnim.Destroy();
         StartCoroutine(Despawn()); 
     }
@@ -34,5 +41,4 @@ public class Note : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
-
 }
