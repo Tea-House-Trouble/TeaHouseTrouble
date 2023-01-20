@@ -60,6 +60,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     [SerializeField] ParticleSystem Hit01;
     [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem Sparkle;
     [SerializeField] ParticleSystem LeftFANHit01;
     [SerializeField] ParticleSystem LeftFANHit02;
     [SerializeField] ParticleSystem RightFANHit01;
@@ -75,6 +76,36 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] AudioClip GoodFANHit;
     [SerializeField] AudioClip BadFANHit;
     [SerializeField] AudioClip MissFANHit;
+
+    [Space]
+    [Header("Arrow VFX")]
+    /*
+    public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;
+    */
+    public GameObject ArrowUp;
+    public GameObject ArrowDown;
+    public GameObject ArrowRight;
+    public GameObject ArrowLeft;
+
+    [SerializeField] MyBlitFeature Blit;
+    [Space]
+    [Header("Speed Level One")]
+    public float ThresholdOne = 15.0f;
+    public float SamplesOne = 3.0f;
+    public float DensityOne = 0.3f;
+    [Space]
+    [Header("Speed Level Two")]
+    public float ThresholdTwo = 30.0f;
+    public float SamplesTwo = 4.5f;
+    public float DensityTwo = 0.35f;
+    [Space]
+    [Header("Speed Level Three")]
+    public float ThresholdThree = 50.0f;
+    public float SamplesThree = 6.0f;
+    public float DensityThree = 0.4f;
+
 
     public PlayerControlls Controlls;
 
@@ -98,6 +129,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Bad = 3,
         Miss = 4
     }
+   
 
     void Start()
     {
@@ -105,7 +137,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
         StartCoroutine(CountDownGameStart());
+        SetSpeedLevelZero();
+        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
+
 
     private void Awake()
     {
@@ -164,7 +199,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Feedback.gameObject.SetActive(true);
             }
         }
-
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
         //MusicTimeSlider
 
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
@@ -174,13 +210,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
 
         //MusicTimeSlider.value = MusicTime;
-        //MusicTime += Time.deltaTime;
+        //MusicTime += Time.deltaTime;    
     }
+   
     public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-
+           
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -189,6 +226,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         return HitQuality.Miss;
     }
+
+
+    /*void Update()
+    {
+        if (distance < 0.3f)
+        {
+            material.SetFloat("_Intensity", LineIntensity);
+        }
+        else
+        {
+            material.SetFloat("_Intensity", 0);
+        }
+    }*/
 
     public void Hit(NoteID Input)
     {
@@ -209,6 +259,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterElapsedTime = 0;
 
                     //PerfectSwordHit.Play();
+                    Sparkle.Play();
                     //PerfectFANHit.Play();
 
                     if (HitNote != null)
@@ -244,6 +295,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             }
             scoreText.text = ((int)Score).ToString();
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
+            ScanSpeedLevel();
         }
 
         //  Dient noch als evtl. Rechenhilfe
@@ -251,7 +303,49 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
 
-    public void MissedNote()
+    public void ScanSpeedLevel()
+
+    {
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+        else if (ChainCounter == ThresholdOne)
+            SetSpeedLevelOne();
+        else if (ChainCounter == ThresholdTwo)
+            SetSpeedLevelTwo();
+        else if (ChainCounter == ThresholdThree)
+            SetSpeedLevelThree();
+    }
+    void SetSpeedLevelZero()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 0);
+    }
+    void SetSpeedLevelOne()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
+        Blit.Create();
+    }
+    void SetSpeedLevelTwo()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
+        Blit.Create();
+    }
+    void SetSpeedLevelThree()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityThree);
+        Blit.Create();
+    }
+
+        public void MissedNote()
     {
         Feedback.text = "MISS!";
         ChainCounter = 0;
@@ -277,6 +371,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Hit01.Play();
             }
 
+            ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
 
     }
@@ -297,6 +393,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
 
@@ -317,6 +416,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 RightFAN_Animator.Play("Hit01");
                 RightFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
 
@@ -337,6 +439,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFAN_Animator.Play("Hit01");
                 LeftFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
 
         }
 
