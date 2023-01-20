@@ -4146,6 +4146,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8383874405976533355, guid: 2601feb3776368946af2f23e647f2f05,
         type: 3}
+      propertyPath: Line_Glow
+      value: 
+      objectReference: {fileID: 1027898773}
+    - target: {fileID: 8383874405976533355, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: LineIntensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383874405976533355, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
       propertyPath: rhythmManager
       value: 
       objectReference: {fileID: 1348013449}
@@ -8371,6 +8381,47 @@ PrefabInstance:
       propertyPath: chainCounterNumberText
       value: 
       objectReference: {fileID: 1345273154}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: Blit
+      value: 
+      objectReference: {fileID: -1500468420472044189, guid: c40be3174f62c4acf8c1216858c64956,
+        type: 2}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ChainInput
+      value: 
+      objectReference: {fileID: 1348013449}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ThresholdOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ThresholdTwo
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: RhythmManager
+      value: 
+      objectReference: {fileID: 1348013449}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: SpeedLevelOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: SpeedLevelTwo
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002935312710349478, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: SpeedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ab606f98039457e4a909e37c27906250, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c, type: 3}
 --- !u!1 &1742112790 stripped

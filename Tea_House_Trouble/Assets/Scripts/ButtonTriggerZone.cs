@@ -14,6 +14,10 @@ public class ButtonTriggerZone : MonoBehaviour
 
     public RhythmManager rhythmManager;
 
+    /*public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;*/
+
     /// <summary>
     /// Prüft ob eine Passsende Note im Trigger ist, wenn ein Button gedrückt wurde. Distance beschreibt wie weit die Z Werte abweichen (Forgivness)
     /// </summary>
@@ -45,10 +49,22 @@ public class ButtonTriggerZone : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-    void Update()
-    {
+    /* public void Start()
+     {
+         LineMaterial = Line_Glow.GetComponent<Renderer>().material;
+     }
 
-    }
+     void Update()
+     {
+         if (distance < 0,3f)
+         { 
+             LineMaterial.SetFloat("_Intensity", LineIntensity);
+         }
+         else 
+         {
+             LineMaterial.SetFloat("_Intensity", 0);
+         }
+     }*/
 
     private void OnEnable()
     {

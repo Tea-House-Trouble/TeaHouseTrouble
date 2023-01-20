@@ -57,6 +57,7 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   chainCounterText: {fileID: 0}
   chainCounterNumberText: {fileID: 0}
+  GameStartTimerText: {fileID: 0}
   songPlaying: 0
   Tempo: 85
   preBeats: 0
@@ -69,8 +70,10 @@ MonoBehaviour:
   ChainCounter: 0
   successValues: 640000006400000064000000
   ChainCounterElapsedTime: 0
+  GameStartTimer: 0
   Hit01: {fileID: 0}
   Hit02: {fileID: 0}
+  Sparkle: {fileID: 0}
   LeftFANHit01: {fileID: 0}
   LeftFANHit02: {fileID: 0}
   RightFANHit01: {fileID: 0}
@@ -83,6 +86,10 @@ MonoBehaviour:
   GoodFANHit: {fileID: 8300000, guid: 03e05336edf9100499199c02d60d9542, type: 3}
   BadFANHit: {fileID: 8300000, guid: 3b659e5129a5fce4d9370b41f444415e, type: 3}
   MissFANHit: {fileID: 8300000, guid: be3b694fdcce8664db5e750b415bf9e5, type: 3}
+  ArrowUp: {fileID: 0}
+  ArrowDown: {fileID: 0}
+  ArrowRight: {fileID: 0}
+  ArrowLeft: {fileID: 0}
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
