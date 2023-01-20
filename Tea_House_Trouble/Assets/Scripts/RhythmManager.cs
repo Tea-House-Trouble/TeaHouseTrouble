@@ -11,7 +11,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
     public static event System.Action<NoteID> ButtonPressed;
 
-
     public GameObject Ocha;
     public GameObject FANLeft;
     public GameObject FANRight;
@@ -27,6 +26,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI chainCounterText;
     public TextMeshProUGUI chainCounterNumberText;
+    public TextMeshProUGUI GameStartTimerText;
 
     [Header("Infos")]
     public bool songPlaying;
@@ -53,6 +53,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     public int[] successValues;
     public float ChainCounterElapsedTime;
+    public int GameStartTimer;
+    private float MusicTime;
+    [SerializeField] Slider MusicTimeSlider;
 
     [Space]
     [SerializeField] ParticleSystem Hit01;
@@ -73,6 +76,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] AudioClip GoodFANHit;
     [SerializeField] AudioClip BadFANHit;
     [SerializeField] AudioClip MissFANHit;
+
+    [Space]
+    [Header("Arrow VFX")]
+    /*
+    public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;
+    */
+    public GameObject ArrowUp;
+    public GameObject ArrowDown;
+    public GameObject ArrowRight;
+    public GameObject ArrowLeft;
 
     public PlayerControlls Controlls;
 
@@ -96,15 +111,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Bad = 3,
         Miss = 4
     }
+   
 
     void Start()
     {
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
+        StartCoroutine(CountDownGameStart());
+        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
+    
 
-    private void Awake()
+private void Awake()
     {
         tempoScale = 60 / Tempo;
         //Cursor.visible = false;
@@ -131,6 +150,20 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Controlls.Dispose();
         Controlls = null;
     }
+    IEnumerator CountDownGameStart()
+    {
+        while (GameStartTimer > 0)
+        {
+            GameStartTimerText.text = GameStartTimer.ToString();
+            yield return new WaitForSeconds(1);
+
+            GameStartTimer--;
+        }
+
+        GameStartTimerText.text = "GO!";
+        yield return new WaitForSeconds(1);
+        GameStartTimerText.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -147,17 +180,24 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Feedback.gameObject.SetActive(true);
             }
         }
+
+        //MusicTimeSlider
+
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
         {
             Song.Play();
             songPlaying = true;
         }
+
+        //MusicTimeSlider.value = MusicTime;
+        //MusicTime += Time.deltaTime;    
     }
+   
     public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-
+           
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -166,6 +206,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         return HitQuality.Miss;
     }
+
+
+    /*void Update()
+    {
+        if (distance < 0.3f)
+        {
+            material.SetFloat("_Intensity", LineIntensity);
+        }
+        else
+        {
+            material.SetFloat("_Intensity", 0);
+        }
+    }*/
 
     public void Hit(NoteID Input)
     {
@@ -246,7 +299,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
@@ -256,6 +308,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Hit01.Play();
             }
 
+            ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
 
     }
@@ -268,7 +322,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
@@ -277,6 +330,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
 
@@ -297,9 +353,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 RightFAN_Animator.Play("Hit01");
                 RightFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
-    public GameObject ArrowLeft;
 
     public void OnLeft(InputAction.CallbackContext context)
     {
@@ -319,8 +377,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFANHit01.Play();
             }
 
-            LeftColor leftColor = ArrowLeft.GetComponent<LeftColor>();
-            leftColor.PerformAction();
+            ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
 
         }
 
