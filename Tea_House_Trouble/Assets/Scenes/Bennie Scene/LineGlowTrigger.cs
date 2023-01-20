@@ -4,19 +4,38 @@ using UnityEngine;
 
 public class LineGlowTrigger : MonoBehaviour
 {
-    public float Intensity;
-    Material material;
+    public float Intensity = 2.0f;
+    public Material material;
+    public float IntensityValue;
 
     void Start()
     {
         material.SetFloat("_Intensity", 0);
     }
 
-    void OnTriggerInput(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            material.SetFloat("_Intensity", Intensity);
+            IntensityValue = Intensity;
+            material.SetFloat("_Intensity", IntensityValue);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+  
+        {
+
+        
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                void Update()
+                    {
+                        IntensityValue = Mathf.Clamp(IntensityValue - 5 * Time.deltaTime, 0, 10);
+                        material.SetFloat("_Intensity", IntensityValue);
+                    }
+                
+            }
         }
     }
 }   
