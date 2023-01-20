@@ -4309,6 +4309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArrowLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 1823424150637481421, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4463560045359182701, guid: 2601feb3776368946af2f23e647f2f05,
         type: 3}
       propertyPath: m_RootOrder
@@ -4443,6 +4448,16 @@ PrefabInstance:
         type: 3}
       propertyPath: intensityValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399186549681025142, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399186549681025142, guid: 2601feb3776368946af2f23e647f2f05,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8383874405672731595, guid: 2601feb3776368946af2f23e647f2f05,
         type: 3}
@@ -12737,6 +12752,16 @@ PrefabInstance:
       objectReference: {fileID: 242205581}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
+      propertyPath: ThresholdOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ThresholdTwo
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
       propertyPath: LineIntensity
       value: 5
       objectReference: {fileID: 0}
@@ -12754,6 +12779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GameStartTimer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ThresholdThree
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
