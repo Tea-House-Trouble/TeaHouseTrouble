@@ -68,6 +68,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     [Space]
     [Header("SFX Sounds")]
+    [SerializeField] AudioSource BattleSounds;
     [SerializeField] AudioClip PerfectSwordHit;
     [SerializeField] AudioClip GoodSwordHit;
     [SerializeField] AudioClip BadSwordHit;
@@ -76,6 +77,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] AudioClip GoodFANHit;
     [SerializeField] AudioClip BadFANHit;
     [SerializeField] AudioClip MissFANHit;
+    [Range(0f,1f)] public float BattleSoundsVolume;
 
     [Space]
     [Header("Arrow VFX")]
@@ -258,9 +260,16 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    //PerfectSwordHit.Play();
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume);
+                    }
                     Sparkle.Play();
-                    //PerfectFANHit.Play();
+                    
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
@@ -273,6 +282,15 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume);
+                    }
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
@@ -284,20 +302,49 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume);
+                    }
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Miss:
                     MissedNote();
-                    break;
+
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
+                    }
+
+                break;
                 default:
-                    break;
+                break;
             }
             scoreText.text = ((int)Score).ToString();
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
             ScanSpeedLevel();
         }
-
+        else
+        {
+            if(Input == NoteID.S||Input == NoteID.W)
+            {
+                BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
+            }
+            else
+            {
+                BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
+            }
+        }
         //  Dient noch als evtl. Rechenhilfe
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
@@ -352,6 +399,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ChainCounterMessage.SetActive(true);
         chainCounterNumberText.text = "" + ChainCounter;
         ChainCounterElapsedTime = 0;
+
+        
     }
 
     public void OnUp(InputAction.CallbackContext context)
