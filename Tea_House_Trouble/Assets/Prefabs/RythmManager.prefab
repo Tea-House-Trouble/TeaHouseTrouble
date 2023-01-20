@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5276675157964152096}
   - component: {fileID: 5276675157964152099}
+  - component: {fileID: 5604627613986224788}
   - component: {fileID: 6643139134256387842}
   - component: {fileID: 5276675157964152097}
   - component: {fileID: 4203871129649788763}
@@ -90,6 +91,23 @@ MonoBehaviour:
   ArrowDown: {fileID: 0}
   ArrowRight: {fileID: 0}
   ArrowLeft: {fileID: 0}
+--- !u!114 &5604627613986224788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bf1fb3d61de064fb2a200530001252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blit: {fileID: -1500468420472044189, guid: c40be3174f62c4acf8c1216858c64956, type: 2}
+  ChainInput: {fileID: 5276675157964152099}
+  ThresholdOne: 10
+  ThresholdTwo: 20
+  ThresholdThree: 50
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
