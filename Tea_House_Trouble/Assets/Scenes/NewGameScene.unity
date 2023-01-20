@@ -4045,105 +4045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &751549091
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4064066293888089888, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_Name
-      value: Koi_Rechts_275 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4597066893570472585, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: pathCreator
-      value: 
-      objectReference: {fileID: 251202324}
-    - target: {fileID: 4597066893570472585, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: distanceTravelled
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 65.87952
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.8521996
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 147.54044
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635086690230047209, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973448688498339481, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: pathCreator
-      value: 
-      objectReference: {fileID: 251202324}
-    - target: {fileID: 7973448688498339481, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: distanceTravelled
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140508579096298284, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: pathCreator
-      value: 
-      objectReference: {fileID: 251202324}
-    - target: {fileID: 8140508579096298284, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a,
-        type: 3}
-      propertyPath: distanceTravelled
-      value: 20
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b903ba1547aa7ae4b8a1b5fe664c3c0a, type: 3}
 --- !u!1 &764696781
 GameObject:
   m_ObjectHideFlags: 0
@@ -12743,6 +12644,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: RythmManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: Blit
+      value: 
+      objectReference: {fileID: -1500468420472044189, guid: c40be3174f62c4acf8c1216858c64956,
+        type: 2}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: Ocha

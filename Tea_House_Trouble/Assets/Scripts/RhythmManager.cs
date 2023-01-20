@@ -92,16 +92,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] MyBlitFeature Blit;
     [Space]
     [Header("Speed Level One")]
-    public float ThresholdOne = 10.0f;
+    public float ThresholdOne = 15.0f;
     public float SamplesOne = 3.0f;
+    public float DensityOne = 0.3f;
     [Space]
     [Header("Speed Level Two")]
-    public float ThresholdTwo = 20.0f;
+    public float ThresholdTwo = 30.0f;
     public float SamplesTwo = 4.5f;
+    public float DensityTwo = 0.35f;
     [Space]
     [Header("Speed Level Three")]
     public float ThresholdThree = 50.0f;
     public float SamplesThree = 6.0f;
+    public float DensityThree = 0.4f;
 
 
     public PlayerControlls Controlls;
@@ -196,7 +199,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Feedback.gameObject.SetActive(true);
             }
         }
-
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
         //MusicTimeSlider
 
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
@@ -302,10 +306,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public void ScanSpeedLevel()
 
     {
-        Debug.Log("Hitiiiiiiiiiiiiiit");
-        /*RhythmManager rhythmManager = GetComponent<RhythmManager>();
-        int chainCounter = rhythmManager.ChainCounter;*/
-
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
         else if (ChainCounter == ThresholdOne)
@@ -324,18 +324,24 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
         Blit.Create();
     }
     void SetSpeedLevelTwo()
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
         Blit.Create();
     }
     void SetSpeedLevelThree()
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityThree);
         Blit.Create();
     }
 
