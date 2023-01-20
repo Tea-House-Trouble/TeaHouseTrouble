@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5276675157964152096}
   - component: {fileID: 5276675157964152099}
+  - component: {fileID: 7002935312710349478}
   - component: {fileID: 6643139134256387842}
   - component: {fileID: 5276675157964152097}
   - component: {fileID: 4203871129649788763}
@@ -57,6 +58,7 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   chainCounterText: {fileID: 0}
   chainCounterNumberText: {fileID: 0}
+  GameStartTimerText: {fileID: 0}
   songPlaying: 0
   Tempo: 85
   preBeats: 0
@@ -69,8 +71,10 @@ MonoBehaviour:
   ChainCounter: 0
   successValues: 640000006400000064000000
   ChainCounterElapsedTime: 0
+  GameStartTimer: 0
   Hit01: {fileID: 0}
   Hit02: {fileID: 0}
+  Sparkle: {fileID: 0}
   LeftFANHit01: {fileID: 0}
   LeftFANHit02: {fileID: 0}
   RightFANHit01: {fileID: 0}
@@ -83,6 +87,23 @@ MonoBehaviour:
   GoodFANHit: {fileID: 8300000, guid: 03e05336edf9100499199c02d60d9542, type: 3}
   BadFANHit: {fileID: 8300000, guid: 3b659e5129a5fce4d9370b41f444415e, type: 3}
   MissFANHit: {fileID: 8300000, guid: be3b694fdcce8664db5e750b415bf9e5, type: 3}
+  ArrowUp: {fileID: 0}
+  ArrowDown: {fileID: 0}
+  ArrowRight: {fileID: 0}
+  ArrowLeft: {fileID: 0}
+--- !u!114 &7002935312710349478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bf1fb3d61de064fb2a200530001252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedShader: {fileID: 2100000, guid: c29d5a555864ec441adf75e5bcb882b6, type: 2}
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
