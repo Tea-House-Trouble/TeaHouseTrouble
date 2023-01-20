@@ -89,6 +89,24 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public GameObject ArrowRight;
     public GameObject ArrowLeft;
 
+    [SerializeField] MyBlitFeature Blit;
+    [Space]
+    [Header("Speed Level One")]
+    public float ThresholdOne = 15.0f;
+    public float SamplesOne = 3.0f;
+    public float DensityOne = 0.3f;
+    [Space]
+    [Header("Speed Level Two")]
+    public float ThresholdTwo = 30.0f;
+    public float SamplesTwo = 4.5f;
+    public float DensityTwo = 0.35f;
+    [Space]
+    [Header("Speed Level Three")]
+    public float ThresholdThree = 50.0f;
+    public float SamplesThree = 6.0f;
+    public float DensityThree = 0.4f;
+
+
     public PlayerControlls Controlls;
 
     private float lastPressedTime;
@@ -119,11 +137,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
         StartCoroutine(CountDownGameStart());
+        SetSpeedLevelZero();
         //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
-    
 
-private void Awake()
+
+    private void Awake()
     {
         tempoScale = 60 / Tempo;
         //Cursor.visible = false;
@@ -180,7 +199,8 @@ private void Awake()
                 Feedback.gameObject.SetActive(true);
             }
         }
-
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
         //MusicTimeSlider
 
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
@@ -275,6 +295,7 @@ private void Awake()
             }
             scoreText.text = ((int)Score).ToString();
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
+            ScanSpeedLevel();
         }
 
         //  Dient noch als evtl. Rechenhilfe
@@ -282,7 +303,49 @@ private void Awake()
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
 
-    public void MissedNote()
+    public void ScanSpeedLevel()
+
+    {
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+        else if (ChainCounter == ThresholdOne)
+            SetSpeedLevelOne();
+        else if (ChainCounter == ThresholdTwo)
+            SetSpeedLevelTwo();
+        else if (ChainCounter == ThresholdThree)
+            SetSpeedLevelThree();
+    }
+    void SetSpeedLevelZero()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 0);
+    }
+    void SetSpeedLevelOne()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
+        Blit.Create();
+    }
+    void SetSpeedLevelTwo()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
+        Blit.Create();
+    }
+    void SetSpeedLevelThree()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityThree);
+        Blit.Create();
+    }
+
+        public void MissedNote()
     {
         Feedback.text = "MISS!";
         ChainCounter = 0;

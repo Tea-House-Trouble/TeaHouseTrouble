@@ -11,12 +11,15 @@ public class MyBlitFeature : ScriptableRendererFeature
         public RenderPassEvent WhenToInsert = RenderPassEvent.AfterRendering;
         public Material MaterialToBlit;
     }
+   
+    
 
     // MUST be named "settings" (lowercase) to be shown in the Render Features inspector
     public MyFeatureSettings settings = new MyFeatureSettings();
 
     RenderTargetHandle renderTextureHandle;
     MyBlitRenderPass myRenderPass;
+    
 
     public override void Create()
     {
@@ -26,6 +29,8 @@ public class MyBlitFeature : ScriptableRendererFeature
           settings.MaterialToBlit
         );
     }
+
+  
 
     // called every frame once per camera
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

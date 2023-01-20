@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8580155955592236080}
   - component: {fileID: 7439895180105241229}
   - component: {fileID: 4972569986092033412}
+  - component: {fileID: 1823424150637481421}
+  - component: {fileID: 7399186549681025142}
   m_Layer: 0
   m_Name: Line_Glow
   m_TagString: Untagged
@@ -83,6 +85,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1823424150637481421
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357737407579172870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 458.87, z: 4.82}
+  m_Center: {x: 0.0000038146973, y: 0, z: -0.000061035156}
+--- !u!114 &7399186549681025142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357737407579172870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb2124a4352bad4096fa6f7eb5c5eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1161361813630327047
 GameObject:
   m_ObjectHideFlags: 0
