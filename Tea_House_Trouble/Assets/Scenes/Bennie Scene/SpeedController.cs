@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,17 +24,26 @@ public class SpeedController : MonoBehaviour
     {
 
     }
-    public Material SpeedMaterial;
-    // Update is called once per frame
+    Material SpeedMaterial;
     void Update()
-    {
-        if (ChainInput.ChainCounter < ThresholdOne)
-            SpeedMaterial = Resources.Load<Material>("Assets/Scenes/Bennie Scene/Speed Shader Level 0.mat");
-        else if (ChainInput.ChainCounter >= ThresholdOne && ChainInput.ChainCounter < ThresholdTwo)
-            SpeedMaterial = Resources.Load<Material>("Assets/Scenes/Bennie Scene/Speed Shader Level 1.mat");
-        else if (ChainInput.ChainCounter >= ThresholdTwo && ChainInput.ChainCounter < ThresholdThree)
-            SpeedMaterial = Resources.Load<Material>("Assets/Scenes/Bennie Scene/Speed Shader Level 2.mat");
+    { 
 
-        Blit.UpdateMaterial(SpeedMaterial);
+        if (ChainInput.ChainCounter == 0)
+            SetSpeedLevelZero();
+
+        else if (ChainInput.ChainCounter == ThresholdOne)
+            SetSpeedLevelOne();
+
     }
-}
+    void SetSpeedLevelZero()
+    {
+        Blit.settings.SpeedShader.SetFloat("_Speed_Lines_Active", 0);
+        Blit.settings.SpeedShader.SetFloat("_Radial_Blur_Active", 0);
+    }
+
+    void SetSpeedLevelOne()
+    {
+        Blit.settings.SpeedShader.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.SpeedShader.SetFloat("_Radial_Blur_Active", 1);
+    }
+}*/

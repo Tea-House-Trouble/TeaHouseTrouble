@@ -19,12 +19,7 @@ public class MyBlitFeature : ScriptableRendererFeature
 
     RenderTargetHandle renderTextureHandle;
     MyBlitRenderPass myRenderPass;
-
-    public void UpdateMaterial(Material SpeedMaterial)
-    {
-        settings.MaterialToBlit = SpeedMaterial;
-        Create();
-    }
+    
 
     public override void Create()
     {
