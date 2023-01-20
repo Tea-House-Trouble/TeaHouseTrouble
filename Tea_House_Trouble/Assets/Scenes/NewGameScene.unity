@@ -1790,6 +1790,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 725722264787149927, guid: 63a2718f7f512374bbd4d96489b6a509,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1199052889238202546, guid: 63a2718f7f512374bbd4d96489b6a509,
         type: 3}
       propertyPath: m_RootOrder
@@ -1894,6 +1899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163651975503954582, guid: 63a2718f7f512374bbd4d96489b6a509,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8028103263487154714, guid: 63a2718f7f512374bbd4d96489b6a509,
         type: 3}
@@ -2864,6 +2874,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5.000061, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!82 &541511468 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 725722264787149927, guid: 63a2718f7f512374bbd4d96489b6a509,
+    type: 3}
+  m_PrefabInstance: {fileID: 342063432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &542353762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fce531cd247b60c4dbf027a5ca20d174,
@@ -12782,6 +12798,11 @@ PrefabInstance:
       objectReference: {fileID: 409189166}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
+      propertyPath: BattleSounds
+      value: 
+      objectReference: {fileID: 541511468}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
       propertyPath: DensityThree
       value: 0.5
       objectReference: {fileID: 0}
@@ -12840,6 +12861,11 @@ PrefabInstance:
       propertyPath: chainCounterText
       value: 
       objectReference: {fileID: 736315141}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: BattleSoundsVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: GameStartTimerText
