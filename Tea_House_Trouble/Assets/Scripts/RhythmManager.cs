@@ -11,7 +11,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
     public static event System.Action<NoteID> ButtonPressed;
 
-
     public GameObject Ocha;
     public GameObject FANLeft;
     public GameObject FANRight;
@@ -19,7 +18,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     Animator LeftFAN_Animator;
     Animator RightFAN_Animator;
     public AudioSource Song;
-    public GameObject Note;
     public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
@@ -28,13 +26,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI chainCounterText;
     public TextMeshProUGUI chainCounterNumberText;
-    public int NoteCounter;
+    public TextMeshProUGUI GameStartTimerText;
 
     [Header("Infos")]
-    public int CurrentNote;
-    public float currentTime;
     public bool songPlaying;
-    public float Score;
+    public static float Score;
 
     [Header("Settings")]
     public float Tempo;
@@ -57,22 +53,61 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     public int[] successValues;
     public float ChainCounterElapsedTime;
-
-    [System.Serializable]
-    public class NoteData { public NoteID Note; public float Start; public float Length = 1; }
-
-    [Header("Notes")]
-    public NoteData[] SavedNotes;
-    public float[] NotesTime; // Outdated
-    public string[] NotesKind; // Outdated
+    public int GameStartTimer;
+    private float MusicTime;
+    [SerializeField] Slider MusicTimeSlider;
 
     [Space]
     [SerializeField] ParticleSystem Hit01;
     [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem Sparkle;
     [SerializeField] ParticleSystem LeftFANHit01;
     [SerializeField] ParticleSystem LeftFANHit02;
     [SerializeField] ParticleSystem RightFANHit01;
     [SerializeField] ParticleSystem RightFANHit02;
+
+    [Space]
+    [Header("SFX Sounds")]
+    [SerializeField] AudioSource BattleSounds;
+    [SerializeField] AudioClip PerfectSwordHit;
+    [SerializeField] AudioClip GoodSwordHit;
+    [SerializeField] AudioClip BadSwordHit;
+    [SerializeField] AudioClip MissSwordHit;
+    [SerializeField] AudioClip PerfectFANHit;
+    [SerializeField] AudioClip GoodFANHit;
+    [SerializeField] AudioClip BadFANHit;
+    [SerializeField] AudioClip MissFANHit;
+    [Range(0f,1f)] public float BattleSoundsVolume;
+
+    [Space]
+    [Header("Arrow VFX")]
+    /*
+    public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;
+    */
+    public GameObject ArrowUp;
+    public GameObject ArrowDown;
+    public GameObject ArrowRight;
+    public GameObject ArrowLeft;
+
+    [SerializeField] MyBlitFeature Blit;
+    [Space]
+    [Header("Speed Level One")]
+    public float ThresholdOne = 15.0f;
+    public float SamplesOne = 3.0f;
+    public float DensityOne = 0.3f;
+    [Space]
+    [Header("Speed Level Two")]
+    public float ThresholdTwo = 30.0f;
+    public float SamplesTwo = 4.5f;
+    public float DensityTwo = 0.35f;
+    [Space]
+    [Header("Speed Level Three")]
+    public float ThresholdThree = 50.0f;
+    public float SamplesThree = 6.0f;
+    public float DensityThree = 0.4f;
+
 
     public PlayerControlls Controlls;
 
@@ -96,13 +131,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Bad = 3,
         Miss = 4
     }
+   
 
     void Start()
     {
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
+        StartCoroutine(CountDownGameStart());
+        SetSpeedLevelZero();
+        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
+
 
     private void Awake()
     {
@@ -131,6 +171,20 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Controlls.Dispose();
         Controlls = null;
     }
+    IEnumerator CountDownGameStart()
+    {
+        while (GameStartTimer > 0)
+        {
+            GameStartTimerText.text = GameStartTimer.ToString();
+            yield return new WaitForSeconds(1);
+
+            GameStartTimer--;
+        }
+
+        GameStartTimerText.text = "GO!";
+        yield return new WaitForSeconds(1);
+        GameStartTimerText.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -140,7 +194,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
             if (ChainCounterElapsedTime >= 2)
             {
-                ChainCounterMessage.SetActive(false);
                 Feedback.gameObject.SetActive(false);
             }
             else
@@ -148,17 +201,25 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Feedback.gameObject.SetActive(true);
             }
         }
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+        //MusicTimeSlider
+
         if (songPlaying == false && Time.time >= preBeats * tempoScale)
         {
             Song.Play();
             songPlaying = true;
         }
+
+        //MusicTimeSlider.value = MusicTime;
+        //MusicTime += Time.deltaTime;    
     }
+   
     public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-
+           
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -167,6 +228,19 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         return HitQuality.Miss;
     }
+
+
+    /*void Update()
+    {
+        if (distance < 0.3f)
+        {
+            material.SetFloat("_Intensity", LineIntensity);
+        }
+        else
+        {
+            material.SetFloat("_Intensity", 0);
+        }
+    }*/
 
     public void Hit(NoteID Input)
     {
@@ -186,6 +260,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume);
+                    }
+                    Sparkle.Play();
+                    
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
@@ -197,57 +282,126 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume);
+                    }
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Bad:
                     Feedback.text = "Bad!";
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
-                    ChainCounter++;
+                    ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
+
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume);
+                    }
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Miss:
-                    Feedback.text = "MISS!";
-                    ChainCounter = 0;
-                    ChainCounterMessage.SetActive(false);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    MissedNote();
 
-                    if (HitNote != null)
-                        HitNote.StartDeathSequenz();
-                    break;
-                //case EnemyDeadZone.Destroy(gameObject)
-                //    Feedback.text = "MISS!";
-                //    ChainCounter = 0;
-                //    ChainCounterMessage.SetActive(false);
-                //    chainCounterNumberText.text = "" + ChainCounter;
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
+                    }
+
+                break;
                 default:
-                    break;
+                break;
             }
-
-            //ChainCounterMessage.SetActive(false);
             scoreText.text = ((int)Score).ToString();
-            //StartCoroutine(DisplayChainCounter(ChainCounterMessage));
-            Debug.Log($"Its {GetHitQuality(distance)} Hit");
+            Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
+            ScanSpeedLevel();
         }
-
+        else
+        {
+            if(Input == NoteID.S||Input == NoteID.W)
+            {
+                BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
+            }
+            else
+            {
+                BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
+            }
+        }
         //  Dient noch als evtl. Rechenhilfe
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
-
-
     }
 
-    //public IEnumerator DisplayChainCounter(GameObject gameObject)
-    //{
-    //    Debug.Log("Enu Start");
-    //    yield return new WaitForSeconds(1);
-    //    ChainCounterMessage.SetActive(false);
-    //}
+    public void ScanSpeedLevel()
+
+    {
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+        else if (ChainCounter == ThresholdOne)
+            SetSpeedLevelOne();
+        else if (ChainCounter == ThresholdTwo)
+            SetSpeedLevelTwo();
+        else if (ChainCounter == ThresholdThree)
+            SetSpeedLevelThree();
+    }
+    void SetSpeedLevelZero()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 0);
+    }
+    void SetSpeedLevelOne()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
+        Blit.Create();
+    }
+    void SetSpeedLevelTwo()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
+        Blit.Create();
+    }
+    void SetSpeedLevelThree()
+    {
+        Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
+        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
+        Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityThree);
+        Blit.Create();
+    }
+
+        public void MissedNote()
+    {
+        Feedback.text = "MISS!";
+        ChainCounter = 0;
+        ChainCounterMessage.SetActive(true);
+        chainCounterNumberText.text = "" + ChainCounter;
+        ChainCounterElapsedTime = 0;
+
+        
+    }
 
     public void OnUp(InputAction.CallbackContext context)
     {
@@ -257,7 +411,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
@@ -267,6 +420,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 Hit01.Play();
             }
 
+            ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
 
     }
@@ -279,7 +434,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
 
             {
-
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
@@ -288,6 +442,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
 
@@ -308,6 +465,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 RightFAN_Animator.Play("Hit01");
                 RightFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
         }
     }
 
@@ -328,6 +488,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 LeftFAN_Animator.Play("Hit01");
                 LeftFANHit01.Play();
             }
+
+            ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
+            arrowColor.PerformAction();
 
         }
 

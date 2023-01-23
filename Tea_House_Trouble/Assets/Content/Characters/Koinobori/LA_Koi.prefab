@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 91357447784712358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1881156871530571072}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroundGhostFlames: {fileID: 5170372314726177625}
-  AutoDespawnTimer: 10
+  AutoDespawnTimer: 200
 --- !u!1 &2140695579556040016
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4663924859540930, guid: 5531c85aa2417854f875d01fe1e301cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4663924859540930, guid: 5531c85aa2417854f875d01fe1e301cf, type: 3}
       propertyPath: m_LocalPosition.z

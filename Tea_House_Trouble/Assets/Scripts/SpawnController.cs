@@ -34,7 +34,7 @@ public class SpawnController : MonoBehaviour
 
     private void Awake()
     {
-        csvReader.ReadCSV();
+        //csvReader.ReadCSV();
         PrepareNextNote();
     }
 
@@ -63,8 +63,8 @@ public class SpawnController : MonoBehaviour
         }
 
         nextSpawnData = csvReader.spawnList[noteCounter];
-        spawnTime = nextSpawnData.minute * 60f + nextSpawnData.second;
-
+        spawnTime = nextSpawnData.minute * 60f + nextSpawnData.second + nextSpawnData.miliSecond / 1000f;
+        Debug.Log(spawnTime + "NextSpawnTime");
         noteCounter++;
     }
 
@@ -77,7 +77,7 @@ public class SpawnController : MonoBehaviour
 
             newNoteA.gameObject.name = nextSpawnData.ToString();
             newNoteA.MyNoteID = nextSpawnData.Note;
-            PrepareNextNote();
+            
         }
 
         if (nextSpawnData.Note == RhythmManager.NoteID.W)
@@ -87,7 +87,7 @@ public class SpawnController : MonoBehaviour
 
             newNoteW.gameObject.name = nextSpawnData.ToString();
             newNoteW.MyNoteID = nextSpawnData.Note;
-            PrepareNextNote();
+            
         }
 
         if (nextSpawnData.Note == RhythmManager.NoteID.S)
@@ -97,7 +97,6 @@ public class SpawnController : MonoBehaviour
 
             newNoteS.gameObject.name = nextSpawnData.ToString();
             newNoteS.MyNoteID = nextSpawnData.Note;
-            PrepareNextNote();
         }
 
         if (nextSpawnData.Note == RhythmManager.NoteID.D)
@@ -107,7 +106,6 @@ public class SpawnController : MonoBehaviour
 
             newNoteD.gameObject.name = nextSpawnData.ToString();
             newNoteD.MyNoteID = nextSpawnData.Note;
-            PrepareNextNote();
         }
 
         //Note newLongNote = Instantiate(longEnemyPrefab2Seconds, GetSpawnPoint(nextSpawnData.Note).position, Quaternion.identity);

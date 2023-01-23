@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 1, g: 0.97465503, b: 0.7877358, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.015
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.45882353, g: 0.39607844, b: 0.58431375, a: 1}
@@ -33,12 +33,12 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 256
-  m_ReflectionBounces: 1
+  m_DefaultReflectionResolution: 512
+  m_ReflectionBounces: 2
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 302034264}
-  m_IndirectSpecularColor: {r: 0.18291372, g: 0.22617349, b: 0.2927348, a: 1}
+  m_IndirectSpecularColor: {r: 0.18362337, g: 0.22786479, b: 0.29800388, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1f3e9cf74f72c0f4882133cf0e8dc3da,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2690,6 +2691,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UIButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6511989120115956502, guid: b018ed93668866742b9a499140f46c99,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.426517e-29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511989120115956502, guid: b018ed93668866742b9a499140f46c99,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7431050170241582550, guid: b018ed93668866742b9a499140f46c99,
         type: 3}
       propertyPath: m_TagString
@@ -3693,8 +3704,8 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
-  m_AntialiasingQuality: 2
+  m_Antialiasing: 2
+  m_AntialiasingQuality: 1
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
@@ -10700,15 +10711,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213603950}
-  m_LocalRotation: {x: 0.14050178, y: 0.69513065, z: -0.124586545, w: 0.6939242}
-  m_LocalPosition: {x: 0.13, y: 1.2, z: -3.26}
+  m_LocalRotation: {x: -0.13910621, y: -0.6802949, z: 0.12544197, w: -0.7085991}
+  m_LocalPosition: {x: 0.13, y: 1.2, z: -3.357}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 812537158}
   m_Father: {fileID: 64009086}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 21.605, y: 90.363, z: 1.382}
+  m_LocalEulerAnglesHint: {x: 21.581, y: -272.2, z: 0.708}
 --- !u!114 &1213603952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12297,15 +12308,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472977194}
-  m_LocalRotation: {x: -0, y: 0.9236774, z: -0, w: 0.38317126}
-  m_LocalPosition: {x: 1.68, y: 1.25, z: -6.48}
+  m_LocalRotation: {x: -0, y: 0.919109, z: -0, w: 0.39400345}
+  m_LocalPosition: {x: 1.536, y: 1.25, z: -6.336}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 214805804}
   m_Father: {fileID: 64009086}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 134.939, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 133.592, z: 0}
 --- !u!114 &1472977196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17719,15 +17730,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048385599}
-  m_LocalRotation: {x: -0, y: 0.9176852, z: -0, w: 0.39730835}
-  m_LocalPosition: {x: 3.01, y: 1.33, z: -5.18}
+  m_LocalRotation: {x: -0, y: 0.7445826, z: -0, w: 0.66753036}
+  m_LocalPosition: {x: 2.763, y: 1.33, z: -5.637}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 898911096}
   m_Father: {fileID: 64009086}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 133.18, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 96.247, z: 0}
 --- !u!114 &2048385601
 MonoBehaviour:
   m_ObjectHideFlags: 0

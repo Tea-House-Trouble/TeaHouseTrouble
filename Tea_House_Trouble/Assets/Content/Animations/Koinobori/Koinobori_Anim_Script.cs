@@ -18,7 +18,10 @@ public class Koinobori_Anim_Script : MonoBehaviour
         {
             GroundGhostFlames.Stop();
         }
-
+    public void KoiGhostFlamesStart()
+        {
+            GroundGhostFlames.Play();
+        }
 
     IEnumerator KoiDespawn()
         {

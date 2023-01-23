@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5276675157964152096}
   - component: {fileID: 5276675157964152099}
+  - component: {fileID: 5604627613986224788}
   - component: {fileID: 6643139134256387842}
   - component: {fileID: 5276675157964152097}
   - component: {fileID: 4203871129649788763}
@@ -51,18 +52,14 @@ MonoBehaviour:
   FANLeft: {fileID: 0}
   FANRight: {fileID: 0}
   Song: {fileID: 4203871129649788763}
-  Note: {fileID: 8660562878140971704, guid: 88e78f20108128841bd941fc938139cc, type: 3}
   ChainCounterMessage: {fileID: 0}
   TestTrigger: {fileID: 0}
   Feedback: {fileID: 0}
   scoreText: {fileID: 0}
   chainCounterText: {fileID: 0}
   chainCounterNumberText: {fileID: 0}
-  NoteCounter: 0
-  CurrentNote: 0
-  currentTime: 0
+  GameStartTimerText: {fileID: 0}
   songPlaying: 0
-  Score: 0
   Tempo: 85
   preBeats: 0
   HitQualityPerfect: 15
@@ -74,65 +71,53 @@ MonoBehaviour:
   ChainCounter: 0
   successValues: 640000006400000064000000
   ChainCounterElapsedTime: 0
-  SavedNotes:
-  - Note: 1
-    Start: 4
-    Length: 5
-  - Note: 2
-    Start: 6
-    Length: 0
-  - Note: 3
-    Start: 2
-    Length: 0
-  - Note: 4
-    Start: 8
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  - Note: 0
-    Start: 0
-    Length: 0
-  NotesTime:
-  - 5
-  - 6
-  - 7
-  - 7
-  - 8
-  - 9
-  - 10
-  - 11
-  - 12
-  - 13
-  NotesKind:
-  - w
-  - s
-  - d
-  - a
-  - s
-  - d
-  - w
-  - a
-  - a
-  - w
+  GameStartTimer: 0
   Hit01: {fileID: 0}
   Hit02: {fileID: 0}
+  Sparkle: {fileID: 0}
   LeftFANHit01: {fileID: 0}
   LeftFANHit02: {fileID: 0}
   RightFANHit01: {fileID: 0}
   RightFANHit02: {fileID: 0}
+  PerfectSwordHit: {fileID: 8300000, guid: 5c50d50d2bf75d043b71cdf78f3b5631, type: 3}
+  GoodSwordHit: {fileID: 8300000, guid: 02aedbe60906cd6469fa8e016038348b, type: 3}
+  BadSwordHit: {fileID: 8300000, guid: 205d9990b5fbde64dbc4ebb0c47a8672, type: 3}
+  MissSwordHit: {fileID: 8300000, guid: c544b29a3bcdd5c488172e41db4effc1, type: 3}
+  PerfectFANHit: {fileID: 8300000, guid: 90abeb1963356d64bb8671d6c8ef5744, type: 3}
+  GoodFANHit: {fileID: 8300000, guid: 03e05336edf9100499199c02d60d9542, type: 3}
+  BadFANHit: {fileID: 8300000, guid: 3b659e5129a5fce4d9370b41f444415e, type: 3}
+  MissFANHit: {fileID: 8300000, guid: be3b694fdcce8664db5e750b415bf9e5, type: 3}
+  ArrowUp: {fileID: 0}
+  ArrowDown: {fileID: 0}
+  ArrowRight: {fileID: 0}
+  ArrowLeft: {fileID: 0}
+  Blit: {fileID: 0}
+  ThresholdOne: 15
+  SamplesOne: 3
+  DensityOne: 0.3
+  ThresholdTwo: 30
+  SamplesTwo: 4.5
+  DensityTwo: 0.35
+  ThresholdThree: 50
+  SamplesThree: 6
+  DensityThree: 0.4
+--- !u!114 &5604627613986224788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bf1fb3d61de064fb2a200530001252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blit: {fileID: -1500468420472044189, guid: c40be3174f62c4acf8c1216858c64956, type: 2}
+  ChainInput: {fileID: 5276675157964152099}
+  ThresholdOne: 10
+  ThresholdTwo: 20
+  ThresholdThree: 50
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +237,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1700473706503887585, guid: 0c812b0e4cb33af4b85a7a96ec59251d,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e2ac613da9fef8f47a685e9a3a6e7b7b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e1e90e0c42976fb4e9133efe830b70a2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

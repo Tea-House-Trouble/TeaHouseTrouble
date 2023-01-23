@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Daruma_Anim_Script : MonoBehaviour
 {
+    // Script by Kevin
+
     Animator DAR_Animator;
     [SerializeField] ParticleSystem GroundGhostFlames;
     [SerializeField] ParticleSystem DeathVFX;
     [SerializeField] ParticleSystem Hit;
     [SerializeField] GameObject Body;
     [SerializeField] GameObject Face;
+    [SerializeField] AudioSource DeathSFX;
+    [SerializeField] AudioSource SpawnSFX;
     public float AutoDespawnTimer;
 
 
@@ -32,6 +36,11 @@ public class Daruma_Anim_Script : MonoBehaviour
         GroundGhostFlames.Play();
     }
 
+    public void SpawnSound()
+    {
+        SpawnSFX.Play();
+    }
+
     public void GhostFlamesEnd()
     {
         GroundGhostFlames.Stop();
@@ -40,6 +49,7 @@ public class Daruma_Anim_Script : MonoBehaviour
     public void DarumaDeathFX()
     {
         DeathVFX.Play();
+        DeathSFX.Play();
     }
 
     public void DarumaDeathDespawn()
