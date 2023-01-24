@@ -14,6 +14,7 @@ public class CreditHover : MonoBehaviour
     public float outlineHoverMax = 5f;
 
     private bool _glowUp = true;
+    private bool _ignore = false;
 
     public GameObject Credit;
 
@@ -26,7 +27,7 @@ public class CreditHover : MonoBehaviour
         Credit.SetActive(false);
     }
 
-    void Update() { UpdateOutline(); }
+    void Update() {  UpdateOutline(); }
 
     private void UpdateOutline( ) {
         if (_outline.OutlineWidth <=_max && _glowUp == true) { _outline.OutlineWidth += Time.deltaTime; }
@@ -36,7 +37,6 @@ public class CreditHover : MonoBehaviour
     }
 
     private void OnMouseEnter() {
-        Debug.Log("HOVERING");
         _min = outlineHoverMin;
         _max = outlineHoverMax;
         _outline.OutlineWidth = _min;
