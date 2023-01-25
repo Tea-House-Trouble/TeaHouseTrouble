@@ -108,6 +108,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float SamplesThree = 6.0f;
     public float DensityThree = 0.4f;
 
+    [Space]
+    [Header("Feedback Scale")]
+    public float ScaleTime = 0.5f;
+    public float DownScaleTime = 0.5f;
+    public Vector3 Size;
+    
 
     public PlayerControlls Controlls;
 
@@ -253,11 +259,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 case HitQuality.None:
                     break;
                 case HitQuality.Perfect:
-                    Feedback.text = "PERFECT!";
+                    //Feedback.text = "PERFECT!";
                     Score += successValues[0] * MultiplikationPerfect * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "PERFECT! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W)
@@ -275,11 +283,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Good:
-                    Feedback.text = "GOOD!";
+                    //Feedback.text = "GOOD!";
                     Score += successValues[1] * MultiplikationGood * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "GOOD! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W)
@@ -295,11 +305,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                         HitNote.StartDeathSequenz();
                     break;
                 case HitQuality.Bad:
-                    Feedback.text = "Bad!";
+                    //Feedback.text = "Bad!";
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "Bad! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W)
@@ -349,6 +361,241 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
+   /* private bool isScaling = false;
+    private Coroutine scaleCoroutine;
+
+    public void ScaleFeedback(Vector3 targetScale, float duration)
+    {
+        if (!isScaling)
+        {
+            isScaling = true;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+        else
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            if (isScaling)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                yield return null;
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                yield break;
+            }
+        }
+        text.transform.localScale = startScale;
+        isScaling = false;
+    }*/
+
+
+     private bool isScaling = false;
+     private Coroutine scaleCoroutine;
+
+    public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
+    {
+        if (!isScaling)
+        {
+            isScaling = true;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+        }
+        else
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration, float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            if (isScaling)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                yield return null;
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                yield break;
+            }
+        }
+        StartCoroutine(DownscaleUICoroutine(text, decreaseDuration));
+        isScaling = false;
+    }
+
+    private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < decreaseDuration)
+        {
+            t = (Time.time - startTime) / decreaseDuration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        text.transform.localScale = targetScale;
+    }
+
+
+    /*
+     public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
+     {
+         if (!isScaling)
+         {
+             isScaling = true;
+             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale,));
+         }
+         else
+         {
+             StopCoroutine(scaleCoroutine);
+             Feedback.transform.localScale = new Vector3(1, 1, 1);
+             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+         }
+     }
+
+     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+     {
+         Vector3 startScale = text.transform.localScale;
+         float startTime = Time.time;
+         float t;
+         while (Time.time - startTime < duration)
+         {
+             if (isScaling)
+             {
+                 t = (Time.time - startTime) / duration;
+                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                 yield return null;
+             }
+             else
+             {
+                 text.transform.localScale = startScale;
+                 yield break;
+             }
+         }
+         StartCoroutine(DownscaleUICoroutine(text, duration));
+         isScaling = false;
+     }
+
+    private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float duration, , float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            t = (Time.time - startTime) / decreaseDuration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        text.transform.localScale = targetScale;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private bool isScaling = false;
+    private bool canScale = true;
+    private Coroutine scaleCoroutine;
+
+    public void ScaleFeedback(Vector3 targetScale, float duration)
+    {
+        if (canScale)
+        {
+            canScale = false;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+        else if (isScaling)
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            canScale = true;
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        isScaling = true;
+        while (isScaling)
+        {
+            if (Time.time - startTime < duration)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                canScale = true;
+                isScaling = false;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    public void ScaleFeedback(Vector3 startScale,Vector3 targetScale, float duration)
+     {
+         StartCoroutine(ScaleUICoroutine(Feedback, startScale, targetScale, duration));
+     }
+
+     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 startScale, Vector3 targetScale, float duration)
+     {
+         text.transform.localScale = startScale;
+         float startTime = Time.time;
+         float t;
+         while (Time.time - startTime < 2 * duration)
+         {
+             if (Time.time - startTime < duration)
+             {
+                 t = (Time.time - startTime) / duration;
+                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+             }
+             else
+             {
+                 t = (Time.time - startTime - duration) / duration;
+                 text.transform.localScale = Vector3.Lerp(targetScale, startScale, t);
+             }
+             yield return null;
+         }
+
+         text.transform.localScale = startScale;
+     }*/
 
     public void ScanSpeedLevel()
 

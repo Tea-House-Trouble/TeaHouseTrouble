@@ -12742,6 +12742,21 @@ PrefabInstance:
       objectReference: {fileID: 24816555}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
+      propertyPath: Size.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: Size.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: Size.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
       propertyPath: ArrowUp
       value: 
       objectReference: {fileID: 220769846}
@@ -12780,6 +12795,11 @@ PrefabInstance:
       propertyPath: Line_Glow
       value: 
       objectReference: {fileID: 1027898773}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: ScaleTime
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: leftColor
@@ -12844,6 +12864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ThresholdTwo
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
+        type: 3}
+      propertyPath: DownScaleTime
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
