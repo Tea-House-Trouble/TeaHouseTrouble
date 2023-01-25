@@ -64,6 +64,7 @@ public class UIInGameManager : MonoBehaviour
 }
 
     private void PauseGame() {
+        AudioListener.pause = true ;
         pauseVisual.SetActive(true);
         buttonContainer.SetActive(true);
         Time.timeScale = 0f;
@@ -76,6 +77,7 @@ public class UIInGameManager : MonoBehaviour
     }
 
     private void OnContinue() {
+        AudioListener.pause = false;
         Time.timeScale = 1f;
         root.SetActive(false);
         SceneIsPaused = false;
