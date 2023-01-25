@@ -12,11 +12,9 @@ using UnityEngine.UI;
  */
 public class CameraTransitionManager : MonoBehaviour {
 
-
-    //public Camera camera;
     public CinemachineVirtualCamera baseCam, teapotCam,menuCam,instrumentCam, doorCam;
 
-    public Button Stay;
+    public Button Stay,NotYet;
 
     private CinemachineVirtualCamera currentCam;
     private CinemachineVirtualCamera targetCam = null;
@@ -25,11 +23,15 @@ public class CameraTransitionManager : MonoBehaviour {
         currentCam = baseCam;
         Button stayButton = Stay.GetComponent<Button>();
         stayButton.onClick.AddListener(TaskOnClickStay);
+
+        Button notYetButton = NotYet.GetComponent<Button>();
+        notYetButton.onClick.AddListener(TaskOnClickStay);
     }
-    
-     void Update() {
+
+    void Update() {
         if (Input.GetMouseButtonDown(0)) { CheckHit(); }
         if (Input.GetMouseButtonDown(1)) { BackToBase(); }
+        if (Input.GetKeyDown(KeyCode.Escape)) { BackToBase(); }
     }
 
     void CheckHit() {
@@ -65,7 +67,7 @@ public class CameraTransitionManager : MonoBehaviour {
         }
     }
     void SwitchCameraOnClick(CinemachineVirtualCamera target) {
-         currentCam.Priority--;
+         currentCam.Priority = 0;
          currentCam.GetComponent<Collider>().enabled = false;
          currentCam = target;
          currentCam.Priority++;

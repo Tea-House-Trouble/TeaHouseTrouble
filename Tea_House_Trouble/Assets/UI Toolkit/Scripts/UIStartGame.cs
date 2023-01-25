@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIStartGame : MonoBehaviour {
     public GameObject StartPanel;// DifficultyPanel ,ControlPanel;
-    public Button Play,Easy,Medium,Hard;//Ultra; ,DanceMat, Keyboard, Controller, Touch;
+    public Button Play, NotYet;//Easy,Medium,Hard;//Ultra; ,DanceMat, Keyboard, Controller, Touch;
 
     //private int choosenControls = 0;
     //private int choosenDifficulty = 0;
