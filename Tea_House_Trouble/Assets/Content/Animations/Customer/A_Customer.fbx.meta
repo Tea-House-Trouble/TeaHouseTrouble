@@ -34,41 +34,50 @@ ModelImporter:
       74: 3452192047497927666
     second: Armature|Onigiri_2
   - first:
-      74: -6827027776012297528
-    second: Armature|TeaAction
+      74: 748776890081196534
+    second: Onigiri1|Onigiri_1
   - first:
-      74: -995587086559839977
-    second: Armature|Tee_2
+      74: -6925499867342193360
+    second: Onigiri1|Onigiri_2
   - first:
-      74: -8748395923170036531
-    second: Onigiri|Onigiri_1
+      74: -4778597534989302259
+    second: Tea2|Onigiri_1
   - first:
-      74: -185228648311090873
-    second: Onigiri|Onigiri_2
+      74: 7339514222115692100
+    second: Tea2|Onigiri_2
   - first:
-      74: -3557195458451044364
-    second: Onigiri|TeaAction
+      74: 5319768102269822200
+    second: Tea2|Tee_2
   - first:
-      74: -7996693856826750268
-    second: Onigiri|Tee_2
+      74: -3449674746873774215
+    second: Tea1|Onigiri_1
   - first:
-      74: -4212228060936656973
-    second: Tea|Onigiri_1
+      74: 9139895352861368999
+    second: Tea1|Onigiri_2
   - first:
-      74: -967777694619499727
-    second: Tea|Onigiri_2
+      74: -1823518359213332650
+    second: Tea1|Tee_1
   - first:
-      74: -3256623918015895970
-    second: Tea|TeaAction
+      74: 7386169397946986888
+    second: TeaBalancing|Onigiri_1
   - first:
-      74: -3745818766640811398
-    second: Tea|Tee_1
+      74: 3947641388346074943
+    second: TeaBalancing|Onigiri_2
   - first:
-      74: -8162884579553770568
-    second: Tea|Tee_2
+      74: 6666604833129142414
+    second: TeaBalancing|Tee_1
   - first:
-      74: 9178131620777194117
-    second: Tea|Tee_Balance
+      74: -7471926106494678245
+    second: TeaBalancing|Tee_2
+  - first:
+      74: 1427888439500575359
+    second: TeaBalancing|Tee_Balancing
+  - first:
+      74: -2771427255145320916
+    second: Onigiri2|Onigiri_1
+  - first:
+      74: -459972072584663447
+    second: Onigiri2|Onigiri_2
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -110,7 +119,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -132,7 +141,7 @@ ModelImporter:
       takeName: Armature|Customer_Eating
       internalID: 0
       firstFrame: 0
-      lastFrame: 359
+      lastFrame: 360
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -331,8 +340,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Onigiri|Onigiri_1
-      takeName: Onigiri|Onigiri_1
+      name: Onigiri1|Onigiri_1
+      takeName: Onigiri1|Onigiri_1
       internalID: 0
       firstFrame: 0
       lastFrame: 359
@@ -360,8 +369,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Onigiri|Onigiri_2
-      takeName: Onigiri|Onigiri_2
+      name: Tea2|Tee_2
+      takeName: Tea2|Tee_2
       internalID: 0
       firstFrame: 0
       lastFrame: 280
@@ -389,8 +398,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Tea|Tee_1
-      takeName: Tea|Tee_1
+      name: Tea1|Tee_1
+      takeName: Tea1|Tee_1
       internalID: 0
       firstFrame: 0
       lastFrame: 360
@@ -418,11 +427,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Tea|Tee_2
-      takeName: Tea|Tee_2
+      name: TeaBalancing|Tee_Balancing
+      takeName: TeaBalancing|Tee_Balancing
       internalID: 0
       firstFrame: 0
-      lastFrame: 280
+      lastFrame: 147
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -447,11 +456,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Tea|Tee_Balance
-      takeName: Tea|Tee_Balance
+      name: Onigiri2|Onigiri_2
+      takeName: Onigiri2|Onigiri_2
       internalID: 0
       firstFrame: 0
-      lastFrame: 143
+      lastFrame: 280
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
