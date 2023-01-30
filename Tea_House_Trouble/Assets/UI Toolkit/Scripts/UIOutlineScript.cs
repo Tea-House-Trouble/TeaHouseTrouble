@@ -3,7 +3,7 @@ using TMPro;
 
 public class UIOutlineScript : MonoBehaviour
 {
-    public string HoverTooltip = "Empty";
+    public string HoverTooltip;
     private GameObject Tooltip;
     private TMP_Text _tooltipText;
     private Outline _outline; 
@@ -20,9 +20,20 @@ public class UIOutlineScript : MonoBehaviour
     private bool _glowUp = true;
     public bool _hasBeenClicked = false;
 
+    private bool _isTeakettle = false;
+    private GameObject _startGameTooltip = null;
+
     void Awake() {
+        if(transform.name == "SM_Teakettle") { 
+            _isTeakettle = true;
+            _startGameTooltip = GameObject.Find("StartGameTooltip");
+            _startGameTooltip.SetActive(true);
+        }
+
         Tooltip = GameObject.Find("Tooltip");
         _tooltipText = GameObject.Find("TooltipText").GetComponent<TMP_Text>();
+        if(HoverTooltip == null) {  _tooltipText.text = transform.name;   }
+        else {  _tooltipText.text = HoverTooltip;   }
 
 
         _audioSource = GetComponent<AudioSource>();
@@ -55,12 +66,17 @@ public class UIOutlineScript : MonoBehaviour
         HoverEnd();
         _audioSource.PlayOneShot(click);
         }
-    private void OnMouseEnter() {  if (_hasBeenClicked == false) { HoverStart(); }    }
+    private void OnMouseEnter() {
+        if (_isTeakettle == true) { 
+            _startGameTooltip.SetActive(false);
+            _isTeakettle = false;
+        }
+        if (_hasBeenClicked == false) { HoverStart(); }    
+    }
     private void OnMouseExit() { if (_hasBeenClicked == false) { HoverEnd(); } }
 
     private void HoverStart() {         
         Debug.Log("HOVERING" + transform.name);
-        _tooltipText.text = transform.name;
         Tooltip.SetActive(true);
 
         _audioSource.clip = hover;
