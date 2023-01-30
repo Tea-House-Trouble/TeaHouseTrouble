@@ -9,32 +9,26 @@ using UnityEngine.UIElements;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
+    private int _chainCounter, _miss, _bad, _good, _perfect;
+    public Scores temp;
+
     public static event System.Action<NoteID> ButtonPressed;
 
-    public GameObject Ocha;
-    public GameObject FANLeft;
-    public GameObject FANRight;
-    Animator OCHA_Animator;
-    Animator LeftFAN_Animator;
-    Animator RightFAN_Animator;
+    public GameObject Ocha, FANLeft, FANRight;
+    Animator OCHA_Animator, LeftFAN_Animator, RightFAN_Animator;
     public AudioSource Song;
     public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
 
-    public TextMeshProUGUI Feedback;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI chainCounterText;
-    public TextMeshProUGUI chainCounterNumberText;
-    public TextMeshProUGUI GameStartTimerText;
+    public TextMeshProUGUI Feedback, scoreText, chainCounterText, chainCounterNumberText, GameStartTimerText;
 
     [Header("Infos")]
     public bool songPlaying;
     public static float Score;
 
     [Header("Settings")]
-    public float Tempo;
-    public float preBeats;
+    public float Tempo,preBeats;
     private float tempoScale;
 
     [Space]
@@ -58,38 +52,18 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [SerializeField] Slider MusicTimeSlider;
 
     [Space]
-    [SerializeField] ParticleSystem Hit01;
-    [SerializeField] ParticleSystem Hit02;
-    [SerializeField] ParticleSystem Sparkle;
-    [SerializeField] ParticleSystem LeftFANHit01;
-    [SerializeField] ParticleSystem LeftFANHit02;
-    [SerializeField] ParticleSystem RightFANHit01;
-    [SerializeField] ParticleSystem RightFANHit02;
+    [SerializeField] ParticleSystem Hit01, Hit02, Sparkle, LeftFANHit01, LeftFANHit02, RightFANHit01, RightFANHit02;
 
     [Space]
     [Header("SFX Sounds")]
     [SerializeField] AudioSource BattleSounds;
-    [SerializeField] AudioClip PerfectSwordHit;
-    [SerializeField] AudioClip GoodSwordHit;
-    [SerializeField] AudioClip BadSwordHit;
-    [SerializeField] AudioClip MissSwordHit;
-    [SerializeField] AudioClip PerfectFANHit;
-    [SerializeField] AudioClip GoodFANHit;
-    [SerializeField] AudioClip BadFANHit;
-    [SerializeField] AudioClip MissFANHit;
+    [SerializeField] AudioClip PerfectSwordHit, GoodSwordHit, BadSwordHit, MissSwordHit, PerfectFANHit, GoodFANHit, BadFANHit, MissFANHit;
     [Range(0f,1f)] public float BattleSoundsVolume;
 
     [Space]
     [Header("Arrow VFX")]
-    /*
-    public GameObject Line_Glow;
-    public float LineIntensity;
-    private Material LineMaterial;
-    */
-    public GameObject ArrowUp;
-    public GameObject ArrowDown;
-    public GameObject ArrowRight;
-    public GameObject ArrowLeft;
+
+    public GameObject ArrowUp, ArrowDown, ArrowRight, ArrowLeft;
 
     [SerializeField] MyBlitFeature Blit;
     [Space]
@@ -136,48 +110,62 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Good = 2,
         Bad = 3,
         Miss = 4
+    }   
+    private void Awake() 
+     {
+        _chainCounter = 0;
+        _miss = 0;
+        _bad = 0;
+        _good = 0;
+        _perfect = 0;
+        tempoScale = 60 / Tempo;
     }
-   
 
-    void Start()
+    void Start() 
     {
+        temp = new Scores();
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
         StartCoroutine(CountDownGameStart());
         SetSpeedLevelZero();
-        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
 
-
-    private void Awake()
+    void Update() 
     {
-        tempoScale = 60 / Tempo;
-        //Cursor.visible = false;
+        if (ChainCounterMessage.activeSelf) {
+            ChainCounterElapsedTime += Time.deltaTime;
+
+            if (ChainCounterElapsedTime >= 2) { Feedback.gameObject.SetActive(false); }
+            else { Feedback.gameObject.SetActive(true); }
+        }
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+
+        if (songPlaying == false && Time.time >= preBeats * tempoScale) {
+            Song.Play();
+            songPlaying = true;
+        }
     }
 
-    private void OnEnable()
+    private void OnEnable() 
     {
-        if (Controlls == null)
-        {
+        if (Controlls == null) {
             Controlls = new PlayerControlls();
             Controlls.Actions.SetCallbacks(this);
         }
-
         Controlls.Enable();
     }
 
-    private void OnDisable()
-    {
-        Controlls.Disable();
-    }
+    private void OnDisable() { Controlls.Disable(); }
 
-    private void OnDestroy()
+    private void OnDestroy() 
     {
         Controlls.Dispose();
         Controlls = null;
     }
-    IEnumerator CountDownGameStart()
+
+    IEnumerator CountDownGameStart() 
     {
         while (GameStartTimer > 0)
         {
@@ -186,42 +174,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
             GameStartTimer--;
         }
-
         GameStartTimerText.text = "GO!";
         yield return new WaitForSeconds(1);
         GameStartTimerText.gameObject.SetActive(false);
     }
-
-    void Update()
-    {
-        if (ChainCounterMessage.activeSelf)
-        {
-            ChainCounterElapsedTime += Time.deltaTime;
-
-            if (ChainCounterElapsedTime >= 2)
-            {
-                Feedback.gameObject.SetActive(false);
-            }
-            else
-            {
-                Feedback.gameObject.SetActive(true);
-            }
-        }
-        if (ChainCounter < ThresholdOne)
-            SetSpeedLevelZero();
-        //MusicTimeSlider
-
-        if (songPlaying == false && Time.time >= preBeats * tempoScale)
-        {
-            Song.Play();
-            songPlaying = true;
-        }
-
-        //MusicTimeSlider.value = MusicTime;
-        //MusicTime += Time.deltaTime;    
-    }
-   
-    public HitQuality GetHitQuality(float distance)
+ 
+    public HitQuality GetHitQuality(float distance) 
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
@@ -235,20 +193,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
-
-    /*void Update()
-    {
-        if (distance < 0.3f)
-        {
-            material.SetFloat("_Intensity", LineIntensity);
-        }
-        else
-        {
-            material.SetFloat("_Intensity", 0);
-        }
-    }*/
-
-    public void Hit(NoteID Input)
+    public void Hit(NoteID Input) 
     {
         Debug.Log("Hit Key " + Input, this);
 
@@ -258,8 +203,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             {
                 case HitQuality.None:
                     break;
+
                 case HitQuality.Perfect:
                     //Feedback.text = "PERFECT!";
+                    _perfect++;
                     Score += successValues[0] * MultiplikationPerfect * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
@@ -268,22 +215,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W)
-                    {
-                        BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume);
-                    }
-                    else
-                    {
-                        BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume);
-                    }
+                    if(Input == NoteID.S||Input == NoteID.W)  {  BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume); }
+                    else {   BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume); }
                     Sparkle.Play();
                     
-
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
+
                 case HitQuality.Good:
                     //Feedback.text = "GOOD!";
+                    _good++;
                     Score += successValues[1] * MultiplikationGood * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
@@ -292,20 +234,16 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W)
-                    {
-                        BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume);
-                    }
-                    else
-                    {
-                        BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume);
-                    }
+                    if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume); }
+                    else { BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume); }
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
+
                 case HitQuality.Bad:
                     //Feedback.text = "Bad!";
+                    _bad++;
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
@@ -314,53 +252,38 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W)
-                    {
-                        BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume);
-                    }
-                    else
-                    {
-                        BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume);
-                    }
+                    if(Input == NoteID.S||Input == NoteID.W) {   BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume); }
+                    else { BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume); }
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
+
                 case HitQuality.Miss:
                     MissedNote();
 
-                    if(Input == NoteID.S||Input == NoteID.W)
-                    {
-                        BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
-                    }
-                    else
-                    {
-                        BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
-                    }
+                    if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);  }
+                    else  { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume); }
+                    break;
 
-                break;
                 default:
-                break;
+                    break;
             }
+
             scoreText.text = ((int)Score).ToString();
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
             ScanSpeedLevel();
         }
         else
         {
-            if(Input == NoteID.S||Input == NoteID.W)
-            {
-                BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
-            }
-            else
-            {
-                BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
-            }
+            if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume); }
+            else { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume); }
         }
         //  Dient noch als evtl. Rechenhilfe
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
+
    /* private bool isScaling = false;
     private Coroutine scaleCoroutine;
 
@@ -401,7 +324,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         text.transform.localScale = startScale;
         isScaling = false;
     }*/
-
 
      private bool isScaling = false;
      private Coroutine scaleCoroutine;
@@ -458,7 +380,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
         text.transform.localScale = targetScale;
     }
-
 
     /*
      public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
@@ -598,7 +519,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
      }*/
 
     public void ScanSpeedLevel()
-
     {
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
@@ -609,6 +529,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         else if (ChainCounter == ThresholdThree)
             SetSpeedLevelThree();
     }
+
     void SetSpeedLevelZero()
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
@@ -642,12 +563,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         public void MissedNote()
     {
         Feedback.text = "MISS!";
+        _miss++;
+        if (_chainCounter <= ChainCounter) { _chainCounter = ChainCounter; }
         ChainCounter = 0;
         ChainCounterMessage.SetActive(true);
         chainCounterNumberText.text = "" + ChainCounter;
-        ChainCounterElapsedTime = 0;
-
-        
+        ChainCounterElapsedTime = 0;        
     }
 
     public void OnUp(InputAction.CallbackContext context)
@@ -656,7 +577,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         {
             OnButtonPressed(NoteID.W);
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
-
             {
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
@@ -670,7 +590,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
             arrowColor.PerformAction();
         }
-
     }
 
     public void OnDown(InputAction.CallbackContext context)
@@ -679,7 +598,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         {
             OnButtonPressed(NoteID.S);
             if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
-
             {
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
@@ -738,9 +656,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
             ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
             arrowColor.PerformAction();
-
         }
-
     }
 
     private void OnButtonPressed(NoteID note)
@@ -758,8 +674,49 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         lastPressedNote = note;
     }
 
-    private void StartAttackAnimation(NoteID note)
-    {
-        Ocha.GetComponent<Animator>().Play("Hit");
+    private void StartAttackAnimation(NoteID note) { Ocha.GetComponent<Animator>().Play("Hit"); }
+
+    public Scores SetUpCurrentScore() {
+        temp.Points = (int)Score;
+
+        switch (temp.Points) {
+            case > 40:
+                temp.Rank = "S";
+                break;
+
+            case > 30:
+                temp.Rank = "A";
+                break;
+
+            case > 20:
+                temp.Rank = "B";
+                break;
+
+            case > 10:
+                temp.Rank = "C";
+                break;
+
+            case > 0:
+                temp.Rank = "D";
+                break;
+
+            default:
+                break;
+        }
+
+        temp.Chain = _chainCounter;
+        temp.Miss = _miss;
+        temp.Bad = _bad;
+        temp.Good = _good;
+        temp.Perfect = _perfect;
+
+        Score = 0;
+        _chainCounter = 0;
+        _miss = 0;
+        _bad = 0;
+        _good = 0;
+        _perfect = 0;
+
+        return temp;
     }
 }
