@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5276675157964152096}
   - component: {fileID: 5276675157964152099}
+  - component: {fileID: 5604627613986224788}
   - component: {fileID: 6643139134256387842}
   - component: {fileID: 5276675157964152097}
   - component: {fileID: 4203871129649788763}
@@ -50,8 +51,8 @@ MonoBehaviour:
   Ocha: {fileID: 0}
   FANLeft: {fileID: 0}
   FANRight: {fileID: 0}
-  ChainCounterMessage: {fileID: 0}
   Song: {fileID: 4203871129649788763}
+  ChainCounterMessage: {fileID: 0}
   TestTrigger: {fileID: 0}
   Feedback: {fileID: 0}
   scoreText: {fileID: 0}
@@ -61,7 +62,6 @@ MonoBehaviour:
   songPlaying: 0
   Tempo: 85
   preBeats: 0
-  tempoScale: 0
   HitQualityPerfect: 15
   HitQualityGood: 20
   HitQualityBad: 25
@@ -70,9 +70,8 @@ MonoBehaviour:
   MultiplikationBad: 0.7
   ChainCounter: 0
   successValues: 640000006400000064000000
-  GameStartTimer: 0
   ChainCounterElapsedTime: 0
-  MusicTime: 0
+  GameStartTimer: 0
   Hit01: {fileID: 0}
   Hit02: {fileID: 0}
   Sparkle: {fileID: 0}
@@ -80,7 +79,6 @@ MonoBehaviour:
   LeftFANHit02: {fileID: 0}
   RightFANHit01: {fileID: 0}
   RightFANHit02: {fileID: 0}
-  BattleSounds: {fileID: 0}
   PerfectSwordHit: {fileID: 8300000, guid: 5c50d50d2bf75d043b71cdf78f3b5631, type: 3}
   GoodSwordHit: {fileID: 8300000, guid: 02aedbe60906cd6469fa8e016038348b, type: 3}
   BadSwordHit: {fileID: 8300000, guid: 205d9990b5fbde64dbc4ebb0c47a8672, type: 3}
@@ -89,7 +87,6 @@ MonoBehaviour:
   GoodFANHit: {fileID: 8300000, guid: 03e05336edf9100499199c02d60d9542, type: 3}
   BadFANHit: {fileID: 8300000, guid: 3b659e5129a5fce4d9370b41f444415e, type: 3}
   MissFANHit: {fileID: 8300000, guid: be3b694fdcce8664db5e750b415bf9e5, type: 3}
-  BattleSoundsVolume: 0
   ArrowUp: {fileID: 0}
   ArrowDown: {fileID: 0}
   ArrowRight: {fileID: 0}
@@ -104,6 +101,23 @@ MonoBehaviour:
   ThresholdThree: 50
   SamplesThree: 6
   DensityThree: 0.4
+--- !u!114 &5604627613986224788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276675157964152098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bf1fb3d61de064fb2a200530001252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blit: {fileID: -1500468420472044189, guid: c40be3174f62c4acf8c1216858c64956, type: 2}
+  ChainInput: {fileID: 5276675157964152099}
+  ThresholdOne: 10
+  ThresholdTwo: 20
+  ThresholdThree: 50
 --- !u!114 &6643139134256387842
 MonoBehaviour:
   m_ObjectHideFlags: 0

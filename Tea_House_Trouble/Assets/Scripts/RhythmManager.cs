@@ -7,29 +7,35 @@ using Unity.VisualScripting;
 using UnityEngine.UIElements;
 //using UnityEditor.Rendering.LookDev;
 
-public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions     
+public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
-
-    private int _chainCounter, _miss, _bad, _good, _perfect;
-    public Scores temp;
-
     public static event System.Action<NoteID> ButtonPressed;
 
-    public GameObject Ocha, FANLeft, FANRight, ChainCounterMessage;
-    Animator OCHA_Animator, LeftFAN_Animator, RightFAN_Animator;
+    public GameObject Ocha;
+    public GameObject FANLeft;
+    public GameObject FANRight;
+    Animator OCHA_Animator;
+    Animator LeftFAN_Animator;
+    Animator RightFAN_Animator;
     public AudioSource Song;
-
+    public GameObject ChainCounterMessage;
 
     [SerializeField] ButtonTriggerZone TestTrigger;
 
-    public TextMeshProUGUI Feedback, scoreText, chainCounterText, chainCounterNumberText, GameStartTimerText;
+    public TextMeshProUGUI Feedback;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI chainCounterText;
+    public TextMeshProUGUI chainCounterNumberText;
+    public TextMeshProUGUI GameStartTimerText;
 
     [Header("Infos")]
     public bool songPlaying;
     public static float Score;
 
     [Header("Settings")]
-    public float Tempo, preBeats, tempoScale;
+    public float Tempo;
+    public float preBeats;
+    private float tempoScale;
 
     [Space]
     [Header("Forgivness")]
@@ -46,24 +52,44 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     [Space]
     public int[] successValues;
+    public float ChainCounterElapsedTime;
     public int GameStartTimer;
-    public float ChainCounterElapsedTime, MusicTime;
-
+    private float MusicTime;
     [SerializeField] Slider MusicTimeSlider;
 
     [Space]
-    [SerializeField] ParticleSystem Hit01, Hit02, Sparkle, LeftFANHit01, LeftFANHit02, RightFANHit01, RightFANHit02;
+    [SerializeField] ParticleSystem Hit01;
+    [SerializeField] ParticleSystem Hit02;
+    [SerializeField] ParticleSystem Sparkle;
+    [SerializeField] ParticleSystem LeftFANHit01;
+    [SerializeField] ParticleSystem LeftFANHit02;
+    [SerializeField] ParticleSystem RightFANHit01;
+    [SerializeField] ParticleSystem RightFANHit02;
 
     [Space]
     [Header("SFX Sounds")]
     [SerializeField] AudioSource BattleSounds;
-    [SerializeField] AudioClip PerfectSwordHit, GoodSwordHit, BadSwordHit, MissSwordHit, PerfectFANHit, GoodFANHit, BadFANHit, MissFANHit;
-    [Range(0f, 1f)] public float BattleSoundsVolume;
+    [SerializeField] AudioClip PerfectSwordHit;
+    [SerializeField] AudioClip GoodSwordHit;
+    [SerializeField] AudioClip BadSwordHit;
+    [SerializeField] AudioClip MissSwordHit;
+    [SerializeField] AudioClip PerfectFANHit;
+    [SerializeField] AudioClip GoodFANHit;
+    [SerializeField] AudioClip BadFANHit;
+    [SerializeField] AudioClip MissFANHit;
+    [Range(0f,1f)] public float BattleSoundsVolume;
 
     [Space]
     [Header("Arrow VFX")]
-
-    public GameObject ArrowUp, ArrowDown, ArrowRight, ArrowLeft;
+    /*
+    public GameObject Line_Glow;
+    public float LineIntensity;
+    private Material LineMaterial;
+    */
+    public GameObject ArrowUp;
+    public GameObject ArrowDown;
+    public GameObject ArrowRight;
+    public GameObject ArrowLeft;
 
     [SerializeField] MyBlitFeature Blit;
     [Space]
@@ -82,12 +108,20 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float SamplesThree = 6.0f;
     public float DensityThree = 0.4f;
 
+    [Space]
+    [Header("Feedback Scale")]
+    public float ScaleTime = 0.5f;
+    public float DownScaleTime = 0.5f;
+    public Vector3 Size;
+    
+
     public PlayerControlls Controlls;
 
     private float lastPressedTime;
     private NoteID lastPressedNote;
 
-    public enum NoteID {
+    public enum NoteID
+    {
         none = 0,
         A = 1,
         W = 2,
@@ -95,86 +129,103 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         D = 4
     }
 
-    public enum HitQuality {
+    public enum HitQuality
+    {
         None = 0,
         Perfect = 1,
         Good = 2,
         Bad = 3,
         Miss = 4
     }
+   
 
-    private void Awake() {
-        _chainCounter = 0;
-        _miss = 0;
-        _bad = 0;
-        _good = 0;
-        _perfect = 0;
-
-        tempoScale = 60 / Tempo;
-    }
-
-    void Start() {
-        temp = new Scores();
+    void Start()
+    {
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
         StartCoroutine(CountDownGameStart());
         SetSpeedLevelZero();
+        //LineMaterial = Line_Glow.GetComponent<Renderer>().material;
     }
 
-    void Update() {
-        if (ChainCounterMessage.activeSelf) {
-            ChainCounterElapsedTime += Time.deltaTime;
 
-            if (ChainCounterElapsedTime >= 2) {
-                Feedback.gameObject.SetActive(false);
-            }
-            else {
-                Feedback.gameObject.SetActive(true);
-            }
-        }
-        if (ChainCounter < ThresholdOne)
-            SetSpeedLevelZero();
-
-        //MusicTimeSlider
-        if (songPlaying == false && Time.time >= preBeats * tempoScale) {
-            Song.Play();
-            songPlaying = true;
-        }
-  
+    private void Awake()
+    {
+        tempoScale = 60 / Tempo;
+        //Cursor.visible = false;
     }
 
-    private void OnEnable() {
-        if (Controlls == null) {
+    private void OnEnable()
+    {
+        if (Controlls == null)
+        {
             Controlls = new PlayerControlls();
             Controlls.Actions.SetCallbacks(this);
         }
+
         Controlls.Enable();
     }
 
-    private void OnDisable() { Controlls.Disable(); }
+    private void OnDisable()
+    {
+        Controlls.Disable();
+    }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         Controlls.Dispose();
         Controlls = null;
     }
-
-    IEnumerator CountDownGameStart() {
-        while (GameStartTimer > 0) {
+    IEnumerator CountDownGameStart()
+    {
+        while (GameStartTimer > 0)
+        {
             GameStartTimerText.text = GameStartTimer.ToString();
             yield return new WaitForSeconds(1);
 
             GameStartTimer--;
         }
+
         GameStartTimerText.text = "GO!";
         yield return new WaitForSeconds(1);
         GameStartTimerText.gameObject.SetActive(false);
     }
 
-    public HitQuality GetHitQuality(float distance) {
+    void Update()
+    {
+        if (ChainCounterMessage.activeSelf)
+        {
+            ChainCounterElapsedTime += Time.deltaTime;
+
+            if (ChainCounterElapsedTime >= 2)
+            {
+                Feedback.gameObject.SetActive(false);
+            }
+            else
+            {
+                Feedback.gameObject.SetActive(true);
+            }
+        }
+        if (ChainCounter < ThresholdOne)
+            SetSpeedLevelZero();
+        //MusicTimeSlider
+
+        if (songPlaying == false && Time.time >= preBeats * tempoScale)
+        {
+            Song.Play();
+            songPlaying = true;
+        }
+
+        //MusicTimeSlider.value = MusicTime;
+        //MusicTime += Time.deltaTime;    
+    }
+   
+    public HitQuality GetHitQuality(float distance)
+    {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-
+           
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -184,92 +235,125 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
-    public void Hit(NoteID Input) {
+
+    /*void Update()
+    {
+        if (distance < 0.3f)
+        {
+            material.SetFloat("_Intensity", LineIntensity);
+        }
+        else
+        {
+            material.SetFloat("_Intensity", 0);
+        }
+    }*/
+
+    public void Hit(NoteID Input)
+    {
         Debug.Log("Hit Key " + Input, this);
 
-        if (TestTrigger.WasNoteHit(Input, out float distance, out Note HitNote)) {
-            switch (GetHitQuality(distance)) {
+        if (TestTrigger.WasNoteHit(Input, out float distance, out Note HitNote))
+        {
+            switch (GetHitQuality(distance))
+            {
                 case HitQuality.None:
                     break;
                 case HitQuality.Perfect:
-                    Feedback.text = "PERFECT!";
-                    _perfect++;
+                    //Feedback.text = "PERFECT!";
                     Score += successValues[0] * MultiplikationPerfect * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "PERFECT! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if (Input == NoteID.S || Input == NoteID.W) {
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
                         BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume);
                     }
-                    else {
+                    else
+                    {
                         BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume);
                     }
                     Sparkle.Play();
+                    
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
-
                 case HitQuality.Good:
-                    Feedback.text = "GOOD!";
-                    _good++;
+                    //Feedback.text = "GOOD!";
                     Score += successValues[1] * MultiplikationGood * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter++;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "GOOD! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if (Input == NoteID.S || Input == NoteID.W) {
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
                         BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume);
                     }
-                    else {
+                    else
+                    {
                         BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume);
                     }
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
-
                 case HitQuality.Bad:
-                    Feedback.text = "Bad!";
-                    _bad++;
-                    if (_chainCounter <= ChainCounter) { _chainCounter = ChainCounter; }
+                    //Feedback.text = "Bad!";
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
-                    chainCounterNumberText.text = "" + ChainCounter;
+                    Feedback.text = "Bad! x" + ChainCounter;
+                    ScaleFeedback(Size, ScaleTime, DownScaleTime);
+                    //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume); }
-                    else {  BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume);}
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
+                        BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume);
+                    }
+                    else
+                    {
+                        BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume);
+                    }
 
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
-
                 case HitQuality.Miss:
                     MissedNote();
 
-                    if (Input == NoteID.S || Input == NoteID.W) {
+                    if(Input == NoteID.S||Input == NoteID.W)
+                    {
                         BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
                     }
-                    else { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);}
-                    break;
+                    else
+                    {
+                        BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
+                    }
 
+                break;
                 default:
-                    break;
+                break;
             }
             scoreText.text = ((int)Score).ToString();
             Debug.Log($"Its {GetHitQuality(distance)} Hit, CurrentScore" + Score);
             ScanSpeedLevel();
         }
-        else {
-            if (Input == NoteID.S || Input == NoteID.W) {
+        else
+        {
+            if(Input == NoteID.S||Input == NoteID.W)
+            {
                 BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);
             }
-            else {
+            else
+            {
                 BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume);
             }
         }
@@ -277,8 +361,245 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         //for (int i = 0; i < 3; i++)
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
+   /* private bool isScaling = false;
+    private Coroutine scaleCoroutine;
 
-    public void ScanSpeedLevel() {
+    public void ScaleFeedback(Vector3 targetScale, float duration)
+    {
+        if (!isScaling)
+        {
+            isScaling = true;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+        else
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            if (isScaling)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                yield return null;
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                yield break;
+            }
+        }
+        text.transform.localScale = startScale;
+        isScaling = false;
+    }*/
+
+
+     private bool isScaling = false;
+     private Coroutine scaleCoroutine;
+
+    public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
+    {
+        if (!isScaling)
+        {
+            isScaling = true;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+        }
+        else
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration, float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            if (isScaling)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                yield return null;
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                yield break;
+            }
+        }
+        StartCoroutine(DownscaleUICoroutine(text, decreaseDuration));
+        isScaling = false;
+    }
+
+    private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < decreaseDuration)
+        {
+            t = (Time.time - startTime) / decreaseDuration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        text.transform.localScale = targetScale;
+    }
+
+
+    /*
+     public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
+     {
+         if (!isScaling)
+         {
+             isScaling = true;
+             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale,));
+         }
+         else
+         {
+             StopCoroutine(scaleCoroutine);
+             Feedback.transform.localScale = new Vector3(1, 1, 1);
+             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+         }
+     }
+
+     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+     {
+         Vector3 startScale = text.transform.localScale;
+         float startTime = Time.time;
+         float t;
+         while (Time.time - startTime < duration)
+         {
+             if (isScaling)
+             {
+                 t = (Time.time - startTime) / duration;
+                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+                 yield return null;
+             }
+             else
+             {
+                 text.transform.localScale = startScale;
+                 yield break;
+             }
+         }
+         StartCoroutine(DownscaleUICoroutine(text, duration));
+         isScaling = false;
+     }
+
+    private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float duration, , float decreaseDuration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float startTime = Time.time;
+        float t;
+        while (Time.time - startTime < duration)
+        {
+            t = (Time.time - startTime) / decreaseDuration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        text.transform.localScale = targetScale;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private bool isScaling = false;
+    private bool canScale = true;
+    private Coroutine scaleCoroutine;
+
+    public void ScaleFeedback(Vector3 targetScale, float duration)
+    {
+        if (canScale)
+        {
+            canScale = false;
+            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
+        }
+        else if (isScaling)
+        {
+            StopCoroutine(scaleCoroutine);
+            Feedback.transform.localScale = new Vector3(1, 1, 1);
+            canScale = true;
+        }
+    }
+
+    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
+    {
+        Vector3 startScale = text.transform.localScale;
+        float startTime = Time.time;
+        float t;
+        isScaling = true;
+        while (isScaling)
+        {
+            if (Time.time - startTime < duration)
+            {
+                t = (Time.time - startTime) / duration;
+                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            }
+            else
+            {
+                text.transform.localScale = startScale;
+                canScale = true;
+                isScaling = false;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    public void ScaleFeedback(Vector3 startScale,Vector3 targetScale, float duration)
+     {
+         StartCoroutine(ScaleUICoroutine(Feedback, startScale, targetScale, duration));
+     }
+
+     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 startScale, Vector3 targetScale, float duration)
+     {
+         text.transform.localScale = startScale;
+         float startTime = Time.time;
+         float t;
+         while (Time.time - startTime < 2 * duration)
+         {
+             if (Time.time - startTime < duration)
+             {
+                 t = (Time.time - startTime) / duration;
+                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+             }
+             else
+             {
+                 t = (Time.time - startTime - duration) / duration;
+                 text.transform.localScale = Vector3.Lerp(targetScale, startScale, t);
+             }
+             yield return null;
+         }
+
+         text.transform.localScale = startScale;
+     }*/
+
+    public void ScanSpeedLevel()
+
+    {
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
         else if (ChainCounter == ThresholdOne)
@@ -288,27 +609,29 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         else if (ChainCounter == ThresholdThree)
             SetSpeedLevelThree();
     }
-    void SetSpeedLevelZero() {
+    void SetSpeedLevelZero()
+    {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 0);
     }
-
-    void SetSpeedLevelOne() {
+    void SetSpeedLevelOne()
+    {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
         Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
         Blit.Create();
     }
-
-    void SetSpeedLevelTwo() {
+    void SetSpeedLevelTwo()
+    {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
         Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
         Blit.Create();
     }
-    void SetSpeedLevelThree() {
+    void SetSpeedLevelThree()
+    {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
@@ -316,24 +639,30 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Blit.Create();
     }
 
-    public void MissedNote() {
+        public void MissedNote()
+    {
         Feedback.text = "MISS!";
-        _miss++;
-        if (_chainCounter <= ChainCounter) { _chainCounter = ChainCounter; }
         ChainCounter = 0;
         ChainCounterMessage.SetActive(true);
         chainCounterNumberText.text = "" + ChainCounter;
         ChainCounterElapsedTime = 0;
+
+        
     }
 
-    public void OnUp(InputAction.CallbackContext context) {
-        if (context.started) {
+    public void OnUp(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
             OnButtonPressed(NoteID.W);
-            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01")) {
+            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+
+            {
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
-            else {
+            else
+            {
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
@@ -341,16 +670,22 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
             arrowColor.PerformAction();
         }
+
     }
 
-    public void OnDown(InputAction.CallbackContext context) {
-        if (context.started) {
+    public void OnDown(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
             OnButtonPressed(NoteID.S);
-            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01")) {
+            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+
+            {
                 OCHA_Animator.Play("Hit02");
                 Hit02.Play();
             }
-            else {
+            else
+            {
                 OCHA_Animator.Play("Hit01");
                 Hit01.Play();
             }
@@ -360,16 +695,20 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
     }
 
-    public void OnRight(InputAction.CallbackContext context) {
-        if (context.started) {
+    public void OnRight(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
             OnButtonPressed(NoteID.D);
 
-            if (RightFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01")) {
+            if (RightFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+            {
                 RightFAN_Animator.Play("Hit02");
                 RightFANHit02.Play();
             }
 
-            else {
+            else
+            {
                 RightFAN_Animator.Play("Hit01");
                 RightFANHit01.Play();
             }
@@ -379,26 +718,33 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
     }
 
-    public void OnLeft(InputAction.CallbackContext context) {
-        if (context.started) {
+    public void OnLeft(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
             OnButtonPressed(NoteID.A);
 
-            if (LeftFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01")) {
+            if (LeftFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+            {
                 LeftFAN_Animator.Play("Hit02");
                 LeftFANHit02.Play();
             }
 
-            else {
+            else
+            {
                 LeftFAN_Animator.Play("Hit01");
                 LeftFANHit01.Play();
             }
 
             ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
             arrowColor.PerformAction();
+
         }
+
     }
 
-    private void OnButtonPressed(NoteID note) {
+    private void OnButtonPressed(NoteID note)
+    {
         if (lastPressedNote == note && lastPressedTime == Time.timeSinceLevelLoad)
             return;
 
@@ -412,50 +758,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         lastPressedNote = note;
     }
 
-    private void StartAttackAnimation(NoteID note) { Ocha.GetComponent<Animator>().Play("Hit");}
-
-    public Scores SetUpCurrentScore() 
-        {
-            temp.Points = (int)Score;
-               
-                switch(temp.Points) {
-                case > 40:
-                temp.Rank = "S";
-                    break;
-
-                case > 30:
-                temp.Rank = "A";
-                    break;
-
-                case > 20:
-                temp.Rank = "B";
-                    break;
-
-                case > 10:
-                temp.Rank = "C";
-                    break;
-
-                case > 0:
-                temp.Rank = "D";
-                    break;
-
-                default:
-                    break;                
-            }
-
-            temp.Chain = _chainCounter;
-            temp.Miss = _miss;
-            temp.Bad = _bad;
-            temp.Good = _good;
-            temp.Perfect = _perfect;
-
-        Score = 0;
-        _chainCounter = 0;
-        _miss = 0;
-        _bad = 0;
-        _good = 0;
-        _perfect = 0;
-
-        return temp;           
+    private void StartAttackAnimation(NoteID note)
+    {
+        Ocha.GetComponent<Animator>().Play("Hit");
     }
 }

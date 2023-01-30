@@ -27,12 +27,13 @@ public class UIMainMenuManager : MonoBehaviour
     public GameObject StartMenu,ScoreMenu,OptionMenu,ExitMenu;
 
     private bool isMoving = false;
+
   
     private void Start() { BaseDeactivate(); }
 
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }
 
-    //private void Deactivate(GameObject SetMenu) { SetMenu.SetActive(false); }
+    private void Deactivate(GameObject SetMenu) { SetMenu.SetActive(false); }
 
     private void BaseDeactivate() {
         StartMenu.SetActive(false);

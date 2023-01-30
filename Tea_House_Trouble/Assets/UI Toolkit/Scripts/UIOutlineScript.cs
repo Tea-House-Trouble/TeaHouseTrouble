@@ -1,11 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class UIOutlineScript : MonoBehaviour
 {
-    public string HoverTooltip = "Empty";
-    private GameObject Tooltip;
-    private TMP_Text _tooltipText;
     private Outline _outline; 
     private float _min, _max;
 
@@ -21,10 +20,6 @@ public class UIOutlineScript : MonoBehaviour
     public bool _hasBeenClicked = false;
 
     void Awake() {
-        Tooltip = GameObject.Find("Tooltip");
-        _tooltipText = GameObject.Find("TooltipText").GetComponent<TMP_Text>();
-
-
         _audioSource = GetComponent<AudioSource>();
         _audioSource.playOnAwake = false;
         _audioSource.loop = false;
@@ -34,13 +29,9 @@ public class UIOutlineScript : MonoBehaviour
         _max = outlineMax;    
     }
 
-    private void Start() {        Tooltip.SetActive(false);         }
-
     void Update()  { 
         UpdateOutline();
-        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false; }
-
-        if(_audioSource.loop == true) { Tooltip.transform.position = Input.mousePosition + new Vector3(5,5,0); }
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false;; }
     }
 
     private void UpdateOutline( ) {
@@ -59,21 +50,17 @@ public class UIOutlineScript : MonoBehaviour
     private void OnMouseExit() { if (_hasBeenClicked == false) { HoverEnd(); } }
 
     private void HoverStart() {         
-        Debug.Log("HOVERING" + transform.name);
-        _tooltipText.text = transform.name;
-        Tooltip.SetActive(true);
-
         _audioSource.clip = hover;
         _audioSource.Play();
         _audioSource.loop = true;
+        Debug.Log("HOVERING");
         _min = outlineHoverMin;
         _max = outlineHoverMax;
         _outline.OutlineWidth = _min;
         _outline.OutlineColor = new Color32(135,142,220,225);
     }
 
-    private void HoverEnd() {
-        Tooltip.SetActive(false);
+    private void HoverEnd() {         
         _audioSource.Stop();
         _audioSource.loop = false;
         _min = outlineMin;

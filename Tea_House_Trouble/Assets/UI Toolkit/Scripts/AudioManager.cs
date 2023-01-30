@@ -13,7 +13,6 @@ public class AudioManager : MonoBehaviour
     //public const string uiKey = "UIVolume";
 
     private void Awake() {
-        //DontDestroyOnLoad(gameObject);
         if(instance == null) {
             instance = this;
         }
@@ -28,8 +27,9 @@ public class AudioManager : MonoBehaviour
         //float uiolume = PlayerPrefs.GetFloat(uiKey, 0.5f);
 
         mainMixer.SetFloat(AudioSettings.masterMixer, Mathf.Log10(masterVolume)*20);
-        mainMixer.SetFloat(AudioSettings.musicMixer, Mathf.Log10(musicVolume)*20);
-        mainMixer.SetFloat(AudioSettings.sfxMixer, Mathf.Log10(sfxVolume)*20);
+        mainMixer.SetFloat(AudioSettings.masterMixer, Mathf.Log10(musicVolume)*20);
+        mainMixer.SetFloat(AudioSettings.masterMixer, Mathf.Log10(sfxVolume)*20);
         //uiMixer.SetFloat(AudioSettings.masterMixer, Mathf.Log10(masterVolume)*20);
     }
+
 }
