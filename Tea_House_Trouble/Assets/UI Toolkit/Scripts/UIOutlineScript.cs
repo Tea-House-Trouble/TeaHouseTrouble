@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class UIOutlineScript : MonoBehaviour
 {
+    public string HoverTooltip;
+    private GameObject Tooltip;
+    private TMP_Text _tooltipText;
     private Outline _outline; 
     private float _min, _max;
 
@@ -19,7 +20,22 @@ public class UIOutlineScript : MonoBehaviour
     private bool _glowUp = true;
     public bool _hasBeenClicked = false;
 
+    private bool _isTeakettle = false;
+    private GameObject _startGameTooltip = null;
+
     void Awake() {
+        if(transform.name == "SM_Teakettle") { 
+            _isTeakettle = true;
+            _startGameTooltip = GameObject.Find("StartGameTooltip");
+            _startGameTooltip.SetActive(true);
+        }
+
+        Tooltip = GameObject.Find("Tooltip");
+        _tooltipText = GameObject.Find("TooltipText").GetComponent<TMP_Text>();
+        if(HoverTooltip == null) {  _tooltipText.text = transform.name;   }
+        else {  _tooltipText.text = HoverTooltip;   }
+
+
         _audioSource = GetComponent<AudioSource>();
         _audioSource.playOnAwake = false;
         _audioSource.loop = false;
@@ -29,9 +45,13 @@ public class UIOutlineScript : MonoBehaviour
         _max = outlineMax;    
     }
 
+    private void Start() {        Tooltip.SetActive(false);         }
+
     void Update()  { 
         UpdateOutline();
-        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false;; }
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false; }
+
+        if(_audioSource.loop == true) { Tooltip.transform.position = Input.mousePosition + new Vector3(5,5,0); }
     }
 
     private void UpdateOutline( ) {
@@ -46,21 +66,30 @@ public class UIOutlineScript : MonoBehaviour
         HoverEnd();
         _audioSource.PlayOneShot(click);
         }
-    private void OnMouseEnter() {  if (_hasBeenClicked == false) { HoverStart(); }    }
+    private void OnMouseEnter() {
+        if (_isTeakettle == true) { 
+            _startGameTooltip.SetActive(false);
+            _isTeakettle = false;
+        }
+        if (_hasBeenClicked == false) { HoverStart(); }    
+    }
     private void OnMouseExit() { if (_hasBeenClicked == false) { HoverEnd(); } }
 
     private void HoverStart() {         
+        Debug.Log("HOVERING" + transform.name);
+        Tooltip.SetActive(true);
+
         _audioSource.clip = hover;
         _audioSource.Play();
         _audioSource.loop = true;
-        Debug.Log("HOVERING");
         _min = outlineHoverMin;
         _max = outlineHoverMax;
         _outline.OutlineWidth = _min;
         _outline.OutlineColor = new Color32(135,142,220,225);
     }
 
-    private void HoverEnd() {         
+    private void HoverEnd() {
+        Tooltip.SetActive(false);
         _audioSource.Stop();
         _audioSource.loop = false;
         _min = outlineMin;
