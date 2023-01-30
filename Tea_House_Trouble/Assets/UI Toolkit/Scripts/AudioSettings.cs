@@ -29,14 +29,12 @@ public class AudioSettings : MonoBehaviour
         sfxSlider.value = PlayerPrefs.GetFloat(AudioManager.sfxKey, 0.5f);
         //uiSlider.value = PlayerPrefs.GetFloat(AudioManager.uiKey, 0.5f);
     }
-
     private void OnDisable() {
         PlayerPrefs.SetFloat(AudioManager.masterKey, masterSlider.value);
         PlayerPrefs.SetFloat(AudioManager.musicKey, musicSlider.value);
         PlayerPrefs.SetFloat(AudioManager.sfxKey, sfxSlider.value);
         //PlayerPrefs.SetFloat(AudioManager.uiKey, uiSlider.value);
     }
-
     private void SetMasterVolume(float value) {   mainMixer.SetFloat(masterMixer, Mathf.Log10(value)*20);    }
     private void SetMusicVolume(float value) {   mainMixer.SetFloat(musicMixer, Mathf.Log10(value)*20);    }
     private void SetSFXVolume(float value) {   mainMixer.SetFloat(sfxMixer, Mathf.Log10(value)*20);    }
