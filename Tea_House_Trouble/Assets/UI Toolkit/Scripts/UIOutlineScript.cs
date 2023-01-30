@@ -54,7 +54,7 @@ public class UIOutlineScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false; }
 
         if(_audioSource.loop == true) { Tooltip.transform.position = Input.mousePosition + new Vector3(5,5,0); }
-        if(_isTeakettle == true) { _startGameTooltip.transform.position = new Vector3(_startGameTooltipPosition.x, _startGameTooltipPosition.y + (_outline.OutlineWidth*10) ,_startGameTooltipPosition.z); }
+        if(_isTeakettle == true) { _startGameTooltip.transform.position = new Vector3(_startGameTooltipPosition.x, (_startGameTooltipPosition.y + (_outline.OutlineWidth/25)) ,_startGameTooltipPosition.z); }
     }
 
     private void UpdateOutline( ) {

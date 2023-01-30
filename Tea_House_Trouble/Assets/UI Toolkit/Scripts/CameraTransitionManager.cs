@@ -14,31 +14,12 @@ public class CameraTransitionManager : MonoBehaviour {
 
     public CinemachineVirtualCamera baseCam, teapotCam,menuCam,instrumentCam, doorCam;
 
-    public Button Stay,NotYet;
-
-    private CinemachineVirtualCamera currentCam;
+    private CinemachineVirtualCamera currentCam = null;
     private CinemachineVirtualCamera targetCam = null;
 
-     void Start() {
-        currentCam = baseCam;
-        Button stayButton = Stay.GetComponent<Button>();
-        stayButton.onClick.AddListener(TaskOnClickStay);
+    public void Start() { currentCam = baseCam; }
 
-        Button notYetButton = NotYet.GetComponent<Button>();
-        notYetButton.onClick.AddListener(TaskOnClickStay);
-    }
-
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) { CheckHit(); }
-        if (Input.GetMouseButtonDown(1)) { BackToBase(); }
-        if (Input.GetKeyDown(KeyCode.Escape)) { BackToBase(); }
-    }
-
-    private void OnMouseEnter() {
-        Debug.Log("HoveringOver" + transform.name);
-    }
-
-    void CheckHit() {
+    public void CheckHit() {
         Debug.Log("CLICK");
         RaycastHit hit;
         Ray ray = this.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
@@ -70,7 +51,8 @@ public class CameraTransitionManager : MonoBehaviour {
             SwitchCameraOnClick(targetCam);
         }
     }
-    void SwitchCameraOnClick(CinemachineVirtualCamera target) {
+
+    public void SwitchCameraOnClick(CinemachineVirtualCamera target) {
          currentCam.Priority = 0;
          currentCam.GetComponent<Collider>().enabled = false;
          currentCam = target;
@@ -78,7 +60,7 @@ public class CameraTransitionManager : MonoBehaviour {
          currentCam.GetComponent<Collider>().enabled=true;
     }
 
-    void BackToBase() {
+    public void BackToBase() {
         teapotCam.Priority = 0;
         menuCam.Priority = 0;
         instrumentCam.Priority = 0;
@@ -90,5 +72,4 @@ public class CameraTransitionManager : MonoBehaviour {
         baseCam.Priority = 1;
         baseCam.GetComponent<Collider>().enabled = true;
     }
-    void TaskOnClickStay() { SwitchCameraOnClick(baseCam); }
 }

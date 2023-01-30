@@ -28,16 +28,17 @@ public class VisualSettings : MonoBehaviour
         _volume = globalVolume.GetComponent<Volume>();
         ColorAdjustments _cAtmp;
         if(!_volume.profile.TryGet<ColorAdjustments>(out _cAtmp)) {  _colorAdjustments = _cAtmp; }
-
-        //SetBrightness(brightnessSlider.value);
     }
 
-    private void Start() {
+    private void Start() { LoadSettings(); }
+    private void OnDisable() { SaveSettings(); }
+
+    private void LoadSettings() {
         brightnessSlider.value = PlayerPrefs.GetFloat(VisualManager.brightnessValue, 1.2f);
         contrastSlider.value = PlayerPrefs.GetFloat(VisualManager.contrastValue, 0f);
         //detailsSlider.value = PlayerPrefs.GetFloat(VisualManager.detailsValue, 0.5f);
     }
-    private void OnDisable() {
+    private void SaveSettings() {
         PlayerPrefs.SetFloat(VisualManager.brightnessValue, brightnessSlider.value);
         PlayerPrefs.SetFloat(VisualManager.contrastValue, contrastSlider.value);
         //PlayerPrefs.SetFloat(VisualManager.qualityValue, detailsSlider.value);
@@ -45,5 +46,12 @@ public class VisualSettings : MonoBehaviour
     public void SetBrightness(float value) { _colorAdjustments.postExposure.value = value; }
     private void SetContrast(float value) { _colorAdjustments.contrast.value = value; }
     //private void SetDetails(float value) { QualitySettings.SetQualityLevel(Convert.ToInt32(value)); }
+
+    public void ResetVisualSettings(float brightness, float contrast) {
+        SetBrightness(brightness);
+        SetContrast(contrast);
+        SaveSettings();
+        LoadSettings();
+    }
 
 }
