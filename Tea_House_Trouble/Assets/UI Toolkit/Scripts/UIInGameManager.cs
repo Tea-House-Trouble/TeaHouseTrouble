@@ -1,98 +1,176 @@
-using System;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIInGameManager : MonoBehaviour
 {
+    public RhythmManager _rhythmManager;
+    private HighscoreManager _highscoreManager;
+
+
+    public GameObject PauseMenu, SummaryMenu, SubmitScore;
+    public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
+
+    public TMP_Text CurrScore, CurrChain, CurrMiss, CurrBad, CurrGood, CurrPerfect, CurrHighscore, ScoreSubmitted;
+    public InputField NameInput;
+    public int NameInputCharacterLimit = 10;
+    public Image RankImage;
+
+    public Sprite S_Rank, A_Rank, B_Rank, C_Rank, D_Rank;
+
+    public Scores _currentScore;
+
+    private bool _wasSubmitted = false;
     private bool SceneIsPaused = false;
-    private VisualElement root, pauseVisual, victoryVisual, defeatVisual, optionsContainer, buttonContainer;
-    private Button continueButton, optionsButton, difficultyButton, replayButton, mainMenuButton, exitButton;
-    //private Label messageLabel;
-    //private Action onContinue;
+    private bool summarySetupCheck = false;
 
     private void Awake() {
-        root = GetComponent<UIDocument>().rootVisualElement;
-        continueButton = root.Q<Button>("ContinueButton");
-        optionsButton = root.Q<Button>("OptionsButton");
-        difficultyButton = root.Q<Button>("DifficultyButton");
-        replayButton = root.Q<Button>("ReplayButton");
-        mainMenuButton = root.Q<Button>("MainMenuButton");
-        exitButton = root.Q<Button>("ExitButton");
+        _highscoreManager = FindObjectOfType<HighscoreManager>();
+        _rhythmManager = FindObjectOfType<RhythmManager>();
 
-        pauseVisual = root.Q<VisualElement>("PauseContainer");
-        victoryVisual = root.Q<VisualElement>("VicturyContainer");
-        defeatVisual = root.Q<VisualElement>("DefeatContainer");
-        optionsContainer = root.Q<VisualElement>("OptionsContainer");
-        buttonContainer = root.Q<VisualElement>("ButtonContainer");
+        _currentScore = new Scores();
 
-        //messageLabel = root.Q<Label>("MessageText");
+        NameInput.characterLimit = NameInputCharacterLimit;
 
-        continueButton.clicked += OnContinue;
-        optionsButton.clicked += OnOptions;
-        difficultyButton.clicked += OnDifficulty;
-        replayButton.clicked += OnReplay;
-        mainMenuButton.clicked += OnOpenMainMenu;
-        exitButton.clicked += Application.Quit;
+        Button _continue = ContinueBtn.GetComponent<Button>();
+        _continue.onClick.AddListener(OnContinue);
 
-        //WinObject.Win -= OpenWinScreen;
-        //WinObject.Win += OpenWinScreen;
+        Button _retryP = RetryPauseBtn.GetComponent<Button>();
+        _retryP.onClick.AddListener(OnRetry);
 
-        optionsButton.SetEnabled(false);
-        difficultyButton.SetEnabled(false);
+        Button _mainMenuP= MainMenuPauseBtn.GetComponent<Button>();
+        _mainMenuP.onClick.AddListener(OnMainMenu);
 
-        root.SetActive(false);
+        Button _retryS= RetrySummaryBtn.GetComponent<Button>();
+        _retryS.onClick.AddListener(OnRetry);
+
+        Button _mainMenuS= MainMenuSummaryBtn.GetComponent<Button>();
+        _mainMenuS.onClick.AddListener(OnMainMenu);
+
+        Button _submit = SubmitBtn.GetComponent<Button>();
+        _submit.onClick.AddListener(OnSubmit);
+
+        Button _skip = SkipBtn.GetComponent<Button>();
+        _skip.onClick.AddListener(OnSkip);
+
+        SubmitScore.SetActive(true);
+        ScoreSubmitted.enabled = false;
+        PauseMenu.SetActive(false);
+        SummaryMenu.SetActive(false);
     }
 
     private void Update() {
+
+        if (Input.GetMouseButtonDown(0)) { Debug.Log("CLICK"); }
         if (Input.GetKeyDown(KeyCode.Escape)) {
 
         if (SceneIsPaused == false){
                 Debug.Log("PAUSE");
                 PauseGame(); }
             
-        else { OnContinue(); }
+        else {
+                Debug.Log("UNPAUSE");
+                OnContinue(); }
         } 
     }
-    private void ResetMenus() {
-        root.SetActive(false);
-        pauseVisual.SetActive(false);
-        victoryVisual.SetActive(false);
-        defeatVisual.SetActive(false);
-        buttonContainer.SetActive(false);
-}
 
-    private void PauseGame() {
-        AudioListener.pause = true ;
-        pauseVisual.SetActive(true);
-        buttonContainer.SetActive(true);
-        Time.timeScale = 0f;
+private void OnTriggerEnter(Collider other) {
+        Debug.Log("FINISHED GAME");
+        if (other.gameObject.CompareTag("Player")) {
+            if (summarySetupCheck) {
+                Debug.Log("RestartCheck");
+            }
+            Time.timeScale = 0f;
+            AudioListener.pause = true;
+            SetUpSummary();
+            SummaryMenu.SetActive(true);
+        }
+    }
+
+
+    public void PauseGame() {
         SceneIsPaused = true;
-        root.SetActive(true);
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        AudioListener.pause = true;
     }
-
-    private void OnOptions() {
-        optionsContainer.SetActive(true);
-    }
-
-    private void OnContinue() {
-        AudioListener.pause = false;
-        Time.timeScale = 1f;
-        root.SetActive(false);
+    
+    public void OnContinue() {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false);
         SceneIsPaused = false;
+        AudioListener.pause = false;
     }
 
-    private void OnDifficulty() {
-
-    }
-
-    private void OnReplay() {
+    public void OnRetry() {
+        summarySetupCheck = true;
+        _currentScore = new Scores();
+        _wasSubmitted = false;
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneManager.LoadScene("NewGameScene");
     }
-    private void OnOpenMainMenu() {
+
+    public void OnMainMenu() {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneManager.LoadScene("MainMenu");
     }
+
+    private void SetUpSummary() {
+        _currentScore = _rhythmManager.SetUpCurrentScore();
+        _highscoreManager.CompareScore(_currentScore);
+        
+        CurrScore.text = _currentScore.Points.ToString();
+        CurrChain.text = _currentScore.Chain.ToString();
+        CurrMiss.text = _currentScore.Miss.ToString();
+        CurrBad.text = _currentScore.Bad.ToString();
+        CurrGood.text = _currentScore.Good.ToString();
+        CurrPerfect.text = _currentScore.Perfect.ToString();
+        CurrHighscore.text = _highscoreManager.currentHigh.ToString();
+
+        switch (_currentScore.Rank) {
+            case "S":
+                RankImage.sprite = S_Rank;
+                break;
+
+            case "A":
+                RankImage.sprite = A_Rank;
+                break;
+
+            case "B":
+                RankImage.sprite = B_Rank;
+                break;
+
+            case "C":
+                RankImage.sprite = C_Rank;
+                break;
+
+            case "D":
+                RankImage.sprite = D_Rank;
+                break;
+        }
+    }
+
+    public void ReadInput() {
+        if(NameInput.text == null) { _currentScore.Name = "Anonymous";        }
+        else { _currentScore.Name = NameInput.text; }
+        Debug.Log(_currentScore.Name);
+    }
+
+    public void OnSubmit() {
+        if(_wasSubmitted == false) {
+        SubmitBtn.enabled = false;
+        ReadInput();        
+        _highscoreManager.AddScore(_currentScore.Name);
+        SubmitScore.SetActive(false);
+        ScoreSubmitted.enabled = true;
+        _wasSubmitted = true;
+        }
+    }
+
+    public void OnSkip() { }
 }
