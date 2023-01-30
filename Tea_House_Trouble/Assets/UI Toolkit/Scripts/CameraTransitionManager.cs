@@ -34,6 +34,10 @@ public class CameraTransitionManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) { BackToBase(); }
     }
 
+    private void OnMouseEnter() {
+        Debug.Log("HoveringOver" + transform.name);
+    }
+
     void CheckHit() {
         Debug.Log("CLICK");
         RaycastHit hit;
