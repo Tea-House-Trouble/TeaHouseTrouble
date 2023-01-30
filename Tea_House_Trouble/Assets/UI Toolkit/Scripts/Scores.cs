@@ -1,13 +1,16 @@
-using UnityEngine;
+using System.Collections.Generic;
 
-public class Scores : MonoBehaviour
-{
-    public string Name = "Enter_Name"; 
-    public string Rank = "D";
-    public int Points = 0;
-    public int Chain = 0; 
-    public int Miss = 0;
-    public int Bad = 0; 
-    public int Good = 0;
-    public int Perfect = 0;
+[System.Serializable]
+public class Scores {
+    public string Name, Rank;
+    public int Points, Chain, Miss, Bad, Good, Perfect, Accuracy;
+
+    public int GetAccuracy() {
+        int notes = Miss + Bad + Good + Perfect;
+        if (notes == 0) { Accuracy = 0; }
+        else { Accuracy = Points / notes; }
+        return Accuracy;
+    }
 }
+
+public class Highscores { public List<Scores> highscoreTestEntrys; }

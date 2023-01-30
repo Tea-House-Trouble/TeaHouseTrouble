@@ -456,6 +456,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         _good = 0;
         _perfect = 0;
 
-            return temp;           
+        return temp;           
     }
 }

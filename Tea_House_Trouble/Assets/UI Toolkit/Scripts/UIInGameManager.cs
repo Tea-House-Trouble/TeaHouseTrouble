@@ -8,9 +8,8 @@ using TMPro;
 public class UIInGameManager : MonoBehaviour
 {
     public RhythmManager _rhythmManager;
-    private HighscoreList _highscoreList;
+    private HighscoreManager _highscoreManager;
 
-    private bool _wasSubmitted = false;
 
     public GameObject PauseMenu, SummaryMenu, SubmitScore;
     public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
@@ -24,11 +23,12 @@ public class UIInGameManager : MonoBehaviour
 
     public Scores _currentScore;
 
+    private bool _wasSubmitted = false;
     private bool SceneIsPaused = false;
     private bool summarySetupCheck = false;
 
     private void Awake() {
-        _highscoreList = FindObjectOfType<HighscoreList>();
+        _highscoreManager = FindObjectOfType<HighscoreManager>();
         _rhythmManager = FindObjectOfType<RhythmManager>();
 
         _currentScore = new Scores();
@@ -122,7 +122,7 @@ private void OnTriggerEnter(Collider other) {
 
     private void SetUpSummary() {
         _currentScore = _rhythmManager.SetUpCurrentScore();
-        _highscoreList.ScoreToCompare(_currentScore);
+        _highscoreManager.CompareScore(_currentScore);
         
         CurrScore.text = _currentScore.Points.ToString();
         CurrChain.text = _currentScore.Chain.ToString();
@@ -130,7 +130,7 @@ private void OnTriggerEnter(Collider other) {
         CurrBad.text = _currentScore.Bad.ToString();
         CurrGood.text = _currentScore.Good.ToString();
         CurrPerfect.text = _currentScore.Perfect.ToString();
-        CurrHighscore.text = _highscoreList.currentHigh.ToString();
+        CurrHighscore.text = _highscoreManager.currentHigh.ToString();
 
         switch (_currentScore.Rank) {
             case "S":
@@ -165,7 +165,7 @@ private void OnTriggerEnter(Collider other) {
         if(_wasSubmitted == false) {
         SubmitBtn.enabled = false;
         ReadInput();        
-        _highscoreList.AddScore(_currentScore.Name);
+        _highscoreManager.AddScore(_currentScore.Name);
         SubmitScore.SetActive(false);
         ScoreSubmitted.enabled = true;
         _wasSubmitted = true;
