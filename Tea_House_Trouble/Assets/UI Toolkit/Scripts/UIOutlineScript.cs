@@ -22,18 +22,19 @@ public class UIOutlineScript : MonoBehaviour
 
     private bool _isTeakettle = false;
     private GameObject _startGameTooltip = null;
-    private Vector3 _startGameTooltipPosition;
 
     void Awake() {
         if(transform.name == "SM_Teakettle") { 
             _isTeakettle = true;
             _startGameTooltip = GameObject.Find("StartGameTooltip");
             _startGameTooltip.SetActive(true);
-            _startGameTooltipPosition = _startGameTooltip.transform.position;
         }
 
         Tooltip = GameObject.Find("Tooltip");
         _tooltipText = GameObject.Find("TooltipText").GetComponent<TMP_Text>();
+        if(HoverTooltip == null) {  _tooltipText.text = transform.name;   }
+        else {  _tooltipText.text = HoverTooltip;   }
+
 
         _audioSource = GetComponent<AudioSource>();
         _audioSource.playOnAwake = false;
@@ -51,7 +52,6 @@ public class UIOutlineScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false; }
 
         if(_audioSource.loop == true) { Tooltip.transform.position = Input.mousePosition + new Vector3(5,5,0); }
-        if(_isTeakettle == true) { _startGameTooltip.transform.position = new Vector3(_startGameTooltipPosition.x, (_startGameTooltipPosition.y + (_outline.OutlineWidth/25)) ,_startGameTooltipPosition.z); }
     }
 
     private void UpdateOutline( ) {
@@ -66,7 +66,6 @@ public class UIOutlineScript : MonoBehaviour
         HoverEnd();
         _audioSource.PlayOneShot(click);
         }
-
     private void OnMouseEnter() {
         if (_isTeakettle == true) { 
             _startGameTooltip.SetActive(false);
@@ -74,13 +73,10 @@ public class UIOutlineScript : MonoBehaviour
         }
         if (_hasBeenClicked == false) { HoverStart(); }    
     }
-
     private void OnMouseExit() { if (_hasBeenClicked == false) { HoverEnd(); } }
 
     private void HoverStart() {         
         Debug.Log("HOVERING" + transform.name);
-        if (HoverTooltip == null) { _tooltipText.text = transform.name; }
-        else { _tooltipText.text = HoverTooltip; }
         Tooltip.SetActive(true);
 
         _audioSource.clip = hover;
