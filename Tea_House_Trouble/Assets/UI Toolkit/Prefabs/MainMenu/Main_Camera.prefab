@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1140789262704110359}
   - component: {fileID: 1140789262704110356}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main_Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,8 +172,6 @@ MonoBehaviour:
   menuCam: {fileID: 0}
   instrumentCam: {fileID: 0}
   doorCam: {fileID: 0}
-  Stay: {fileID: 0}
-  NotYet: {fileID: 0}
 --- !u!1001 &4526514485950481700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 3532384768726156664, guid: 081eeb265a118a643bd9ff1a3efec524,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3532384768726156664, guid: 081eeb265a118a643bd9ff1a3efec524,
         type: 3}

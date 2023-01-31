@@ -104,15 +104,7 @@ public class HighscoreManager : MonoBehaviour {
         else { Destroy(gameObject); }
 
         _newScore = new Scores();
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
-        Debug.Log(PlayerPrefs.GetString("highscoreTable"));
-
-        highScores.Clear();
-        highScores = highscores.highscoreTestEntrys;
-        if(highScores.Count == 0) {  AddDummyList();  }
-        
-        currentHigh = highScores[0].Points;
+        LoadScores();
     }
 
     public void CompareScore(Scores compareScore) {
@@ -141,10 +133,34 @@ public class HighscoreManager : MonoBehaviour {
         Highscores highscores = new Highscores();
         highscores.highscoreTestEntrys = highScores;
 
+        SafeScores(highscores);
+    }
+
+    private void LoadScores() {
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+
+        highScores.Clear();
+        highScores = highscores.highscoreTestEntrys;
+        if (highScores.Count == 0) { AddDummyList(); }
+
+        currentHigh = highScores[0].Points;
+    }
+
+    private void SafeScores(Highscores highscores) {
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
         Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+    }
+
+    public void ResetHighscoreList() {
+        AddDummyList();
+        Highscores resetScores = new Highscores();
+        resetScores.highscoreTestEntrys = highScores;
+        SafeScores(resetScores);
+        LoadScores();
     }
 
     private void AddDummyList() {
