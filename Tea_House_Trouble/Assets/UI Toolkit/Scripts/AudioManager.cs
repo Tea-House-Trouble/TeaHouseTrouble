@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public const string sfxKey = "SFXVolume";
 
     private void Awake() {
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         if(instance == null) {
             instance = this;
         }

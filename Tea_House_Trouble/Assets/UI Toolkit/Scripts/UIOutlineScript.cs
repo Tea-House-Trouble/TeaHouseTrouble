@@ -34,9 +34,6 @@ public class UIOutlineScript : MonoBehaviour
 
         Tooltip = GameObject.Find("Tooltip");
         _tooltipText = GameObject.Find("TooltipText").GetComponent<TMP_Text>();
-        if(HoverTooltip == null) {  _tooltipText.text = transform.name;   }
-        else {  _tooltipText.text = HoverTooltip;   }
-
 
         _audioSource = GetComponent<AudioSource>();
         _audioSource.playOnAwake = false;
@@ -82,6 +79,8 @@ public class UIOutlineScript : MonoBehaviour
 
     private void HoverStart() {         
         Debug.Log("HOVERING" + transform.name);
+        if (HoverTooltip == null) { _tooltipText.text = transform.name; }
+        else { _tooltipText.text = HoverTooltip; }
         Tooltip.SetActive(true);
 
         _audioSource.clip = hover;

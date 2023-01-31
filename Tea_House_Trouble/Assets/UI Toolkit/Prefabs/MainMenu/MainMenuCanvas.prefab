@@ -1020,8 +1020,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -12632,8 +12632,6 @@ GameObject:
   - component: {fileID: 6000197952533983744}
   - component: {fileID: 6000197952533983759}
   - component: {fileID: 6000197952533983758}
-  - component: {fileID: 6000197952533983746}
-  - component: {fileID: 6000197952533983747}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -12729,37 +12727,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6000197952533983746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000197952533983757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe831ffb69171774b80fa2c30fef2010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMixer: {fileID: 24100000, guid: aeee206a07fb3bc41a087b6f7f0334cf, type: 2}
-  masterSlider: {fileID: 6000197952565792207}
-  musicSlider: {fileID: 6000197952504436672}
-  sfxSlider: {fileID: 6000197951845826249}
---- !u!114 &6000197952533983747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000197952533983757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25d4127f315956d418db85b96bf0f6cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brightnessSlider: {fileID: 6000197951283504679}
-  contrastSlider: {fileID: 6000197951468588976}
-  globalVolume: {fileID: 0}
 --- !u!1 &6000197952541125644
 GameObject:
   m_ObjectHideFlags: 0
@@ -18599,7 +18566,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6976644758576816061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000020617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -18609,7 +18576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.11, y: -0.008}
+  m_AnchoredPosition: {x: -0.10148, y: -0.0066794}
   m_SizeDelta: {x: 0.2, y: 0.03}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &2526186316009115898

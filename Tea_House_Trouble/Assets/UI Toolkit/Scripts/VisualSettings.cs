@@ -28,8 +28,9 @@ public class VisualSettings : MonoBehaviour
         //detailsSlider.onValueChanged.AddListener(SetDetails);
 
         _volume = globalVolume.GetComponent<Volume>();
-        ColorAdjustments _cAtmp;
-        if(!_volume.profile.TryGet<ColorAdjustments>(out _cAtmp)) {  _colorAdjustments = _cAtmp; }
+        //ColorAdjustments _cAtmp;
+        //if(!_volume.profile.TryGet<ColorAdjustments>(out _cAtmp)) {  _colorAdjustments = _cAtmp; }
+        //_colorAdjustments = _volume.GetComponent<ColorAdjustments>();
     }
 
     private void Start() { LoadSettings(); }
@@ -45,8 +46,8 @@ public class VisualSettings : MonoBehaviour
         PlayerPrefs.SetFloat(VisualManager.contrastValue, contrastSlider.value);
         //PlayerPrefs.SetFloat(VisualManager.qualityValue, detailsSlider.value);
     }
-    public void SetBrightness(float value) { _colorAdjustments.postExposure.value = value; }
-    private void SetContrast(float value) { _colorAdjustments.contrast.value = value; }
+    public void SetBrightness(float value) { _volume.GetComponent<ColorAdjustments>().postExposure.value = value; }
+    private void SetContrast(float value) { _volume.GetComponent<ColorAdjustments>().contrast.value = value; }
     //private void SetDetails(float value) { QualitySettings.SetQualityLevel(Convert.ToInt32(value)); }
 
     public void ResetVisualSettings(float brightness, float contrast) {
