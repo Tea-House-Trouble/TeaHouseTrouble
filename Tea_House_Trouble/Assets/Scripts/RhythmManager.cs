@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using System.Runtime.CompilerServices;
 //using UnityEditor.Rendering.LookDev;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
@@ -87,7 +88,14 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public float ScaleTime = 0.5f;
     public float DownScaleTime = 0.5f;
     public Vector3 Size;
-    
+
+    [Space]
+    [Header("Firework Slect")]
+    public FireworkTrigger Firework20;
+    public FireworkTrigger Firework50;
+    public FireworkTrigger Firework100;
+    public FireworkTrigger Firework150;
+    public FireworkTrigger Firework200;
 
     public PlayerControlls Controlls;
 
@@ -284,46 +292,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
 
-   /* private bool isScaling = false;
-    private Coroutine scaleCoroutine;
-
-    public void ScaleFeedback(Vector3 targetScale, float duration)
-    {
-        if (!isScaling)
-        {
-            isScaling = true;
-            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
-        }
-        else
-        {
-            StopCoroutine(scaleCoroutine);
-            Feedback.transform.localScale = new Vector3(1, 1, 1);
-            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
-        }
-    }
-
-    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
-    {
-        Vector3 startScale = text.transform.localScale;
-        float startTime = Time.time;
-        float t;
-        while (Time.time - startTime < duration)
-        {
-            if (isScaling)
-            {
-                t = (Time.time - startTime) / duration;
-                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-                yield return null;
-            }
-            else
-            {
-                text.transform.localScale = startScale;
-                yield break;
-            }
-        }
-        text.transform.localScale = startScale;
-        isScaling = false;
-    }*/
 
      private bool isScaling = false;
      private Coroutine scaleCoroutine;
@@ -381,142 +349,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         text.transform.localScale = targetScale;
     }
 
-    /*
-     public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
-     {
-         if (!isScaling)
-         {
-             isScaling = true;
-             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale,));
-         }
-         else
-         {
-             StopCoroutine(scaleCoroutine);
-             Feedback.transform.localScale = new Vector3(1, 1, 1);
-             scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
-         }
-     }
-
-     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
-     {
-         Vector3 startScale = text.transform.localScale;
-         float startTime = Time.time;
-         float t;
-         while (Time.time - startTime < duration)
-         {
-             if (isScaling)
-             {
-                 t = (Time.time - startTime) / duration;
-                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-                 yield return null;
-             }
-             else
-             {
-                 text.transform.localScale = startScale;
-                 yield break;
-             }
-         }
-         StartCoroutine(DownscaleUICoroutine(text, duration));
-         isScaling = false;
-     }
-
-    private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float duration, , float decreaseDuration)
-    {
-        Vector3 startScale = text.transform.localScale;
-        Vector3 targetScale = new Vector3(1, 1, 1);
-        float startTime = Time.time;
-        float t;
-        while (Time.time - startTime < duration)
-        {
-            t = (Time.time - startTime) / decreaseDuration;
-            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-            yield return null;
-        }
-        text.transform.localScale = targetScale;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*private bool isScaling = false;
-    private bool canScale = true;
-    private Coroutine scaleCoroutine;
-
-    public void ScaleFeedback(Vector3 targetScale, float duration)
-    {
-        if (canScale)
-        {
-            canScale = false;
-            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration));
-        }
-        else if (isScaling)
-        {
-            StopCoroutine(scaleCoroutine);
-            Feedback.transform.localScale = new Vector3(1, 1, 1);
-            canScale = true;
-        }
-    }
-
-    private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration)
-    {
-        Vector3 startScale = text.transform.localScale;
-        float startTime = Time.time;
-        float t;
-        isScaling = true;
-        while (isScaling)
-        {
-            if (Time.time - startTime < duration)
-            {
-                t = (Time.time - startTime) / duration;
-                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-            }
-            else
-            {
-                text.transform.localScale = startScale;
-                canScale = true;
-                isScaling = false;
-                yield break;
-            }
-            yield return null;
-        }
-    }
-
-    public void ScaleFeedback(Vector3 startScale,Vector3 targetScale, float duration)
-     {
-         StartCoroutine(ScaleUICoroutine(Feedback, startScale, targetScale, duration));
-     }
-
-     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 startScale, Vector3 targetScale, float duration)
-     {
-         text.transform.localScale = startScale;
-         float startTime = Time.time;
-         float t;
-         while (Time.time - startTime < 2 * duration)
-         {
-             if (Time.time - startTime < duration)
-             {
-                 t = (Time.time - startTime) / duration;
-                 text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-             }
-             else
-             {
-                 t = (Time.time - startTime - duration) / duration;
-                 text.transform.localScale = Vector3.Lerp(targetScale, startScale, t);
-             }
-             yield return null;
-         }
-
-         text.transform.localScale = startScale;
-     }*/
 
     public void ScanSpeedLevel()
     {
@@ -528,6 +360,16 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             SetSpeedLevelTwo();
         else if (ChainCounter == ThresholdThree)
             SetSpeedLevelThree();
+        else if (ChainCounter == 20.0f)
+            Firework20.StartFirework();
+        else if (ChainCounter == 50.0f)
+            Firework50.StartFirework();
+        else if (ChainCounter == 100.0f)
+            Firework100.StartFirework();
+        else if (ChainCounter == 150.0f)
+            Firework150.StartFirework();
+        else if (ChainCounter == 200.0f)
+            Firework200.StartFirework();
     }
 
     void SetSpeedLevelZero()
