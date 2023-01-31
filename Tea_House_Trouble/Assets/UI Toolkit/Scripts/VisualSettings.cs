@@ -16,6 +16,8 @@ public class VisualSettings : MonoBehaviour
     public const string contrastValue = "Contrast";
 
     private void Awake() {
+        brightnessSlider = GameObject.Find("BrightnessSlider").GetComponent<Slider>();
+        contrastSlider = GameObject.Find("ContrastSlider").GetComponent<Slider>();
         if (brightnessSlider == null) { brightnessSlider = GameObject.Find("BrightnessSlider").GetComponent<Slider>(); }
         brightnessSlider.onValueChanged.AddListener(SetBrightness);
         

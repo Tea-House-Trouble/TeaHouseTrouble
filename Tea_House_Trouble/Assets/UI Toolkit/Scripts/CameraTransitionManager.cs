@@ -17,7 +17,15 @@ public class CameraTransitionManager : MonoBehaviour {
     private CinemachineVirtualCamera currentCam = null;
     private CinemachineVirtualCamera targetCam = null;
 
-    public void Start() { currentCam = baseCam; }
+    public void Start() {
+        baseCam = GameObject.Find("BaseCam").GetComponent<CinemachineVirtualCamera>();
+        teapotCam = GameObject.Find("TeapotStartCam").GetComponent<CinemachineVirtualCamera>();
+        menuCam = GameObject.Find("MenuHighscoreCam").GetComponent<CinemachineVirtualCamera>();
+        instrumentCam = GameObject.Find("InstrumentOptionsCam").GetComponent<CinemachineVirtualCamera>();
+        doorCam = GameObject.Find("DoorExitCam").GetComponent<CinemachineVirtualCamera>();
+
+        currentCam = baseCam; 
+    }
 
     public void CheckHit() {
         Debug.Log("CLICK");

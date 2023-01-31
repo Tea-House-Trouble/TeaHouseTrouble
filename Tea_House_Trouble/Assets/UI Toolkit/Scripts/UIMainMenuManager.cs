@@ -60,10 +60,16 @@ public class UIMainMenuManager : MonoBehaviour
         _controlBtn = GameObject.Find("ControlButton").GetComponent<Button>() ;
         _audioBtn = GameObject.Find("AudioButton").GetComponent<Button>() ;
         _visualBtn = GameObject.Find("VisualButton").GetComponent<Button>();
-        _resetBtn = GameObject.Find("Reset").GetComponent<Button>();
+        _resetBtn = GameObject.Find("ResetBtn").GetComponent<Button>();
         _resetOptionsBtn = GameObject.Find("ResetOptions").GetComponent<Button>();
-        _resetHighscoresBtn = GameObject.Find("ResetOptions").GetComponent<Button>();
+        _resetHighscoresBtn = GameObject.Find("ResetHighscores").GetComponent<Button>();
         _enterPasswordBtn = GameObject.Find("EnterPassword").GetComponent<Button>();
+
+        _masterSlider = GameObject.Find("MasterSlider").GetComponent<Slider>();
+        _musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
+        _sfxSlider = GameObject.Find("SFXSlider").GetComponent<Slider>();
+        _brightnessSlider = GameObject.Find("BrightnessSlider").GetComponent<Slider>();
+        _contrastSlider = GameObject.Find("ContrastSlider").GetComponent<Slider>();
 
         _themeOne = GameObject.Find("Theme 1").GetComponent<Toggle>();
         _themeTwo = GameObject.Find("Theme 2").GetComponent<Toggle>();
@@ -71,7 +77,7 @@ public class UIMainMenuManager : MonoBehaviour
         _passwordInput = _passwordRequest.GetComponent<TMP_InputField>();
         _passwordInput.characterLimit= 10;
         
-        _cameraTransitionManager = GameObject.Find("Main Camera").GetComponent<CameraTransitionManager>();
+        _cameraTransitionManager = GameObject.Find("Main_Camera").GetComponent<CameraTransitionManager>();
         _audioSettings = GetComponent<AudioSettings>();
         _visualSettings = GetComponent<VisualSettings>();
         _highscoreManager = GameObject.Find("HighscoreManager").GetComponent<HighscoreManager>();
@@ -98,8 +104,9 @@ public class UIMainMenuManager : MonoBehaviour
         Deactivate(_exitMenu);
         Deactivate(_audioPanel);
         Deactivate(_visualPanel);
-        Deactivate(_resetText);
         ResetResetPanel();
+        Deactivate(_resetText);
+        Deactivate(_resetPanel);
 
         _playBtn.onClick.AddListener(() =>TaskOnClickPlay());
         _notYetBtn.onClick.AddListener(() => _cameraTransitionManager.BackToBase()) ;
@@ -189,6 +196,7 @@ public class UIMainMenuManager : MonoBehaviour
         Deactivate(_controlPanel);
         Deactivate(_audioPanel);
         Deactivate(_visualPanel);
+        Deactivate(_resetPanel);
         Activate(ThisMenu);
     }
 

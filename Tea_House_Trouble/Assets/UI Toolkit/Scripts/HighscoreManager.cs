@@ -104,6 +104,7 @@ public class HighscoreManager : MonoBehaviour {
         else { Destroy(gameObject); }
 
         _newScore = new Scores();
+        LoadScores();
     }
 
     public void CompareScore(Scores compareScore) {
