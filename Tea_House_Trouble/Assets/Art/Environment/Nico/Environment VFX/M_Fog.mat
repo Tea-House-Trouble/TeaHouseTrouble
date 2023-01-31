@@ -89,7 +89,7 @@ Material:
     - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cloud_Cluster_Value: 0.5
+    - _Cloud_Cluster_Value: 0.2
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -97,9 +97,9 @@ Material:
     - _DstBlend: 10
     - _Emission: 3.48
     - _EnvironmentReflections: 1
-    - _Fog_Height: 0.2
-    - _Fog_Scale: 0.25
-    - _Fog_Speed: 1
+    - _Fog_Height: 0.05
+    - _Fog_Scale: 0.2
+    - _Fog_Speed: -1.5
     - _General_Scale: 0.1
     - _General_Speed: 2.11
     - _GlossMapScale: 0
@@ -119,16 +119,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
-    - _Transparency: 18
+    - _Transparency: 4.5
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bright_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0.07058824}
+    - _Bright_Color: {r: 0.40566036, g: 0.40566036, b: 0.40566036, a: 0.07058824}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Dark_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
+    - _Dark_Color: {r: 1, g: 1, b: 1, a: 0.4627451}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fog_Dimensions: {r: 0, g: 1, b: -1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
