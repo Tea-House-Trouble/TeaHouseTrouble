@@ -359,11 +359,15 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         else if (ChainCounter == ThresholdTwo)
             SetSpeedLevelTwo();
         else if (ChainCounter == ThresholdThree)
+        {
             SetSpeedLevelThree();
+            Firework50.StartFirework();
+        }
+            
         else if (ChainCounter == 20.0f)
             Firework20.StartFirework();
-        else if (ChainCounter == 50.0f)
-            Firework50.StartFirework();
+       // else if (ChainCounter == 50.0f)
+         //   Firework50.StartFirework();
         else if (ChainCounter == 100.0f)
             Firework100.StartFirework();
         else if (ChainCounter == 150.0f)
