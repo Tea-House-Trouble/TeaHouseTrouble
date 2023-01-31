@@ -79,6 +79,11 @@ public class HighscoreTable : MonoBehaviour {
         _highscoreManager = FindObjectOfType<HighscoreManager>();
         scoreTemplate.gameObject.SetActive(false);
 
+        SetupTable();
+    }
+
+    public void SetupTable() {
+        Debug.Log("SET UP SCORE TABLE");
         List<Scores> check = _highscoreManager.highScores;
 
         _highscoreEntrys = new List<Transform>();
