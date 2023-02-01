@@ -70,17 +70,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Space]
     [Header("Speed Level One")]
     public float ThresholdOne = 15.0f;
-    public float SamplesOne = 3.0f;
+    public float MaskOne = 1.0f;
     public float DensityOne = 0.3f;
     [Space]
     [Header("Speed Level Two")]
     public float ThresholdTwo = 30.0f;
-    public float SamplesTwo = 4.5f;
+    public float MaskTwo = 1.5f;
     public float DensityTwo = 0.35f;
     [Space]
     [Header("Speed Level Three")]
     public float ThresholdThree = 50.0f;
-    public float SamplesThree = 6.0f;
+    public float MaskThree = 2.0f;
     public float DensityThree = 0.4f;
 
     [Space]
@@ -354,6 +354,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
+        else if (ChainCounter == 20.0f)
+            Firework20.StartFirework();
         else if (ChainCounter == ThresholdOne)
             SetSpeedLevelOne();
         else if (ChainCounter == ThresholdTwo)
@@ -364,10 +366,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             Firework50.StartFirework();
         }
             
-        else if (ChainCounter == 20.0f)
-            Firework20.StartFirework();
-       // else if (ChainCounter == 50.0f)
-         //   Firework50.StartFirework();
+        
+        //else if (ChainCounter == 50.0f)
+          //  Firework50.StartFirework();
         else if (ChainCounter == 100.0f)
             Firework100.StartFirework();
         else if (ChainCounter == 150.0f)
@@ -385,7 +386,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
-        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesOne);
+        Blit.settings.MaterialToBlit.SetFloat("_Mask_Amount", MaskOne);
         Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityOne);
         Blit.Create();
     }
@@ -393,7 +394,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
-        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesTwo);
+        Blit.settings.MaterialToBlit.SetFloat("_Mask_Amount", MaskTwo);
         Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityTwo);
         Blit.Create();
     }
@@ -401,7 +402,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     {
         Blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 1);
         Blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 1);
-        Blit.settings.MaterialToBlit.SetFloat("_Samples", SamplesThree);
+        Blit.settings.MaterialToBlit.SetFloat("_Mask_Amount", MaskThree);
         Blit.settings.MaterialToBlit.SetFloat("_Line_Density", DensityThree);
         Blit.Create();
     }
