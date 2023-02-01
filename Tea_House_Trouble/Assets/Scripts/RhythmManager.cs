@@ -128,6 +128,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         _good = 0;
         _perfect = 0;
         tempoScale = 60 / Tempo;
+        Song.PlayDelayed(8);
+        songPlaying = true;
     }
 
     void Start()
@@ -153,11 +155,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
 
-        if (songPlaying == false && Time.time == preBeats * tempoScale)
-        {
-            Song.PlayDelayed(8);
-            songPlaying = true;
-        }
+        //if (songPlaying == false && Time.time == preBeats * tempoScale)
+        //{
+        //    Song.PlayDelayed(8);
+        //    songPlaying = true;
+        //}
     }
 
     private void OnEnable()
