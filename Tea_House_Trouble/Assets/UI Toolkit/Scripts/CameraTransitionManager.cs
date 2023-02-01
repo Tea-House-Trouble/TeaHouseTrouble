@@ -12,27 +12,22 @@ using UnityEngine.UI;
  */
 public class CameraTransitionManager : MonoBehaviour {
 
-
-    //public Camera camera;
     public CinemachineVirtualCamera baseCam, teapotCam,menuCam,instrumentCam, doorCam;
 
-    public Button Stay;
-
-    private CinemachineVirtualCamera currentCam;
+    private CinemachineVirtualCamera currentCam = null;
     private CinemachineVirtualCamera targetCam = null;
 
-     void Start() {
-        currentCam = baseCam;
-        Button stayButton = Stay.GetComponent<Button>();
-        stayButton.onClick.AddListener(TaskOnClickStay);
-    }
-    
-     void Update() {
-        if (Input.GetMouseButtonDown(0)) { CheckHit(); }
-        if (Input.GetMouseButtonDown(1)) { BackToBase(); }
+    public void Start() {
+        baseCam = GameObject.Find("BaseCam").GetComponent<CinemachineVirtualCamera>();
+        teapotCam = GameObject.Find("TeapotStartCam").GetComponent<CinemachineVirtualCamera>();
+        menuCam = GameObject.Find("MenuHighscoreCam").GetComponent<CinemachineVirtualCamera>();
+        instrumentCam = GameObject.Find("InstrumentOptionsCam").GetComponent<CinemachineVirtualCamera>();
+        doorCam = GameObject.Find("DoorExitCam").GetComponent<CinemachineVirtualCamera>();
+
+        currentCam = baseCam; 
     }
 
-    void CheckHit() {
+    public void CheckHit() {
         Debug.Log("CLICK");
         RaycastHit hit;
         Ray ray = this.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
@@ -64,15 +59,16 @@ public class CameraTransitionManager : MonoBehaviour {
             SwitchCameraOnClick(targetCam);
         }
     }
-    void SwitchCameraOnClick(CinemachineVirtualCamera target) {
-         currentCam.Priority--;
+
+    public void SwitchCameraOnClick(CinemachineVirtualCamera target) {
+         currentCam.Priority = 0;
          currentCam.GetComponent<Collider>().enabled = false;
          currentCam = target;
          currentCam.Priority++;
          currentCam.GetComponent<Collider>().enabled=true;
     }
 
-    void BackToBase() {
+    public void BackToBase() {
         teapotCam.Priority = 0;
         menuCam.Priority = 0;
         instrumentCam.Priority = 0;
@@ -84,5 +80,4 @@ public class CameraTransitionManager : MonoBehaviour {
         baseCam.Priority = 1;
         baseCam.GetComponent<Collider>().enabled = true;
     }
-    void TaskOnClickStay() { SwitchCameraOnClick(baseCam); }
 }
