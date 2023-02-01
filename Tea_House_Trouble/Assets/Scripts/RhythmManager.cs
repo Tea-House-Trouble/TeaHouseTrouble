@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
+using UnityEngine.TextCore.Text;
 //using UnityEditor.Rendering.LookDev;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
@@ -141,6 +142,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     void Update()
     {
+        
         if (ChainCounterMessage.activeSelf)
         {
             ChainCounterElapsedTime += Time.deltaTime;
@@ -153,19 +155,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
         if (songPlaying == false && Time.time == preBeats * tempoScale)
         {
-            Song.Play();
+            Song.PlayDelayed(8);
             songPlaying = true;
         }
     }
-    //IEnumerator StartPlaySong()
-    //{
-    //    if (songPlaying == false)
-    //    {
-    //        yield return new WaitForSecondsRealtime(8);
-    //        Song.Play();
-    //        songPlaying = true;
-    //    }
-    //}
 
     private void OnEnable()
     {
