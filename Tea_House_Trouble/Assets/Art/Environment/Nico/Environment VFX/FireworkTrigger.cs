@@ -12,6 +12,6 @@ public class FireworkTrigger : MonoBehaviour
     { 
         GameObject newObject = Instantiate(gameObject, Spawner.transform.position, Spawner.transform.rotation);
         fireworkVFX.Play();
-        Destroy(newObject, 5f);
+        Destroy(newObject, 3f);
     }
 }
