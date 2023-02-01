@@ -220,7 +220,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     Feedback.text = "PERFECT! x" + ChainCounter;
                     ScaleFeedback(Size, ScaleTime, DownScaleTime);
-                    //chainCounterNumberText.text = "" + ChainCounter;
+                    chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W)  {  BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume); }
@@ -239,7 +239,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     Feedback.text = "GOOD! x" + ChainCounter;
                     ScaleFeedback(Size, ScaleTime, DownScaleTime);
-                    //chainCounterNumberText.text = "" + ChainCounter;
+                    chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume); }
@@ -257,7 +257,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     ChainCounterMessage.SetActive(true);
                     Feedback.text = "Bad! x" + ChainCounter;
                     ScaleFeedback(Size, ScaleTime, DownScaleTime);
-                    //chainCounterNumberText.text = "" + ChainCounter;
+                    chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
                     if(Input == NoteID.S||Input == NoteID.W) {   BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume); }
