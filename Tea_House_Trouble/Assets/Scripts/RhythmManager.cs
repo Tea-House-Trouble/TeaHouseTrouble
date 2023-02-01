@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
+using UnityEngine.TextCore.Text;
 //using UnityEditor.Rendering.LookDev;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
@@ -29,7 +30,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     public static float Score;
 
     [Header("Settings")]
-    public float Tempo,preBeats;
+    public float Tempo, preBeats;
     private float tempoScale;
 
     [Space]
@@ -59,7 +60,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     [Header("SFX Sounds")]
     [SerializeField] AudioSource BattleSounds;
     [SerializeField] AudioClip PerfectSwordHit, GoodSwordHit, BadSwordHit, MissSwordHit, PerfectFANHit, GoodFANHit, BadFANHit, MissFANHit;
-    [Range(0f,1f)] public float BattleSoundsVolume;
+    [Range(0f, 1f)] public float BattleSoundsVolume;
 
     [Space]
     [Header("Arrow VFX")]
@@ -118,9 +119,9 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Good = 2,
         Bad = 3,
         Miss = 4
-    }   
-    private void Awake() 
-     {
+    }
+    private void Awake()
+    {
         _chainCounter = 0;
         _miss = 0;
         _bad = 0;
@@ -129,7 +130,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         tempoScale = 60 / Tempo;
     }
 
-    void Start() 
+    void Start()
     {
         temp = new Scores();
         OCHA_Animator = Ocha.GetComponent<Animator>();
@@ -139,9 +140,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         SetSpeedLevelZero();
     }
 
-    void Update() 
+    void Update()
     {
-        if (ChainCounterMessage.activeSelf) {
+        
+        if (ChainCounterMessage.activeSelf)
+        {
             ChainCounterElapsedTime += Time.deltaTime;
 
             if (ChainCounterElapsedTime >= 2) { Feedback.gameObject.SetActive(false); }
@@ -150,15 +153,17 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
 
-        if (songPlaying == false && Time.time >= preBeats * tempoScale) {
-            Song.Play();
+        if (songPlaying == false && Time.time == preBeats * tempoScale)
+        {
+            Song.PlayDelayed(8);
             songPlaying = true;
         }
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
-        if (Controlls == null) {
+        if (Controlls == null)
+        {
             Controlls = new PlayerControlls();
             Controlls.Actions.SetCallbacks(this);
         }
@@ -167,13 +172,13 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     private void OnDisable() { Controlls.Disable(); }
 
-    private void OnDestroy() 
+    private void OnDestroy()
     {
         Controlls.Dispose();
         Controlls = null;
     }
 
-    IEnumerator CountDownGameStart() 
+    IEnumerator CountDownGameStart()
     {
         while (GameStartTimer > 0)
         {
@@ -186,12 +191,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         yield return new WaitForSeconds(1);
         GameStartTimerText.gameObject.SetActive(false);
     }
- 
-    public HitQuality GetHitQuality(float distance) 
+
+    public HitQuality GetHitQuality(float distance)
     {
         if (distance < 0.3f)
             return HitQuality.Perfect;
-           
+
         if (distance < 0.5f)
             return HitQuality.Good;
 
@@ -201,7 +206,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         return HitQuality.Miss;
     }
 
-    public void Hit(NoteID Input) 
+    public void Hit(NoteID Input)
     {
         Debug.Log("Hit Key " + Input, this);
 
@@ -223,10 +228,10 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W)  {  BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume); }
-                    else {   BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume); }
+                    if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(PerfectSwordHit, BattleSoundsVolume); }
+                    else { BattleSounds.PlayOneShot(PerfectFANHit, BattleSoundsVolume); }
                     Sparkle.Play();
-                    
+
                     if (HitNote != null)
                         HitNote.StartDeathSequenz();
                     break;
@@ -242,7 +247,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume); }
+                    if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(GoodSwordHit, BattleSoundsVolume); }
                     else { BattleSounds.PlayOneShot(GoodFANHit, BattleSoundsVolume); }
 
                     if (HitNote != null)
@@ -260,7 +265,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     //chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
 
-                    if(Input == NoteID.S||Input == NoteID.W) {   BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume); }
+                    if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(BadSwordHit, BattleSoundsVolume); }
                     else { BattleSounds.PlayOneShot(BadFANHit, BattleSoundsVolume); }
 
                     if (HitNote != null)
@@ -270,8 +275,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                 case HitQuality.Miss:
                     MissedNote();
 
-                    if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume);  }
-                    else  { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume); }
+                    if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume); }
+                    else { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume); }
                     break;
 
                 default:
@@ -284,7 +289,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         }
         else
         {
-            if(Input == NoteID.S||Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume); }
+            if (Input == NoteID.S || Input == NoteID.W) { BattleSounds.PlayOneShot(MissSwordHit, BattleSoundsVolume); }
             else { BattleSounds.PlayOneShot(MissFANHit, BattleSoundsVolume); }
         }
         //  Dient noch als evtl. Rechenhilfe
@@ -293,8 +298,8 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
     }
 
 
-     private bool isScaling = false;
-     private Coroutine scaleCoroutine;
+    private bool isScaling = false;
+    private Coroutine scaleCoroutine;
 
     public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
     {
@@ -363,11 +368,11 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             SetSpeedLevelThree();
             Firework50.StartFirework();
         }
-            
+
         else if (ChainCounter == 20.0f)
             Firework20.StartFirework();
-       // else if (ChainCounter == 50.0f)
-         //   Firework50.StartFirework();
+        // else if (ChainCounter == 50.0f)
+        //   Firework50.StartFirework();
         else if (ChainCounter == 100.0f)
             Firework100.StartFirework();
         else if (ChainCounter == 150.0f)
@@ -406,7 +411,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         Blit.Create();
     }
 
-        public void MissedNote()
+    public void MissedNote()
     {
         Feedback.text = "MISS!";
         _miss++;
@@ -414,7 +419,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ChainCounter = 0;
         ChainCounterMessage.SetActive(true);
         chainCounterNumberText.text = "" + ChainCounter;
-        ChainCounterElapsedTime = 0;        
+        ChainCounterElapsedTime = 0;
     }
 
     public void OnUp(InputAction.CallbackContext context)
@@ -522,10 +527,12 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     private void StartAttackAnimation(NoteID note) { Ocha.GetComponent<Animator>().Play("Hit"); }
 
-    public Scores SetUpCurrentScore() {
+    public Scores SetUpCurrentScore()
+    {
         temp.Points = (int)Score;
 
-        switch (temp.Points) {
+        switch (temp.Points)
+        {
             case > 40:
                 temp.Rank = "S";
                 break;
