@@ -299,46 +299,35 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         ////    if (Mathf.Abs(Time.time - (preBeats * tempoScale) - (NotesTime[CurrentNote] - 1) * tempoScale) < (Forgivness * 0.5 * tempoScale) && Input == NotesKind[CurrentNote + i])
     }
 
-
     private bool isScaling = false;
     private Coroutine scaleCoroutine;
+    private Coroutine downscaleCoroutine;
 
     public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
     {
-        if (!isScaling)
+        if (isScaling)
         {
-            isScaling = true;
-            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
-        }
-        else
-        {
-            StopCoroutine(scaleCoroutine);
+            StopAllCoroutines();
             Feedback.transform.localScale = new Vector3(1, 1, 1);
-            scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
         }
+
+        scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
     }
 
     private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration, float decreaseDuration)
     {
+        isScaling = true;
         Vector3 startScale = text.transform.localScale;
         float startTime = Time.time;
         float t;
         while (Time.time - startTime < duration)
         {
-            if (isScaling)
-            {
-                t = (Time.time - startTime) / duration;
-                text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-                yield return null;
-            }
-            else
-            {
-                text.transform.localScale = startScale;
-                yield break;
-            }
+            t = (Time.time - startTime) / duration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
         }
-        StartCoroutine(DownscaleUICoroutine(text, decreaseDuration));
-        isScaling = false;
+
+        downscaleCoroutine = StartCoroutine(DownscaleUICoroutine(text, decreaseDuration));
     }
 
     private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float decreaseDuration)
@@ -354,10 +343,72 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             yield return null;
         }
         text.transform.localScale = targetScale;
+        isScaling = false;
     }
 
 
-    public void ScanSpeedLevel()
+
+
+
+
+/*private bool isScaling = false;
+private Coroutine scaleCoroutine;
+
+public void ScaleFeedback(Vector3 targetScale, float duration, float decreaseDuration)
+{
+    if (!isScaling)
+    {
+        isScaling = true;
+        scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+    }
+    else
+    {
+        StopCoroutine(scaleCoroutine);
+        Feedback.transform.localScale = new Vector3(1, 1, 1);
+        scaleCoroutine = StartCoroutine(ScaleUICoroutine(Feedback, targetScale, duration, decreaseDuration));
+    }
+}
+
+private IEnumerator ScaleUICoroutine(TextMeshProUGUI text, Vector3 targetScale, float duration, float decreaseDuration)
+{
+    Vector3 startScale = text.transform.localScale;
+    float startTime = Time.time;
+    float t;
+    while (Time.time - startTime < duration)
+    {
+        if (isScaling)
+        {
+            t = (Time.time - startTime) / duration;
+            text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        else
+        {
+            text.transform.localScale = startScale;
+            yield break;
+        }
+    }
+    StartCoroutine(DownscaleUICoroutine(text, decreaseDuration));
+    isScaling = false;
+}
+
+private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float decreaseDuration)
+{
+    Vector3 startScale = text.transform.localScale;
+    Vector3 targetScale = new Vector3(1, 1, 1);
+    float startTime = Time.time;
+    float t;
+    while (Time.time - startTime < decreaseDuration)
+    {
+        t = (Time.time - startTime) / decreaseDuration;
+        text.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+        yield return null;
+    }
+    text.transform.localScale = targetScale;
+}*/
+
+
+public void ScanSpeedLevel()
     {
         if (ChainCounter < ThresholdOne)
             SetSpeedLevelZero();
