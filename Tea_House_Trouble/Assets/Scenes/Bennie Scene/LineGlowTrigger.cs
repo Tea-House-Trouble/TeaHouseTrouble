@@ -12,8 +12,14 @@ public class LineGlowTrigger : MonoBehaviour
     {
         material.SetFloat("_Intensity", 0);
     }
+    public void SetLineGlow(bool on)
+    {
+        IntensityValue = Intensity;
+        material.SetFloat("_Intensity", on?IntensityValue:0f);
+    }
+    
 
-    void OnTriggerEnter(Collider other)
+   /* void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -21,7 +27,7 @@ public class LineGlowTrigger : MonoBehaviour
             material.SetFloat("_Intensity", IntensityValue);
         }
     }
-    void OnTriggerExit(Collider other)
+   /* void OnTriggerExit(Collider other)
     {
   
         {
@@ -37,6 +43,6 @@ public class LineGlowTrigger : MonoBehaviour
                 
             }
         }
-    }
+    }*/
 }   
 
