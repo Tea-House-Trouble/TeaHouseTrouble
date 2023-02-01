@@ -27,6 +27,9 @@ public class UIInGameManager : MonoBehaviour
     private bool SceneIsPaused = false;
     private bool summarySetupCheck = false;
 
+    public GameObject TeaSpirit;
+    private Animator AnimTeaSpirit;
+
     private void Awake() {
         _highscoreManager = FindObjectOfType<HighscoreManager>();
         _rhythmManager = FindObjectOfType<RhythmManager>();
@@ -60,6 +63,8 @@ public class UIInGameManager : MonoBehaviour
         ScoreSubmitted.enabled = false;
         PauseMenu.SetActive(false);
         SummaryMenu.SetActive(false);
+
+        AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
     }
 
     private void Update() {
@@ -135,22 +140,27 @@ private void OnTriggerEnter(Collider other) {
         switch (_currentScore.Rank) {
             case "S":
                 RankImage.sprite = S_Rank;
+                AnimTeaSpirit.Play("Win");
                 break;
 
             case "A":
                 RankImage.sprite = A_Rank;
+                AnimTeaSpirit.Play("Win");
                 break;
 
             case "B":
                 RankImage.sprite = B_Rank;
+                AnimTeaSpirit.Play("Medium");
                 break;
 
             case "C":
                 RankImage.sprite = C_Rank;
+                AnimTeaSpirit.Play("Medium");
                 break;
 
             case "D":
                 RankImage.sprite = D_Rank;
+                AnimTeaSpirit.Play("Loose");
                 break;
         }
     }
