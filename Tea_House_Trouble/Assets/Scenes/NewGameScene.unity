@@ -903,7 +903,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bdde9e41e85e3524d9fce3bc658a92ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2136,7 +2136,7 @@ PrefabInstance:
     - target: {fileID: 725722264787149927, guid: 63a2718f7f512374bbd4d96489b6a509,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1199052889238202546, guid: 63a2718f7f512374bbd4d96489b6a509,
         type: 3}
@@ -2399,7 +2399,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bdde9e41e85e3524d9fce3bc658a92ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3690,6 +3690,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeaSpirit_WinScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 8576226401261275284, guid: a39843822f41cd64da9e7f2abdd167d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8957431878373151278, guid: a39843822f41cd64da9e7f2abdd167d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -4910,7 +4915,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bdde9e41e85e3524d9fce3bc658a92ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5535,7 +5540,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bdde9e41e85e3524d9fce3bc658a92ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5952,7 +5957,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035002261}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8dc154814f682340ade28c7a4fe4f0e, type: 3}
   m_Name: 
@@ -6553,7 +6558,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bdde9e41e85e3524d9fce3bc658a92ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7443,7 +7448,7 @@ PrefabInstance:
     - target: {fileID: 135680889031554882, guid: 4befa9c51bec2c74e90334ac9107373d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 135680889031554910, guid: 4befa9c51bec2c74e90334ac9107373d,
         type: 3}
@@ -14511,7 +14516,7 @@ PrefabInstance:
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
       propertyPath: BattleSoundsVolume
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5276675157964152099, guid: 6b993c54cdacc6040aa1dc4a9fd6ee4c,
         type: 3}
