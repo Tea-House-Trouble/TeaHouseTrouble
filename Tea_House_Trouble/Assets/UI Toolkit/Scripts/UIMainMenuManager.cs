@@ -43,6 +43,7 @@ public class UIMainMenuManager : MonoBehaviour
     private HighscoreTable _highscoreTable;
 
     private void Awake() {
+        AudioListener.pause = false;
         _exitMenu = GameObject.Find("ExitPanel");
         _controlPanel = GameObject.Find("ControlPanel");
         _audioPanel = GameObject.Find("AudioPanel");
@@ -145,13 +146,20 @@ public class UIMainMenuManager : MonoBehaviour
             Debug.Log("CLICKED_IN_MAINMENU");
             _cameraTransitionManager.CheckHit(); 
         }
-        if (Input.GetMouseButtonDown(1)) { _cameraTransitionManager.BackToBase(); }
-        if (Input.GetKeyDown(KeyCode.Escape)) { _cameraTransitionManager.BackToBase(); }
+        if (Input.GetMouseButtonDown(1)) { CameraBackToBase(); }
+        if (Input.GetKeyDown(KeyCode.Escape)) { CameraBackToBase(); }
     }
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }
     private void Deactivate(GameObject SetMenu) { 
         SetMenu.SetActive(false);
         Debug.Log(SetMenu);
+    }
+
+    private void CameraBackToBase() {
+        _passwordInput.text = null;
+        Deactivate(_resetText);
+        _cameraTransitionManager.BackToBase();
+        Deactivate(_exitMenu);
     }
 
     private void OnTriggerExit(Collider other) {  if(other.name=="BaseCam") { Deactivate(_creditsPanel); }    }
@@ -197,6 +205,7 @@ public class UIMainMenuManager : MonoBehaviour
         Deactivate(_audioPanel);
         Deactivate(_visualPanel);
         Deactivate(_resetPanel);
+        Deactivate(_resetText);
         Activate(ThisMenu);
     }
 
@@ -218,8 +227,9 @@ public class UIMainMenuManager : MonoBehaviour
 
     void OnResetOptions() { 
         _audioSettings.ResetAudioSettings(0.5f, 0.5f, 0.5f);
-        _visualSettings.ResetVisualSettings(0.5f, 0.5f);
-        _resetText.GetComponent<Text>().text = "Options reset!";    
+        _visualSettings.ResetVisualSettings(1.2f, 1.2f);
+        _resetText.GetComponent<TMP_Text>().text = "Options reset!";
+        Activate(_resetText);
     }
 
     void OnResetHighscores() {
@@ -227,10 +237,13 @@ public class UIMainMenuManager : MonoBehaviour
             Deactivate(_passwordPanel);
             _highscoreManager.ResetHighscoreList();
             _highscoreTable.SetupTable();
-            _resetText.GetComponent<Text>().text = "Highscores reset!";
+            _resetText.GetComponent<TMP_Text>().text = "Highscores reset!";
             Activate(_resetText);
         }
 
-        else { _passwordInput.placeholder.GetComponent<Text>().text = "Not the password"; }
+        else {
+            _passwordInput.placeholder.GetComponent<TMP_Text>().text = null;
+            _passwordInput.text = "Not the password"; 
+        }
     }
 }
