@@ -22,8 +22,8 @@ public class VisualManager : MonoBehaviour
         }
         else { Destroy(gameObject); }
 
+        globalVolume = GameObject.Find("Global Volume");
         _volume = globalVolume.GetComponent<Volume>();
-        if(_volume == null) { }
 
         LoadVisualSettings();
         SetBrightness(_brightness);
@@ -32,7 +32,7 @@ public class VisualManager : MonoBehaviour
 
     private void LoadVisualSettings() {
         _brightness = PlayerPrefs.GetFloat(brightnessValue, 1.2f);
-        _contrast = PlayerPrefs.GetFloat(contrastValue, 0f);       
+        _contrast = PlayerPrefs.GetFloat(contrastValue, -6.0f);       
     }
 
     public void SetBrightness(float value) { if (_volume.profile.TryGet(out ColorAdjustments colAdj)) { colAdj.postExposure.value = value; } }

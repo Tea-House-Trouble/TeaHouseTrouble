@@ -17,6 +17,7 @@ public class VisualSettings : MonoBehaviour
     private void Awake() {
         brightnessSlider = GameObject.Find("BrightnessSlider").GetComponent<Slider>();
         contrastSlider = GameObject.Find("ContrastSlider").GetComponent<Slider>();
+
         if (brightnessSlider == null) { brightnessSlider = GameObject.Find("BrightnessSlider").GetComponent<Slider>(); }
         brightnessSlider.onValueChanged.AddListener(SetBrightness);
         
@@ -31,7 +32,7 @@ public class VisualSettings : MonoBehaviour
 
     private void LoadSettings() {
         brightnessSlider.value = PlayerPrefs.GetFloat(VisualManager.brightnessValue, 1.2f);
-        contrastSlider.value = PlayerPrefs.GetFloat(VisualManager.contrastValue, 0f);
+        contrastSlider.value = PlayerPrefs.GetFloat(VisualManager.contrastValue, -6.0f);
     }
 
     private void SaveSettings() {

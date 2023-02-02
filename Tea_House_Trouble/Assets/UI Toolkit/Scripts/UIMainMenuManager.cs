@@ -227,7 +227,7 @@ public class UIMainMenuManager : MonoBehaviour
 
     void OnResetOptions() { 
         _audioSettings.ResetAudioSettings(0.5f, 0.5f, 0.5f);
-        _visualSettings.ResetVisualSettings(1.2f, 1.2f);
+        _visualSettings.ResetVisualSettings(1.2f, -6.0f);
         _resetText.GetComponent<TMP_Text>().text = "Options reset!";
         Activate(_resetText);
     }
