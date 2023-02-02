@@ -93,10 +93,13 @@ using UnityEngine;
 public class HighscoreManager : MonoBehaviour {
     public static HighscoreManager instanceHighscoreManager;
     public List<Scores> highScores, tempScores;
-    public int   currentHigh, currentIndex;
+    public int currentHigh, currentIndex;
     private Scores _newScore;
+    public Scores _currentScore = null;
 
     public void Awake() {
+        _currentScore.Name = "EMPTY";
+
         DontDestroyOnLoad(gameObject);
         if (instanceHighscoreManager == null) {
             instanceHighscoreManager = this;
@@ -123,6 +126,7 @@ public class HighscoreManager : MonoBehaviour {
     public void AddScore(string name) {
         _newScore.Name = name;
         _newScore.Accuracy = _newScore.GetAccuracy();
+        _currentScore = _newScore;
         tempScores.Add(_newScore);
         for (int i = currentIndex; i < highScores.Count; ++i) {
             tempScores.Add(highScores[i]);
@@ -137,9 +141,16 @@ public class HighscoreManager : MonoBehaviour {
     }
 
     private void LoadScores() {
+
+        AddDummyList();
+        Highscores Temp = new Highscores();
+        Temp.highscoreTestEntrys = highScores;
+        SafeScores(Temp);
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        
         Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+
 
         highScores.Clear();
         highScores = highscores.highscoreTestEntrys;
@@ -156,7 +167,9 @@ public class HighscoreManager : MonoBehaviour {
     }
 
     public void ResetHighscoreList() {
-        AddDummyList();
+
+        highScores.Clear();
+        //PlayerPrefs.DeleteAll(); ;
         Highscores resetScores = new Highscores();
         resetScores.highscoreTestEntrys = highScores;
         SafeScores(resetScores);
