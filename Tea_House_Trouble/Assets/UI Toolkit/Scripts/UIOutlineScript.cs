@@ -47,7 +47,9 @@ public class UIOutlineScript : MonoBehaviour
     private void Start() {        Tooltip.SetActive(false);         }
 
     void Update()  { 
-        UpdateOutline();
+        if(_hasBeenClicked == true) { _outline.OutlineWidth = 0; }
+        else {UpdateOutline(); }
+        
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {  _hasBeenClicked = false; }
 
         if(_audioSource.loop == true) { Tooltip.transform.position = Input.mousePosition + new Vector3(5,5,0); }
@@ -62,10 +64,12 @@ public class UIOutlineScript : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        _hasBeenClicked = true;        
-        HoverEnd();
-        _audioSource.PlayOneShot(click);
+        if(_hasBeenClicked == false) {
+            _hasBeenClicked = true;        
+            HoverEnd();
+            _audioSource.PlayOneShot(click);
         }
+    }
 
     private void OnMouseEnter() {
         if (_isTeakettle == true) { 
