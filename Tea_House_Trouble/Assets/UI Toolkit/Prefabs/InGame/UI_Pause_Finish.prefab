@@ -119,6 +119,8 @@ MonoBehaviour:
   PauseMenu: {fileID: 3182240031230930898}
   SummaryMenu: {fileID: 8313089673238486220}
   SubmitScore: {fileID: 7362629616304071355}
+  TeaSpirit: {fileID: 0}
+  TeaSpiritBG: {fileID: 0}
   ContinueBtn: {fileID: 4227214868507697839}
   RetryPauseBtn: {fileID: 2162219328641160035}
   MainMenuPauseBtn: {fileID: 8253481742896699664}
@@ -152,7 +154,6 @@ MonoBehaviour:
     Good: 0
     Perfect: 0
     Accuracy: 0
-  TeaSpirit: {fileID: 0}
   _counter: 0
 --- !u!82 &6799823113497713985
 AudioSource:
@@ -163,17 +164,17 @@ AudioSource:
   m_GameObject: {fileID: 4882525030670526877}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: aeee206a07fb3bc41a087b6f7f0334cf,
+  OutputAudioMixerGroup: {fileID: 1631424078047216324, guid: aeee206a07fb3bc41a087b6f7f0334cf,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 69ae16b452a4dc64dbebbd2f4eca9fe2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.244
+  m_Pitch: 1.04
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 147
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
