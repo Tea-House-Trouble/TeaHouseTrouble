@@ -23,6 +23,7 @@ public class VisualManager : MonoBehaviour
         else { Destroy(gameObject); }
 
         _volume = globalVolume.GetComponent<Volume>();
+        if(_volume == null) { }
 
         LoadVisualSettings();
         SetBrightness(_brightness);

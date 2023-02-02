@@ -43,6 +43,7 @@ public class UIMainMenuManager : MonoBehaviour
     private HighscoreTable _highscoreTable;
 
     private void Awake() {
+        AudioListener.pause = false;
         _exitMenu = GameObject.Find("ExitPanel");
         _controlPanel = GameObject.Find("ControlPanel");
         _audioPanel = GameObject.Find("AudioPanel");
