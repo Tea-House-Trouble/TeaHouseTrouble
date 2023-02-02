@@ -11,7 +11,7 @@ public class UIInGameManager : MonoBehaviour
     private HighscoreManager _highscoreManager;
 
 
-    public GameObject PauseMenu, SummaryMenu, SubmitScore;
+    public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG;
     public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
 
     public TMP_Text CurrScore, CurrChain, CurrMiss, CurrBad, CurrGood, CurrPerfect, CurrHighscore, ScoreSubmitted;
@@ -27,12 +27,15 @@ public class UIInGameManager : MonoBehaviour
     private bool SceneIsPaused = false;
     private bool summarySetupCheck = false;
 
-    public GameObject TeaSpirit;
     private AudioSource _audioSource;
     public int _counter = 0;
-    //private Animator AnimTeaSpirit;
+
+    private Animator AnimTeaSpirit;
 
     private void Awake() {
+        TeaSpirit = GameObject.Find("TeaSpirit_WinScreen");
+        TeaSpiritBG = GameObject.Find("BG");
+        AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         AudioListener.pause = false;
         _audioSource.ignoreListenerPause = true;
@@ -68,8 +71,8 @@ public class UIInGameManager : MonoBehaviour
         ScoreSubmitted.enabled = false;
         PauseMenu.SetActive(false);
         SummaryMenu.SetActive(false);
-
-        //AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
+        TeaSpirit.SetActive(false);
+        TeaSpiritBG.SetActive(false);
     }
 
     private void Update() {
@@ -99,6 +102,29 @@ private void OnTriggerEnter(Collider other) {
                 AudioListener.pause = true;
                 SetUpSummary();
                 SummaryMenu.SetActive(true);
+                TeaSpiritBG.SetActive(true);
+                TeaSpirit.SetActive(true);
+                switch (_currentScore.Rank) {
+                    case "S":
+                        AnimTeaSpirit.Play("Win");
+                        break;
+
+                    case "A":
+                        AnimTeaSpirit.Play("Win");
+                        break;
+
+                    case "B":
+                        AnimTeaSpirit.Play("Medium");
+                        break;
+
+                    case "C":
+                        AnimTeaSpirit.Play("Medium");
+                        break;
+
+                    case "D":
+                        AnimTeaSpirit.Play("Loose");
+                        break;
+                }
             }
         }
     }
@@ -151,27 +177,27 @@ private void OnTriggerEnter(Collider other) {
         switch (_currentScore.Rank) {
             case "S":
                 RankImage.sprite = S_Rank;
-                //AnimTeaSpirit.Play("Win");
+                AnimTeaSpirit.Play("Win");
                 break;
 
             case "A":
                 RankImage.sprite = A_Rank;
-                //AnimTeaSpirit.Play("Win");
+                AnimTeaSpirit.Play("Win");
                 break;
 
             case "B":
                 RankImage.sprite = B_Rank;
-                //AnimTeaSpirit.Play("Medium");
+                AnimTeaSpirit.Play("Medium");
                 break;
 
             case "C":
                 RankImage.sprite = C_Rank;
-                //AnimTeaSpirit.Play("Medium");
+                AnimTeaSpirit.Play("Medium");
                 break;
 
             case "D":
                 RankImage.sprite = D_Rank;
-                //AnimTeaSpirit.Play("Loose");
+                AnimTeaSpirit.Play("Loose");
                 break;
         }
     }
