@@ -21,9 +21,9 @@ public class AudioManager : MonoBehaviour
     }
 
     private void LoadVolume() {
-        float masterVolume = PlayerPrefs.GetFloat(masterKey, 0.5f);
-        float musicVolume = PlayerPrefs.GetFloat(musicKey, 0.5f);
-        float sfxVolume = PlayerPrefs.GetFloat(sfxKey, 0.5f);
+        float masterVolume = PlayerPrefs.GetFloat(masterKey, 0.0f);
+        float musicVolume = PlayerPrefs.GetFloat(musicKey, 0.0f);
+        float sfxVolume = PlayerPrefs.GetFloat(sfxKey, 0.0f);
 
         mainMixer.SetFloat(AudioSettings.masterMixer, Mathf.Log10(masterVolume)*20);
         mainMixer.SetFloat(AudioSettings.musicMixer, Mathf.Log10(musicVolume)*20);
