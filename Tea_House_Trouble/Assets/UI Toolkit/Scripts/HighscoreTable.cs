@@ -75,9 +75,18 @@ public class HighscoreTable : MonoBehaviour {
     private List<Transform> _highscoreEntrys;
     private HighscoreManager _highscoreManager;
 
+    private Scores _currentScore;
+    private TMP_Text _currPlace, _currName, _currPoints, _currAccuracy, _currChain, _currRank;
+
     private void Start() {
+        _currPlace = GameObject.Find("CurrPlace").GetComponent<TMP_Text>();
+        _currName = GameObject.Find("CurrName").GetComponent<TMP_Text>(); 
+        _currPoints = GameObject.Find("CurrPoints").GetComponent<TMP_Text>(); 
+        _currAccuracy = GameObject.Find("CurrAccuracy").GetComponent<TMP_Text>(); 
+        _currChain = GameObject.Find("CurrChain").GetComponent<TMP_Text>(); 
+        _currRank = GameObject.Find("CurrRank").GetComponent<TMP_Text>();
         _highscoreManager = FindObjectOfType<HighscoreManager>();
-        scoreTemplate.gameObject.SetActive(false);
+        //scoreTemplate.gameObject.SetActive(false);
 
         SetupTable();
     }
@@ -85,6 +94,23 @@ public class HighscoreTable : MonoBehaviour {
     public void SetupTable() {
         Debug.Log("SET UP SCORE TABLE");
         List<Scores> check = _highscoreManager.highScores;
+        _currentScore = _highscoreManager._currentScore;
+        if (_currentScore.Name == "EMPTY") {
+            _currPlace.text = "-";
+            _currName.text = "-";
+            _currPoints.text = "-";
+            _currAccuracy.text = "-";
+            _currChain.text = "-";
+            _currRank.text = "-";
+        }
+        else { 
+            _currPlace.text = _highscoreManager.currentIndex.ToString();
+            _currName.text = _currentScore.Name.ToString();
+            _currPoints.text = _currentScore.Points.ToString();
+            _currAccuracy.text = _currentScore.GetAccuracy().ToString();
+            _currChain.text = _currentScore.Chain.ToString();
+            _currRank.text = _currentScore.Rank.ToString();
+        }
 
         _highscoreEntrys = new List<Transform>();
         foreach (Scores _score in check) { CreateHighscoreTable(_score, _highscoreEntrys); }
