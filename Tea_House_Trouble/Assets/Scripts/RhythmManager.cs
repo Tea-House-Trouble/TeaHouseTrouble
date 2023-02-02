@@ -11,6 +11,7 @@ using UnityEngine.TextCore.Text;
 
 public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
+    public bool _isPaused = false;
     private int _chainCounter, _miss, _bad, _good, _perfect;
     public Scores temp;
 
@@ -346,11 +347,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
         isScaling = false;
     }
 
-
-
-
-
-
 /*private bool isScaling = false;
 private Coroutine scaleCoroutine;
 
@@ -406,7 +402,6 @@ private IEnumerator DownscaleUICoroutine(TextMeshProUGUI text, float decreaseDur
     }
     text.transform.localScale = targetScale;
 }*/
-
 
 public void ScanSpeedLevel()
     {
@@ -477,94 +472,102 @@ public void ScanSpeedLevel()
 
     public void OnUp(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            OnButtonPressed(NoteID.W);
-            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+        if(_isPaused == false) { 
+            if (context.started)
             {
-                OCHA_Animator.Play("Hit02");
-                Hit02.Play();
-            }
-            else
-            {
-                OCHA_Animator.Play("Hit01");
-                Hit01.Play();
-            }
+                OnButtonPressed(NoteID.W);
+                if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+                {
+                    OCHA_Animator.Play("Hit02");
+                    Hit02.Play();
+                }
+                else
+                {
+                    OCHA_Animator.Play("Hit01");
+                    Hit01.Play();
+                }
 
-            ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
-            arrowColor.PerformAction();
+                ArrowColor arrowColor = ArrowUp.GetComponent<ArrowColor>();
+                arrowColor.PerformAction();
+            }
         }
     }
 
     public void OnDown(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            OnButtonPressed(NoteID.S);
-            if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+        if(_isPaused == false) {
+            if (context.started)
             {
-                OCHA_Animator.Play("Hit02");
-                Hit02.Play();
-            }
-            else
-            {
-                OCHA_Animator.Play("Hit01");
-                Hit01.Play();
-            }
+                OnButtonPressed(NoteID.S);
+                if (OCHA_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+                {
+                    OCHA_Animator.Play("Hit02");
+                    Hit02.Play();
+                }
+                else
+                {
+                    OCHA_Animator.Play("Hit01");
+                    Hit01.Play();
+                }
 
-            ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
-            arrowColor.PerformAction();
+                ArrowColor arrowColor = ArrowDown.GetComponent<ArrowColor>();
+                arrowColor.PerformAction();
+            }
         }
     }
 
     public void OnRight(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            OnButtonPressed(NoteID.D);
-
-            if (RightFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+        if (_isPaused == false) {
+            if (context.started)
             {
-                RightFAN_Animator.Play("Hit02");
-                RightFANHit02.Play();
-            }
+                OnButtonPressed(NoteID.D);
 
-            else
-            {
-                RightFAN_Animator.Play("Hit01");
-                RightFANHit01.Play();
-            }
+                if (RightFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+                {
+                    RightFAN_Animator.Play("Hit02");
+                    RightFANHit02.Play();
+                }
 
-            ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
-            arrowColor.PerformAction();
+                else
+                {
+                    RightFAN_Animator.Play("Hit01");
+                    RightFANHit01.Play();
+                }
+
+                ArrowColor arrowColor = ArrowRight.GetComponent<ArrowColor>();
+                arrowColor.PerformAction();
+            }
         }
     }
 
     public void OnLeft(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            OnButtonPressed(NoteID.A);
-
-            if (LeftFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+        if (_isPaused == false) {
+            if (context.started)
             {
-                LeftFAN_Animator.Play("Hit02");
-                LeftFANHit02.Play();
-            }
+                OnButtonPressed(NoteID.A);
 
-            else
-            {
-                LeftFAN_Animator.Play("Hit01");
-                LeftFANHit01.Play();
-            }
+                if (LeftFAN_Animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+                {
+                    LeftFAN_Animator.Play("Hit02");
+                    LeftFANHit02.Play();
+                }
 
-            ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
-            arrowColor.PerformAction();
+                else
+                {
+                    LeftFAN_Animator.Play("Hit01");
+                    LeftFANHit01.Play();
+                }
+
+                ArrowColor arrowColor = ArrowLeft.GetComponent<ArrowColor>();
+                arrowColor.PerformAction();
+            }
         }
     }
 
     private void OnButtonPressed(NoteID note)
-    {
+    {        
         if (lastPressedNote == note && lastPressedTime == Time.timeSinceLevelLoad)
             return;
 

@@ -10,7 +10,6 @@ public class UIInGameManager : MonoBehaviour
     public RhythmManager _rhythmManager;
     private HighscoreManager _highscoreManager;
 
-
     public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG;
     public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
 
@@ -79,14 +78,13 @@ public class UIInGameManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) { Debug.Log("CLICK"); }
         if (Input.GetKeyDown(KeyCode.Escape)) {
-
-        if (SceneIsPaused == false){
-                Debug.Log("PAUSE");
-                PauseGame(); }
+            if (SceneIsPaused == false){
+                    Debug.Log("PAUSE");
+                    PauseGame(); }
             
-        else {
-                Debug.Log("UNPAUSE");
-                OnContinue(); }
+            else {
+                    Debug.Log("UNPAUSE");
+                    OnContinue(); }
         } 
     }
 
@@ -131,6 +129,7 @@ private void OnTriggerEnter(Collider other) {
 
 
     public void PauseGame() {
+        _rhythmManager._isPaused = true;
         SceneIsPaused = true;
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
@@ -139,6 +138,7 @@ private void OnTriggerEnter(Collider other) {
     }
     
     public void OnContinue() {
+        _rhythmManager._isPaused = false;
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         SceneIsPaused = false;
@@ -147,6 +147,7 @@ private void OnTriggerEnter(Collider other) {
     }
 
     public void OnRetry() {
+        _rhythmManager._isPaused = false;
         summarySetupCheck = true;
         _currentScore = new Scores();
         _wasSubmitted = false;
@@ -157,12 +158,14 @@ private void OnTriggerEnter(Collider other) {
     }
 
     public void OnMainMenu() {
+        _rhythmManager._isPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         _audioSource.Stop();
     }
 
     private void SetUpSummary() {
+        _rhythmManager._isPaused = false;
         _currentScore = _rhythmManager.SetUpCurrentScore();
         _highscoreManager.CompareScore(_currentScore);
         
