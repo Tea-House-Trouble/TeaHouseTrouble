@@ -28,9 +28,14 @@ public class UIInGameManager : MonoBehaviour
     private bool summarySetupCheck = false;
 
     public GameObject TeaSpirit;
-    private Animator AnimTeaSpirit;
+    private AudioSource _audioSource;
+    public int _counter = 0;
+    //private Animator AnimTeaSpirit;
 
     private void Awake() {
+        _audioSource = GetComponent<AudioSource>();
+        AudioListener.pause = false;
+        _audioSource.ignoreListenerPause = true;
         _highscoreManager = FindObjectOfType<HighscoreManager>();
         _rhythmManager = FindObjectOfType<RhythmManager>();
 
@@ -64,7 +69,7 @@ public class UIInGameManager : MonoBehaviour
         PauseMenu.SetActive(false);
         SummaryMenu.SetActive(false);
 
-        AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
+        //AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
     }
 
     private void Update() {
@@ -85,13 +90,16 @@ public class UIInGameManager : MonoBehaviour
 private void OnTriggerEnter(Collider other) {
         Debug.Log("FINISHED GAME");
         if (other.gameObject.CompareTag("Player")) {
-            if (summarySetupCheck) {
-                Debug.Log("RestartCheck");
+            _counter++;
+            if(_counter ==2) {
+                if (summarySetupCheck) {
+                    Debug.Log("RestartCheck");
+                }
+                Time.timeScale = 0f;
+                AudioListener.pause = true;
+                SetUpSummary();
+                SummaryMenu.SetActive(true);
             }
-            Time.timeScale = 0f;
-            AudioListener.pause = true;
-            SetUpSummary();
-            SummaryMenu.SetActive(true);
         }
     }
 
@@ -101,6 +109,7 @@ private void OnTriggerEnter(Collider other) {
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
         AudioListener.pause = true;
+        _audioSource.Play();
     }
     
     public void OnContinue() {
@@ -108,6 +117,7 @@ private void OnTriggerEnter(Collider other) {
         PauseMenu.SetActive(false);
         SceneIsPaused = false;
         AudioListener.pause = false;
+        _audioSource.Stop();
     }
 
     public void OnRetry() {
@@ -117,12 +127,13 @@ private void OnTriggerEnter(Collider other) {
         Time.timeScale = 1f;
         AudioListener.pause = false;
         SceneManager.LoadScene("NewGameScene");
+        _audioSource.Stop();
     }
 
     public void OnMainMenu() {
         Time.timeScale = 1f;
-        AudioListener.pause = false;
         SceneManager.LoadScene("MainMenu");
+        _audioSource.Stop();
     }
 
     private void SetUpSummary() {
@@ -140,27 +151,27 @@ private void OnTriggerEnter(Collider other) {
         switch (_currentScore.Rank) {
             case "S":
                 RankImage.sprite = S_Rank;
-                AnimTeaSpirit.Play("Win");
+                //AnimTeaSpirit.Play("Win");
                 break;
 
             case "A":
                 RankImage.sprite = A_Rank;
-                AnimTeaSpirit.Play("Win");
+                //AnimTeaSpirit.Play("Win");
                 break;
 
             case "B":
                 RankImage.sprite = B_Rank;
-                AnimTeaSpirit.Play("Medium");
+                //AnimTeaSpirit.Play("Medium");
                 break;
 
             case "C":
                 RankImage.sprite = C_Rank;
-                AnimTeaSpirit.Play("Medium");
+                //AnimTeaSpirit.Play("Medium");
                 break;
 
             case "D":
                 RankImage.sprite = D_Rank;
-                AnimTeaSpirit.Play("Loose");
+                //AnimTeaSpirit.Play("Loose");
                 break;
         }
     }
@@ -181,6 +192,5 @@ private void OnTriggerEnter(Collider other) {
         _wasSubmitted = true;
         }
     }
-
     public void OnSkip() { }
 }
