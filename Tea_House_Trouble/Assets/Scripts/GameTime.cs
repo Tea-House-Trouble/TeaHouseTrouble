@@ -11,8 +11,22 @@ public class GameTime : MonoBehaviour
 
     Slider MusicTimeSlider;
 
+    bool inGameScene = false;
+    private RhythmManager rhythmManager;
+
     void Start()
     {
+        rhythmManager = FindObjectOfType<RhythmManager>();
+        
+        if (rhythmManager != null)
+        {
+            ResetTime();
+        }
+        else
+        {
+            FillSlider();
+        }
+            
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
@@ -22,23 +36,32 @@ public class GameTime : MonoBehaviour
         MusicTimeSlider.maxValue = 140f;
     }
 
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
+
+
+
     void Update()
     {
-        //MusicTimeSlider.value += Time.time;
-        //CheckForReload();
-        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("NewGameScene"))
-        if (SceneManager.GetSceneByName("NewGameScene").isLoaded)
-        {
-            FillSlider();
-        }
+            //MusicTimeSlider.value += Time.time;
+            //CheckForReload();
+            //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("NewGameScene"))
+            //if (SceneManager.GetSceneByName("NewGameScene").isLoaded)
+        //if (SceneManager.GetActiveScene().name == "NewGameScene")
+        //{
+        //    FillSlider();
+        //}
         //else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
-        else if (SceneManager.GetSceneByName("MainMenu").isLoaded)
-        {
-            ResetTime();
-        }
+        //else if (SceneManager.GetSceneByName("MainMenu").isLoaded)
+        //else if (SceneManager.GetActiveScene().name == "MainMenu")
+        //{
+        //    ResetTime();
+        //}
     }
 
-    void FillSlider()
+    public void FillSlider()
     {
         //MusicTimeSlider.value = Time.time;
         MusicTimeSlider.value = Mathf.Lerp(MusicTimeSlider.minValue, MusicTimeSlider.maxValue, FillTime);
