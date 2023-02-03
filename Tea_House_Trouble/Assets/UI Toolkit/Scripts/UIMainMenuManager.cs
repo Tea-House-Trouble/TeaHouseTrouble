@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Video;
 
 /* Breakdown
    Teapot / StartLevel Menu 
@@ -27,9 +28,9 @@ using TMPro;
 
 public class UIMainMenuManager : MonoBehaviour
 {
-    private GameObject _exitMenu, _controlPanel, _audioPanel, _visualPanel, _creditsPanel, _resetPanel, _passwordPanel, _resetText, _passwordRequest; // _startGamePanel, _chooseControlPanel, _chooseDifficultyPanel;
+    private GameObject _exitMenu, _controlPanel, _audioPanel, _visualPanel, _creditsPanel, _resetPanel, _passwordPanel, _resetText, _passwordRequest, _videoPanel; // _startGamePanel, _chooseControlPanel, _chooseDifficultyPanel;
 
-    private Button _playBtn, _notYetBtn, _stayBtn, _leaveBtn, _controlBtn, _audioBtn, _visualBtn,_resetBtn, _resetOptionsBtn, _resetHighscoresBtn, _enterPasswordBtn; // _dancematBtn, _keyboardBtn, controlerBtn, _touchBtn
+    private Button _playBtn, _notYetBtn, _stayBtn, _leaveBtn, _controlBtn, _audioBtn, _visualBtn, _resetBtn, _resetOptionsBtn, _resetHighscoresBtn, _enterPasswordBtn; // _dancematBtn, _keyboardBtn, controlerBtn, _touchBtn
     private Toggle _themeOne, _themeTwo; // _fullScreen, _windowed;
     private Slider _masterSlider, _musicSlider, _sfxSlider, _brightnessSlider, _contrastSlider; // _detailsSlider
     private TMP_InputField _passwordInput;
@@ -42,8 +43,14 @@ public class UIMainMenuManager : MonoBehaviour
     private HighscoreManager _highscoreManager;
     private HighscoreTable _highscoreTable;
 
-    private void Awake() {
+    private bool _playVideo = false;
+    private float _lastInput = 0.0f;
+    public float videoTime = 60f;
+
+    private void Awake()
+    {
         AudioListener.pause = false;
+        _videoPanel = GameObject.Find("VideoPanel");
         _exitMenu = GameObject.Find("ExitPanel");
         _controlPanel = GameObject.Find("ControlPanel");
         _audioPanel = GameObject.Find("AudioPanel");
@@ -52,14 +59,14 @@ public class UIMainMenuManager : MonoBehaviour
         _resetPanel = GameObject.Find("ResetPanel");
         _passwordPanel = GameObject.Find("PasswordPanel");
         _passwordRequest = GameObject.Find("PasswordRequest");
-        _resetText = GameObject.Find("ResetText") ;
+        _resetText = GameObject.Find("ResetText");
 
         _playBtn = GameObject.Find("Play").GetComponent<Button>();
         _notYetBtn = GameObject.Find("NotYet").GetComponent<Button>();
         _stayBtn = GameObject.Find("Stay").GetComponent<Button>();
         _leaveBtn = GameObject.Find("Leave").GetComponent<Button>();
-        _controlBtn = GameObject.Find("ControlButton").GetComponent<Button>() ;
-        _audioBtn = GameObject.Find("AudioButton").GetComponent<Button>() ;
+        _controlBtn = GameObject.Find("ControlButton").GetComponent<Button>();
+        _audioBtn = GameObject.Find("AudioButton").GetComponent<Button>();
         _visualBtn = GameObject.Find("VisualButton").GetComponent<Button>();
         _resetBtn = GameObject.Find("ResetBtn").GetComponent<Button>();
         _resetOptionsBtn = GameObject.Find("ResetOptions").GetComponent<Button>();
@@ -76,8 +83,8 @@ public class UIMainMenuManager : MonoBehaviour
         _themeTwo = GameObject.Find("Theme 2").GetComponent<Toggle>();
 
         _passwordInput = _passwordRequest.GetComponent<TMP_InputField>();
-        _passwordInput.characterLimit= 10;
-        
+        _passwordInput.characterLimit = 10;
+
         _cameraTransitionManager = GameObject.Find("Main_Camera").GetComponent<CameraTransitionManager>();
         _audioSettings = GetComponent<AudioSettings>();
         _visualSettings = GetComponent<VisualSettings>();
@@ -85,23 +92,24 @@ public class UIMainMenuManager : MonoBehaviour
         _highscoreTable = GameObject.Find("HighScoreDisplay").GetComponent<HighscoreTable>();
     }
 
-        // Control & Difficulty Pick
-        /*
-        _dancematBtn = GameObject.Find("DanceMat").GetComponent<Button>();
-        _keyboardBtn = GameObject.Find("Keyboard").GetComponent<Button>();
-        _controlerBtn = GameObject.Find("Controler").GetComponent<Button>();
-        _touchBtn = GameObject.Find("Touch").GetComponent<Button>();
+    // Control & Difficulty Pick
+    /*
+    _dancematBtn = GameObject.Find("DanceMat").GetComponent<Button>();
+    _keyboardBtn = GameObject.Find("Keyboard").GetComponent<Button>();
+    _controlerBtn = GameObject.Find("Controler").GetComponent<Button>();
+    _touchBtn = GameObject.Find("Touch").GetComponent<Button>();
 
-        _easyBtn =  GameObject.Find("Easy").GetComponent<Button>();
-        _mediumBtn =  GameObject.Find("Medium").GetComponent<Button>();
-        _hardBtn = GameObject.Find("Hard").GetComponent<Button>();
-        _ultraBtn = GameObject.Find("Ultra").GetComponent<Button>();
+    _easyBtn =  GameObject.Find("Easy").GetComponent<Button>();
+    _mediumBtn =  GameObject.Find("Medium").GetComponent<Button>();
+    _hardBtn = GameObject.Find("Hard").GetComponent<Button>();
+    _ultraBtn = GameObject.Find("Ultra").GetComponent<Button>();
 
-        _fullScreen = GameObject.Find("Fullscreen").GetComponent<Toggle>();
-        _windowed = GameObject.Find("Windowed").GetComponent<Toggle>();
-        */
+    _fullScreen = GameObject.Find("Fullscreen").GetComponent<Toggle>();
+    _windowed = GameObject.Find("Windowed").GetComponent<Toggle>();
+    */
 
-    private void Start() { 
+    private void Start()
+    {
         Deactivate(_exitMenu);
         Deactivate(_audioPanel);
         Deactivate(_visualPanel);
@@ -109,13 +117,13 @@ public class UIMainMenuManager : MonoBehaviour
         Deactivate(_resetText);
         Deactivate(_resetPanel);
 
-        _playBtn.onClick.AddListener(() =>TaskOnClickPlay());
-        _notYetBtn.onClick.AddListener(() => _cameraTransitionManager.BackToBase()) ;
+        _playBtn.onClick.AddListener(() => TaskOnClickPlay());
+        _notYetBtn.onClick.AddListener(() => _cameraTransitionManager.BackToBase());
         _stayBtn.onClick.AddListener(() => _cameraTransitionManager.BackToBase());
         _leaveBtn.onClick.AddListener(() => TaskOnClickLeave());
         _controlBtn.onClick.AddListener(() => OptionsDisplayThis(_controlPanel));
         _audioBtn.onClick.AddListener(() => OptionsDisplayThis(_audioPanel));
-        _visualBtn.onClick.AddListener( () => OptionsDisplayThis(_visualPanel));
+        _visualBtn.onClick.AddListener(() => OptionsDisplayThis(_visualPanel));
         _resetBtn.onClick.AddListener(() => OptionsDisplayThis(_resetPanel));
         _resetOptionsBtn.onClick.AddListener(() => OnResetOptions());
         _resetHighscoresBtn.onClick.AddListener(() => Activate(_passwordPanel));
@@ -141,32 +149,53 @@ public class UIMainMenuManager : MonoBehaviour
     _windowed.onValueChanged.AddListener(WindowedChange);
     */
 
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+    private void Update()
+    {
+
+        _lastInput += Time.deltaTime;
+        if (_lastInput >= videoTime && _playVideo == false)
+        {
+            _videoPanel.SetActive(true);
+            _playVideo = true;
+        }
+
+        if (Input.anyKey)
+        {
+            _videoPanel.SetActive(false);
+            _playVideo = false;
+            _lastInput = 0.0f;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
             Debug.Log("CLICKED_IN_MAINMENU");
-            _cameraTransitionManager.CheckHit(); 
+            _cameraTransitionManager.CheckHit();
         }
         if (Input.GetMouseButtonDown(1)) { CameraBackToBase(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { CameraBackToBase(); }
     }
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }
-    private void Deactivate(GameObject SetMenu) { 
+    private void Deactivate(GameObject SetMenu)
+    {
         SetMenu.SetActive(false);
         Debug.Log(SetMenu);
     }
 
-    private void CameraBackToBase() {
+    private void CameraBackToBase()
+    {
         _passwordInput.text = null;
         Deactivate(_resetText);
         _cameraTransitionManager.BackToBase();
         Deactivate(_exitMenu);
     }
 
-    private void OnTriggerExit(Collider other) {  if(other.name=="BaseCam") { Deactivate(_creditsPanel); }    }
+    private void OnTriggerExit(Collider other) { if (other.name == "BaseCam") { Deactivate(_creditsPanel); } }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("VirtualCam")) {
-            switch (other.name) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("VirtualCam"))
+        {
+            switch (other.name)
+            {
                 case "BaseCam":
                     Deactivate(_exitMenu);
                     Activate(_creditsPanel);
@@ -181,7 +210,7 @@ public class UIMainMenuManager : MonoBehaviour
     }
 
     void TaskOnClickPlay() { SceneManager.LoadScene("NewGameScene"); }
-    void TaskOnClickLeave() { Application.Quit();}
+    void TaskOnClickLeave() { Application.Quit(); }
 
     //ChooseControls & Difficulty
     /*
@@ -200,7 +229,8 @@ public class UIMainMenuManager : MonoBehaviour
     }     
      */
 
-    private void OptionsDisplayThis(GameObject ThisMenu) {
+    private void OptionsDisplayThis(GameObject ThisMenu)
+    {
         Deactivate(_controlPanel);
         Deactivate(_audioPanel);
         Deactivate(_visualPanel);
@@ -209,7 +239,8 @@ public class UIMainMenuManager : MonoBehaviour
         Activate(ThisMenu);
     }
 
-    private void ToggleSwitch(bool valueChanged, Toggle valueUpdate) {
+    private void ToggleSwitch(bool valueChanged, Toggle valueUpdate)
+    {
         if (valueChanged == true) { valueUpdate.isOn = false; }
         else if (valueChanged == false) { valueUpdate.isOn = true; }
     }
@@ -219,21 +250,25 @@ public class UIMainMenuManager : MonoBehaviour
     //void FullscreenChange(bool fullscreen) { ToggleSwitch(fullscreen, Windowed); }
     //void WindowedChange(bool windowed) { ToggleSwitch(windowed, Fullscreen); }
 
-    void ResetResetPanel() {
+    void ResetResetPanel()
+    {
         //_passwordInput.placeholder.GetComponent<Text>().text = "Enter password";
         Deactivate(_resetText);
         Deactivate(_passwordPanel);
     }
 
-    void OnResetOptions() { 
+    void OnResetOptions()
+    {
         _audioSettings.ResetAudioSettings(0.5f, 0.5f, 0.5f);
         _visualSettings.ResetVisualSettings(1.2f, -6.0f);
         _resetText.GetComponent<TMP_Text>().text = "Options reset!";
         Activate(_resetText);
     }
 
-    void OnResetHighscores() {
-        if(_passwordInput.text == _password) {
+    void OnResetHighscores()
+    {
+        if (_passwordInput.text == _password)
+        {
             Deactivate(_passwordPanel);
             _highscoreManager.ResetHighscoreList();
             _highscoreTable.ResetTable();
@@ -242,9 +277,10 @@ public class UIMainMenuManager : MonoBehaviour
             Activate(_resetText);
         }
 
-        else {
+        else
+        {
             _passwordInput.placeholder.GetComponent<TMP_Text>().text = null;
-            _passwordInput.text = "Not the password"; 
+            _passwordInput.text = "Not the password";
         }
     }
 }
