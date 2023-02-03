@@ -14,12 +14,6 @@ public class LoadingScreen : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
         LoadingPanel.SetActive(true);
         ControllImageAndIntroduction.SetActive(false);
         Time.timeScale = 0f;

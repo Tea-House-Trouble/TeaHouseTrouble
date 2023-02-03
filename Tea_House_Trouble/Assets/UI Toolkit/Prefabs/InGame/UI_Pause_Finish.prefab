@@ -121,6 +121,7 @@ MonoBehaviour:
   SubmitScore: {fileID: 7362629616304071355}
   TeaSpirit: {fileID: 0}
   TeaSpiritBG: {fileID: 0}
+  MusicTimer: {fileID: 0}
   ContinueBtn: {fileID: 4227214868507697839}
   RetryPauseBtn: {fileID: 2162219328641160035}
   MainMenuPauseBtn: {fileID: 8253481742896699664}
@@ -1355,6 +1356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3551219487885788589, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
         type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551219487885788589, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
+        type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
       value: 0.8901961
       objectReference: {fileID: 0}
@@ -1502,6 +1508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_PressedColor.r
       value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756395201461538782, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6756395201461538782, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
         type: 3}
@@ -1712,6 +1723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_PressedColor.r
       value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748280910367014418, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8748280910367014418, guid: 5e9472cc8b76cf44cb7ac940f672ab78,
         type: 3}
