@@ -261,7 +261,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
                     Score += successValues[2] * MultiplikationBad * Mathf.Pow(1f + ChainCounter / 100f, 2f);
                     ChainCounter = 0;
                     ChainCounterMessage.SetActive(true);
-                    Feedback.text = "Bad! x" + ChainCounter;
+                    Feedback.text = "Bad!";
                     ScaleFeedback(Size, ScaleTime, DownScaleTime);
                     chainCounterNumberText.text = "" + ChainCounter;
                     ChainCounterElapsedTime = 0;
