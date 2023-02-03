@@ -13,7 +13,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 {
     public bool _isPaused = false;
     private int _chainCounter, _miss, _bad, _good, _perfect;
-    public Scores temp;
 
     public static event System.Action<NoteID> ButtonPressed;
 
@@ -135,7 +134,6 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
 
     void Start()
     {
-        temp = new Scores();
         OCHA_Animator = Ocha.GetComponent<Animator>();
         LeftFAN_Animator = FANLeft.GetComponent<Animator>();
         RightFAN_Animator = FANRight.GetComponent<Animator>();
@@ -585,6 +583,7 @@ public void ScanSpeedLevel()
 
     public Scores SetUpCurrentScore()
     {
+        Scores temp = new Scores();
         temp.Points = (int)Score;
 
         switch (temp.Points)

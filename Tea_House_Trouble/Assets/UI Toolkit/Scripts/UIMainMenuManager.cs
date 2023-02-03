@@ -236,6 +236,7 @@ public class UIMainMenuManager : MonoBehaviour
         if(_passwordInput.text == _password) {
             Deactivate(_passwordPanel);
             _highscoreManager.ResetHighscoreList();
+            _highscoreTable.ResetTable();
             _highscoreTable.SetupTable();
             _resetText.GetComponent<TMP_Text>().text = "Highscores reset!";
             Activate(_resetText);
