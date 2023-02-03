@@ -82,12 +82,7 @@ public class UIInGameManager : MonoBehaviour
         TeaSpiritBG.SetActive(false);
     }
 
-    private void Start()
-    {
-        MusicTimer = GameObject.Find("MusicTimer");
-        _gameTime = MusicTimer.GetComponent<GameTime>();
-        _gameTime.ResetTime();
-    }
+
 
     private void Update() {
 
