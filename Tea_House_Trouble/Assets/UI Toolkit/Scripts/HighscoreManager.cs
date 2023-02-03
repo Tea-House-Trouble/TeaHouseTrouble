@@ -8,11 +8,11 @@ using UnityEngine;
     public List<Scores> highScores, tempScores;
     public List<int> highIndexi, tempIndexi;
     public int rankIndex, currentPoints, currentIndex, currentHigh;
-    public Scores _newScore;
+    public Scores _currentScore;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
-        _newScore = new Scores();
+        _currentScore = new Scores();
         Scores temp = new Scores();
         temp.Name = "TEST";
         temp.Rank = "D";
@@ -28,14 +28,14 @@ using UnityEngine;
 
 
     public void ScoreToCompare(Scores compareScore) {
-        _newScore.Points = compareScore.Points;
-        _newScore.Rank = compareScore.Rank;
-        _newScore.Chain = compareScore.Chain;
-        _newScore.Miss = compareScore.Miss ;
-        _newScore.Bad = compareScore.Bad;
-        _newScore.Good = compareScore.Good;
-        _newScore.Perfect = compareScore.Perfect;
-        CompareScore(_newScore);
+        _currentScore.Points = compareScore.Points;
+        _currentScore.Rank = compareScore.Rank;
+        _currentScore.Chain = compareScore.Chain;
+        _currentScore.Miss = compareScore.Miss ;
+        _currentScore.Bad = compareScore.Bad;
+        _currentScore.Good = compareScore.Good;
+        _currentScore.Perfect = compareScore.Perfect;
+        CompareScore(_currentScore);
     }
 
     public void ClearList(List<Scores> scoreClear, List<int> rankClear) {
@@ -66,8 +66,8 @@ using UnityEngine;
     public void CancelScore() {    }
 
     public void AddScore(string name) {
-        _newScore.Name = name;
-        tempScores.Add(_newScore);
+        _currentScore.Name = name;
+        tempScores.Add(_currentScore);
         tempIndexi.Add(currentIndex);
         for (int i = currentIndex; i < highScores.Count; ++i) {
             tempScores.Add(highScores[i]);
@@ -77,7 +77,7 @@ using UnityEngine;
         highScores = tempScores;
         highIndexi = tempIndexi;
 
-        _newScore = new Scores();
+        _currentScore = new Scores();
     }
         List<Scores> DummyEntries = new List<Scores>() {
         new Scores { Name = "AAA", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
@@ -92,95 +92,82 @@ using UnityEngine;
 
 public class HighscoreManager : MonoBehaviour {
     public static HighscoreManager instanceHighscoreManager;
-    public List<Scores> highScores, tempScores;
+    public List<Scores> highScores; //, tempScores;
     public int currentHigh, currentIndex;
-    private Scores _newScore;
-    public Scores _currentScore = null;
+    public Scores _currentScore;
+    public bool _amAwake;
 
     public void Awake() {
-        _currentScore.Name = "EMPTY";
-
         DontDestroyOnLoad(gameObject);
         if (instanceHighscoreManager == null) {
             instanceHighscoreManager = this;
         }
         else { Destroy(gameObject); }
 
-        _newScore = new Scores();
+        if (_amAwake == false) {
+            _currentScore = new Scores();
+            _currentScore.Name = "EMPTY";
+            _amAwake = true;
+        }
         LoadScores();
     }
 
-    public void CompareScore(Scores compareScore) {
-        _newScore = compareScore;
-        tempScores.Clear();
-        Debug.Log(highScores.Count);
-        if (compareScore.Points > currentHigh) {  currentHigh = compareScore.Points;  }
-        else {
-            for (int i = 0; (i < highScores.Count) && (highScores[i].Points > compareScore.Points); ++i) {
-                tempScores.Add(highScores[i]);
-                currentIndex = i;
+    public void AddScore(Scores _newScore) {
+        _newScore.Accuracy = _newScore.GetAccuracy();
+        _currentScore = _newScore;
+        highScores.Add(_newScore);
+        SortScores();
+        SafeScores();
+    }
+
+    private void SortScores() {
+        for (int i = 0; i< highScores.Count; i++) {
+            for (int j = i+1; j< highScores.Count; j++) {
+                if(highScores[j].Points > highScores[i].Points) {
+                    Scores tmp = highScores[i];
+                    highScores[i] = highScores[j];
+                    highScores[j] = tmp;
+                }
             }
         }
     }
+    public void LoadScores() {
 
-    public void AddScore(string name) {
-        _newScore.Name = name;
-        _newScore.Accuracy = _newScore.GetAccuracy();
-        _currentScore = _newScore;
-        tempScores.Add(_newScore);
-        for (int i = currentIndex; i < highScores.Count; ++i) {
-            tempScores.Add(highScores[i]);
-        }
-        highScores.Clear();
-        highScores = tempScores;
-
-        Highscores highscores = new Highscores();
-        highscores.highscoreTestEntrys = highScores;
-
-        SafeScores(highscores);
-    }
-
-    private void LoadScores() {
-
-        AddDummyList();
-        Highscores Temp = new Highscores();
-        Temp.highscoreTestEntrys = highScores;
-        SafeScores(Temp);
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
         
         Debug.Log(PlayerPrefs.GetString("highscoreTable"));
-
-
         highScores.Clear();
         highScores = highscores.highscoreTestEntrys;
-        if (highScores.Count == 0) { AddDummyList(); }
+        if (highscores == null) { AddDummyList(); }
 
         currentHigh = highScores[0].Points;
     }
 
-    private void SafeScores(Highscores highscores) {
+    private void SafeScores() {
+        Highscores highscores = new Highscores();
+        highscores.highscoreTestEntrys = highScores;
+
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
+
         Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+        LoadScores();
     }
 
     public void ResetHighscoreList() {
-
         highScores.Clear();
-        //PlayerPrefs.DeleteAll(); ;
-        Highscores resetScores = new Highscores();
-        resetScores.highscoreTestEntrys = highScores;
-        SafeScores(resetScores);
+        AddDummyList();
+        SafeScores();
         LoadScores();
     }
 
     private void AddDummyList() {
         List<Scores> DummyEntries = new List<Scores>() {
-        new Scores { Name = "Teapot", Rank = "S", Points =4773 , Chain =27 , Miss =0 , Bad =Random.Range(0,50) , Good =0, Perfect =888, Accuracy = 81},
         new Scores { Name = "JackBlack", Rank = "A", Points =666 , Chain =13 , Miss =0 , Bad =4, Good =8, Perfect =1, Accuracy = 69},
         new Scores { Name = "TinyNuki", Rank = "C", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
+        new Scores { Name = "Teapot", Rank = "S", Points =4773 , Chain =27 , Miss =0 , Bad =Random.Range(0,50) , Good =0, Perfect =888, Accuracy = 81},
         };
         highScores = DummyEntries;
     }

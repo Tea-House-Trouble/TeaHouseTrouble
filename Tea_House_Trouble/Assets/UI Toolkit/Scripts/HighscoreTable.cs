@@ -86,6 +86,7 @@ public class HighscoreTable : MonoBehaviour {
         _currChain = GameObject.Find("CurrChain").GetComponent<TMP_Text>(); 
         _currRank = GameObject.Find("CurrRank").GetComponent<TMP_Text>();
         _highscoreManager = FindObjectOfType<HighscoreManager>();
+        _highscoreManager.LoadScores();
         //scoreTemplate.gameObject.SetActive(false);
 
         SetupTable();
@@ -114,6 +115,12 @@ public class HighscoreTable : MonoBehaviour {
 
         _highscoreEntrys = new List<Transform>();
         foreach (Scores _score in check) { CreateHighscoreTable(_score, _highscoreEntrys); }
+    }
+
+    public void ResetTable() {
+            foreach (Transform child in highscoreContainer) {
+                child.gameObject.SetActive(false);
+            }
     }
 
     private void CreateHighscoreTable(Scores scoreToAdd, List<Transform> highscoreDisplayList) {

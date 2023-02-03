@@ -10,7 +10,7 @@ public class UIInGameManager : MonoBehaviour
     public RhythmManager _rhythmManager;
     private HighscoreManager _highscoreManager;
 
-    public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG;
+    public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG, MusicTimer;
     public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
 
     public TMP_Text CurrScore, CurrChain, CurrMiss, CurrBad, CurrGood, CurrPerfect, CurrHighscore, ScoreSubmitted;
@@ -31,7 +31,12 @@ public class UIInGameManager : MonoBehaviour
 
     private Animator AnimTeaSpirit;
 
-    private void Awake() {
+    private GameTime _gameTime;
+
+   
+
+    private void Awake() 
+    {
         TeaSpirit = GameObject.Find("TeaSpirit_WinScreen");
         TeaSpiritBG = GameObject.Find("BG");
         AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
@@ -74,6 +79,13 @@ public class UIInGameManager : MonoBehaviour
         TeaSpiritBG.SetActive(false);
     }
 
+    private void Start()
+    {
+        MusicTimer = GameObject.Find("MusicTimer");
+        _gameTime = MusicTimer.GetComponent<GameTime>();
+        _gameTime.ResetTime();
+    }
+
     private void Update() {
 
         if (Input.GetMouseButtonDown(0)) { Debug.Log("CLICK"); }
@@ -88,7 +100,7 @@ public class UIInGameManager : MonoBehaviour
         } 
     }
 
-private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         Debug.Log("FINISHED GAME");
         if (other.gameObject.CompareTag("Player")) {
             _counter++;
@@ -165,9 +177,9 @@ private void OnTriggerEnter(Collider other) {
     }
 
     private void SetUpSummary() {
-        _rhythmManager._isPaused = false;
+        _rhythmManager._isPaused = true;
         _currentScore = _rhythmManager.SetUpCurrentScore();
-        _highscoreManager.CompareScore(_currentScore);
+        _highscoreManager._currentScore = _currentScore;
         
         CurrScore.text = _currentScore.Points.ToString();
         CurrChain.text = _currentScore.Chain.ToString();
@@ -215,7 +227,7 @@ private void OnTriggerEnter(Collider other) {
         if(_wasSubmitted == false) {
         SubmitBtn.enabled = false;
         ReadInput();        
-        _highscoreManager.AddScore(_currentScore.Name);
+        _highscoreManager.AddScore(_currentScore);
         SubmitScore.SetActive(false);
         ScoreSubmitted.enabled = true;
         _wasSubmitted = true;

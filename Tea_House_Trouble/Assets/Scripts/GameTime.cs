@@ -1,26 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameTime : MonoBehaviour
 {
     public float FillTime;
+    public float minValue = 0f;
+    public float maxValue = 140f;
 
-    private Slider MusicTimeSlider;
+    public Slider MusicTimeSlider;
 
-    void Start()
+    void Awake()
     {
-        MusicTimeSlider = GetComponent<Slider>();
+        MusicTimeSlider = gameObject.GetComponent<Slider>();
     }
-    //public void ResetTime()
-    //{
-    //    MusicTimeSlider.minValue = Time.deltaTime;
-    //    MusicTimeSlider.maxValue = Time.deltaTime + FillTime;
-    //}
 
     void Update()
     {
-        MusicTimeSlider.value = Time.time;
+        FillSlider();
+    }
+
+    public void FillSlider()
+    {
+        MusicTimeSlider.value += 1f * Time.deltaTime;
+    }
+
+    public void ResetTime()
+    {
+        MusicTimeSlider.value = minValue;
     }
 }
