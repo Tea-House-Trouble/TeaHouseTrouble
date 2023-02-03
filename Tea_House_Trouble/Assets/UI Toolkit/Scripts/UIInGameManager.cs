@@ -10,7 +10,7 @@ public class UIInGameManager : MonoBehaviour
     public RhythmManager _rhythmManager;
     private HighscoreManager _highscoreManager;
 
-    public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG;
+    public GameObject PauseMenu, SummaryMenu, SubmitScore, TeaSpirit, TeaSpiritBG, MusicTimer;
     public Button ContinueBtn, RetryPauseBtn, MainMenuPauseBtn, RetrySummaryBtn, MainMenuSummaryBtn, SubmitBtn, SkipBtn;
 
     public TMP_Text CurrScore, CurrChain, CurrMiss, CurrBad, CurrGood, CurrPerfect, CurrHighscore, ScoreSubmitted;
@@ -30,6 +30,8 @@ public class UIInGameManager : MonoBehaviour
     public int _counter = 0;
 
     private Animator AnimTeaSpirit;
+
+    private GameTime _gameTime;
 
     [SerializeField] MyBlitFeature blit;
 
@@ -81,6 +83,12 @@ public class UIInGameManager : MonoBehaviour
         TeaSpirit.SetActive(false);
         TeaSpiritBG.SetActive(false);
     }
+    private void Start() {
+        MusicTimer = GameObject.Find("MusicTimer");
+        _gameTime = MusicTimer.GetComponent<GameTime>();
+        _gameTime.ResetTime();
+    }
+
     private void Update() {
 
         if (Input.GetMouseButtonDown(0)) { Debug.Log("CLICK"); }
