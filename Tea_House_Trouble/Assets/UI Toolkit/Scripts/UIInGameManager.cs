@@ -35,11 +35,8 @@ public class UIInGameManager : MonoBehaviour
 
    
 
-    private void Awake() {
-        MusicTimer = GameObject.Find("MusicTimer");
-        _gameTime = MusicTimer.GetComponent<GameTime>();
-        _gameTime.ResetTime();
-
+    private void Awake() 
+    {
         TeaSpirit = GameObject.Find("TeaSpirit_WinScreen");
         TeaSpiritBG = GameObject.Find("BG");
         AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
@@ -81,6 +78,14 @@ public class UIInGameManager : MonoBehaviour
         TeaSpirit.SetActive(false);
         TeaSpiritBG.SetActive(false);
     }
+
+    private void Start()
+    {
+        MusicTimer = GameObject.Find("MusicTimer");
+        _gameTime = MusicTimer.GetComponent<GameTime>();
+        _gameTime.ResetTime();
+    }
+
     private void Update() {
 
         if (Input.GetMouseButtonDown(0)) { Debug.Log("CLICK"); }

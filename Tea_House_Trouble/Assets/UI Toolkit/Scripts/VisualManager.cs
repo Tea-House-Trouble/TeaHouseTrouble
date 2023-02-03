@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System;
+using UnityEngine.SocialPlatforms;
 
 public class VisualManager : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class VisualManager : MonoBehaviour
         }
         else { Destroy(gameObject); }
 
-        globalVolume = GameObject.Find("Global Volume");
+        globalVolume = GameObject.Find("Global Volume Menu");
+        if (globalVolume == null)
+        {
+            globalVolume = GameObject.Find("Global Volume");
+        }
         _volume = globalVolume.GetComponent<Volume>();
 
         LoadVisualSettings();

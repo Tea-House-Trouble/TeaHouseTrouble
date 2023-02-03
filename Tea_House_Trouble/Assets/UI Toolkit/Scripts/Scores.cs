@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 [System.Serializable]
-public class Scores {
-    //falls es nicht funktioniert [Serializefield] vor public Variablen
-    [Serializefield] public string Name, Rank;
-    [Serializefield] public int Points, Chain, Miss, Bad, Good, Perfect, Accuracy;
+public class Scores 
+{
+    [SerializeField] public string Name, Rank;
+    [SerializeField] public int Points, Chain, Miss, Bad, Good, Perfect, Accuracy;
 
     public int GetAccuracy() {
         int notes = Miss + Bad + Good + Perfect;
