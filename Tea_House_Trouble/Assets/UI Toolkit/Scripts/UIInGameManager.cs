@@ -26,22 +26,26 @@ public class UIInGameManager : MonoBehaviour
     private bool SceneIsPaused = false;
     private bool summarySetupCheck = false;
 
-    private AudioSource _audioSource;
+    private AudioSource _audioSource, _audioSourceTusch, _audioSourceGrillen;
     public int _counter = 0;
 
     private Animator AnimTeaSpirit;
 
-
-   
+    [SerializeField] MyBlitFeature blit;
 
     private void Awake() {
+       TeaSpirit = GameObject.Find("TeaSpirit_WinScreen");
+       TeaSpiritBG = GameObject.Find("BG");
+       AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
 
-        TeaSpirit = GameObject.Find("TeaSpirit_WinScreen");
-        TeaSpiritBG = GameObject.Find("BG");
-        AnimTeaSpirit = TeaSpirit.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        AudioListener.pause = false;
+       _audioSourceTusch = GameObject.Find("AudioSourceTusch").GetComponent<AudioSource>();
+       _audioSourceGrillen = GameObject.Find("AudioSourceGrillen").GetComponent<AudioSource>();
+       AudioListener.pause = false;
         _audioSource.ignoreListenerPause = true;
+       _audioSourceTusch.ignoreListenerPause = true;
+       _audioSourceGrillen.ignoreListenerPause = true;
+
         _highscoreManager = FindObjectOfType<HighscoreManager>();
         _rhythmManager = FindObjectOfType<RhythmManager>();
 
@@ -168,6 +172,9 @@ public class UIInGameManager : MonoBehaviour
     }
 
     private void SetUpSummary() {
+        blit.settings.MaterialToBlit.SetFloat("_Speed_Lines_Active", 0);
+        blit.settings.MaterialToBlit.SetFloat("_Radial_Blur_Active", 0);
+
         _rhythmManager._isPaused = true;
         _currentScore = _rhythmManager.SetUpCurrentScore();
         _highscoreManager._currentScore = _currentScore;
