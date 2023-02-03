@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-
+using UnityEngine;
 [System.Serializable]
 public class Scores {
     //falls es nicht funktioniert [Serializefield] vor public Variablen

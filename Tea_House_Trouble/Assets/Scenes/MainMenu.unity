@@ -681,6 +681,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 781654842}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &612877531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1140789262704110356, guid: 07b43c3f0dca5b44f9a19e9c315c4541,
+    type: 3}
+  m_PrefabInstance: {fileID: 1960096398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09005f0a01867e449b51224d12e7a304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &773556196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4265584847681828011, guid: b018ed93668866742b9a499140f46c99,
@@ -2429,6 +2441,11 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 832575517}
+    - target: {fileID: 1140789261651492956, guid: 07b43c3f0dca5b44f9a19e9c315c4541,
+        type: 3}
+      propertyPath: _cameraTransitionManager
+      value: 
+      objectReference: {fileID: 612877531}
     - target: {fileID: 1140789262704110352, guid: 07b43c3f0dca5b44f9a19e9c315c4541,
         type: 3}
       propertyPath: m_RootOrder
