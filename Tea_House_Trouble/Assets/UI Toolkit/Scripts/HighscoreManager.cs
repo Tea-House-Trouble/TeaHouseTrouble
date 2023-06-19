@@ -80,7 +80,7 @@ public class HighscoreManager : MonoBehaviour {
         List<Scores> DummyEntries = new List<Scores>() {
         new Scores { Name = "TinyNuki", Rank = "D", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
         new Scores { Name = "Teaspirit", Rank = "A", Points =4773 , Chain =27 , Miss =0 , Bad =3, Good =0, Perfect =12, Accuracy = 72},
-        };
+     };
         highScores = DummyEntries;
     }
 }
