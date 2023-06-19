@@ -51,7 +51,7 @@ public class UIMainMenuManager : MonoBehaviour
         _creditsPanel = GameObject.Find("Credits");
         _resetPanel = GameObject.Find("ResetPanel");
         _passwordPanel = GameObject.Find("PasswordPanel");
-        _passwordRequest = GameObject.Find("PasswordRequest");
+        _passwordRequest = GameObject.Find("PasswordRequest_InputField");
         _resetText = GameObject.Find("ResetText") ;
 
         _playBtn = GameObject.Find("Play").GetComponent<Button>();
@@ -143,7 +143,7 @@ public class UIMainMenuManager : MonoBehaviour
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("CLICKED_IN_MAINMENU");
+            //Debug.Log("CLICKED_IN_MAINMENU");
             _cameraTransitionManager.CheckHit(); 
         }
         if (Input.GetMouseButtonDown(1)) { CameraBackToBase(); }
@@ -152,7 +152,7 @@ public class UIMainMenuManager : MonoBehaviour
     private void Activate(GameObject SetMenu) { SetMenu.SetActive(true); }
     private void Deactivate(GameObject SetMenu) { 
         SetMenu.SetActive(false);
-        Debug.Log(SetMenu);
+        //Debug.Log(SetMenu);
     }
 
     private void CameraBackToBase() {
@@ -234,6 +234,7 @@ public class UIMainMenuManager : MonoBehaviour
 
     void OnResetHighscores() {
         if(_passwordInput.text == _password) {
+            Deactivate(_resetText);
             Deactivate(_passwordPanel);
             _highscoreManager.ResetHighscoreList();
             _highscoreTable.ResetTable();

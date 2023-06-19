@@ -21,7 +21,7 @@ public class HighscoreManager : MonoBehaviour {
             _currentScore.Name = "EMPTY";
             _amAwake = true;
         }
-        LoadScores();
+        LoadScores();        
     }
 
     public void AddScore(Scores _newScore) {
@@ -48,12 +48,13 @@ public class HighscoreManager : MonoBehaviour {
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
         
-        Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+        //Debug.Log(PlayerPrefs.GetString("highscoreTable"));
         highScores.Clear();
         highScores = highscores.highscoreTestEntrys;
         if (highscores == null) { AddDummyList(); }
 
         currentHigh = highScores[0].Points;
+
     }
 
     private void SafeScores() {

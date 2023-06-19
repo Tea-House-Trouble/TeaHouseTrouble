@@ -90,6 +90,7 @@ public class HighscoreTable : MonoBehaviour {
         //scoreTemplate.gameObject.SetActive(false);
 
         SetupTable();
+        GameObject.Find("HighScoreDisplay").GetComponent<HighscoreScrolling>().SetUpScrollbar();
     }
 
     public void SetupTable() {
