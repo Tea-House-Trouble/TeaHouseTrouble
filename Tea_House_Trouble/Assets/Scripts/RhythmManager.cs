@@ -216,6 +216,7 @@ public class RhythmManager : MonoBehaviour, PlayerControlls.IActionsActions
             switch (GetHitQuality(distance))
             {
                 case HitQuality.None:
+                    _miss++;
                     break;
 
                 case HitQuality.Perfect:
@@ -530,37 +531,40 @@ public void ScanSpeedLevel()
         Scores temp = new Scores();
         temp.Points = (int)Score;
 
-        switch (temp.Points)
+        temp.Chain = _chainCounter;
+        temp.Miss = _miss;
+        temp.Bad = _bad;
+        temp.Good = _good;
+        temp.Perfect = _perfect;
+
+        temp.Accuracy = temp.GetAccuracy();
+        Debug.Log(temp.Accuracy);
+
+        switch (temp.Accuracy)
         {
-            case > 40:
+            case > 90:
                 temp.Rank = "S";
                 break;
 
-            case > 30:
+            case > 70:
                 temp.Rank = "A";
                 break;
 
-            case > 20:
+            case > 50:
                 temp.Rank = "B";
                 break;
 
-            case > 10:
+            case > 30:
                 temp.Rank = "C";
                 break;
 
-            case > 0:
+            case >= 0:
                 temp.Rank = "D";
                 break;
 
             default:
                 break;
         }
-
-        temp.Chain = _chainCounter;
-        temp.Miss = _miss;
-        temp.Bad = _bad;
-        temp.Good = _good;
-        temp.Perfect = _perfect;
 
         Score = 0;
         _chainCounter = 0;

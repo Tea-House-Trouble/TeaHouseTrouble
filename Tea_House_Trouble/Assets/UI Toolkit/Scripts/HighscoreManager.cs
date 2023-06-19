@@ -2,97 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Abbadoned
-/*
- {
-    public List<Scores> highScores, tempScores;
-    public List<int> highIndexi, tempIndexi;
-    public int rankIndex, currentPoints, currentIndex, currentHigh;
-    public Scores _currentScore;
-
-    private void Awake() {
-        DontDestroyOnLoad(gameObject);
-        _currentScore = new Scores();
-        Scores temp = new Scores();
-        temp.Name = "TEST";
-        temp.Rank = "D";
-        temp.Points = 15;
-        temp.Chain = 5;
-        temp.Miss = 5;
-        temp.Bad = 5;
-        temp.Good = 5;
-        temp.Perfect = 5;
-        currentHigh = 15;
-        highScores.Add(temp);
-    }
-
-
-    public void ScoreToCompare(Scores compareScore) {
-        _currentScore.Points = compareScore.Points;
-        _currentScore.Rank = compareScore.Rank;
-        _currentScore.Chain = compareScore.Chain;
-        _currentScore.Miss = compareScore.Miss ;
-        _currentScore.Bad = compareScore.Bad;
-        _currentScore.Good = compareScore.Good;
-        _currentScore.Perfect = compareScore.Perfect;
-        CompareScore(_currentScore);
-    }
-
-    public void ClearList(List<Scores> scoreClear, List<int> rankClear) {
-        scoreClear.Clear();
-        rankClear.Clear();
-    }
-
-    public void CompareScore(Scores compareScore) {
-        rankIndex = 0;
-        currentIndex = 0;
-        ClearList(tempScores, tempIndexi);
-        if(compareScore.Points >= currentHigh) {
-            currentHigh = compareScore.Points;
-            currentIndex = 1;
-            rankIndex = 1;
-        }
-
-        else{
-            for (int i = 0; (highScores[i].Points > compareScore.Points) && (i < highScores.Count); ++i) {
-                tempScores.Add(highScores[i]);
-                tempIndexi.Add(highIndexi[i]);
-                rankIndex = highIndexi[i];
-                currentIndex = i;
-            }
-        }
-    }
-
-    public void CancelScore() {    }
-
-    public void AddScore(string name) {
-        _currentScore.Name = name;
-        tempScores.Add(_currentScore);
-        tempIndexi.Add(currentIndex);
-        for (int i = currentIndex; i < highScores.Count; ++i) {
-            tempScores.Add(highScores[i]);
-            tempIndexi.Add(i+1);
-        }
-        ClearList(highScores, highIndexi);
-        highScores = tempScores;
-        highIndexi = tempIndexi;
-
-        _currentScore = new Scores();
-    }
-        List<Scores> DummyEntries = new List<Scores>() {
-        new Scores { Name = "AAA", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Scores { Name = "BBB", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Scores { Name = "CCC", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Scores { Name = "DDD", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Scores { Name = "EEE", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        };
-        highScores = DummyEntries;
-}
- */
-
 public class HighscoreManager : MonoBehaviour {
     public static HighscoreManager instanceHighscoreManager;
-    public List<Scores> highScores; //, tempScores;
+    public List<Scores> highScores;
     public int currentHigh, currentIndex;
     public Scores _currentScore;
     public bool _amAwake;
@@ -165,9 +77,8 @@ public class HighscoreManager : MonoBehaviour {
 
     private void AddDummyList() {
         List<Scores> DummyEntries = new List<Scores>() {
-        new Scores { Name = "JackBlack", Rank = "A", Points =666 , Chain =13 , Miss =0 , Bad =4, Good =8, Perfect =1, Accuracy = 69},
-        new Scores { Name = "TinyNuki", Rank = "C", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
-        new Scores { Name = "Teapot", Rank = "S", Points =4773 , Chain =27 , Miss =0 , Bad =Random.Range(0,50) , Good =0, Perfect =888, Accuracy = 81},
+        new Scores { Name = "TinyNuki", Rank = "D", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
+        new Scores { Name = "Teaspirit", Rank = "A", Points =4773 , Chain =27 , Miss =0 , Bad =3, Good =0, Perfect =12, Accuracy = 72},
         };
         highScores = DummyEntries;
     }

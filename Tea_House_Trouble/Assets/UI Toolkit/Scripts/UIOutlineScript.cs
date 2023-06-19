@@ -88,7 +88,7 @@ public class UIOutlineScript : MonoBehaviour
         Tooltip.SetActive(true);
 
         _audioSource.clip = hover;
-        _audioSource.Play();
+        //_audioSource.Play();
         _audioSource.loop = true;
         _min = outlineHoverMin;
         _max = outlineHoverMax;
@@ -98,7 +98,7 @@ public class UIOutlineScript : MonoBehaviour
 
     private void HoverEnd() {
         Tooltip.SetActive(false);
-        _audioSource.Stop();
+        //_audioSource.Stop();
         _audioSource.loop = false;
         _min = outlineMin;
         _max = outlineMax;
