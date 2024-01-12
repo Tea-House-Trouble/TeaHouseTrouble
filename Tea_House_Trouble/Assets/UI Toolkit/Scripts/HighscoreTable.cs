@@ -1,82 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-
-/*
-    highscoreTestEntrys = new List<Score>() {
-        new Score { Name = "AAA", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Score { Name = "BBB", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Score { Name = "CCC", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Score { Name = "DDD", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-        new Score { Name = "EEE", Rank = "A", Points =Random.Range(0,100000) , Chain =Random.Range(0,100) , Miss =Random.Range(0,50) , Bad =Random.Range(0,50) , Good =Random.Range(0,50), Perfect =Random.Range(0,50), Accuracy = 0},
-    };
-
-
-    Highscores highscores = new Highscores { highscoreTestEntrys = highscoreTestEntrys };
-    
-    [System.Serializable]
-    private class Score {
-        public string Name,Rank;
-        public int Points,Chain, Miss,Bad,Good,Perfect, Accuracy;
-        
-        public int GetAccuracy() {
-            int notes = Miss + Bad + Good + Perfect;
-            if(notes == 0) {   Accuracy = 0;  }
-            else { Accuracy = Points / notes; }
-            return Accuracy;
-        }
-    }
-
-    private class Highscores {        public List<Scores> highscoreTestEntrys;   }
-        //Score addTest = new Score { Name = "###", Rank = "$$$", Points = Random.Range(0, 100000), Chain = Random.Range(0, 100), Miss = Random.Range(0, 50), Bad = Random.Range(0, 50), Good = Random.Range(0, 50), Perfect = Random.Range(0, 50), Accuracy = 0 };
-        //AddScoreEntry(addTest);
-
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
-
-        List<Scores> check = highscores.highscoreTestEntrys;
-
-        //SortScores
-        for (int i = 0; i < check.Count; i++) {
-            for (int j = i + 1; j < check.Count; j++) {
-                if (check[j].Points > check[i].Points) {
-                    Scores temp = check[i];
-                    check[i] = check[j];
-                    check[j] = temp;
-                }
-            }
-        }
-
-    private void AddScoreEntry(Scores _score) {
-        //Calculate Accuracy
-        _score.Accuracy = _score.GetAccuracy();
-
-        //Load saved Highscores
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
-
-        //Add new entry
-        highscores.highscoreTestEntrys.Add(_score);
-
-
-        //Saved updated Highscores
-        string json = JsonUtility.ToJson(highscores);
-        PlayerPrefs.SetString("highscoreTable", json);
-        PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetString("highscoreTable"));
-    }
-*/
 
 public class HighscoreTable : MonoBehaviour {
     public Transform highscoreContainer, scoreTemplate;
     private List<Transform> _highscoreEntrys;
     private HighscoreManager _highscoreManager;
 
-    private Scores _currentScore;
+    private Scores _currentScore, _high;
     private TMP_Text _currPlace, _currName, _currPoints, _currAccuracy, _currChain, _currRank;
+    public TMP_Text highPlace, highName, highPoints, highAcc, highChain, highRank;
 
     private void Start() {
         _currPlace = GameObject.Find("CurrPlace").GetComponent<TMP_Text>();
@@ -86,11 +20,12 @@ public class HighscoreTable : MonoBehaviour {
         _currChain = GameObject.Find("CurrChain").GetComponent<TMP_Text>(); 
         _currRank = GameObject.Find("CurrRank").GetComponent<TMP_Text>();
         _highscoreManager = FindObjectOfType<HighscoreManager>();
-        _highscoreManager.LoadScores();
-        //scoreTemplate.gameObject.SetActive(false);
+        _high = _highscoreManager.LoadScores();
 
         SetupTable();
         GameObject.Find("HighScoreDisplay").GetComponent<HighscoreScrolling>().SetUpScrollbar();
+        SetHighscore();
+        scoreTemplate.gameObject.SetActive(false);
     }
 
     public void SetupTable() {
@@ -116,6 +51,15 @@ public class HighscoreTable : MonoBehaviour {
 
         _highscoreEntrys = new List<Transform>();
         foreach (Scores _score in check) { CreateHighscoreTable(_score, _highscoreEntrys); }
+
+        foreach (Transform t in _highscoreEntrys)
+        {
+            t.gameObject.SetActive(true);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
     }
 
     public void ResetTable() {
@@ -135,6 +79,20 @@ public class HighscoreTable : MonoBehaviour {
 
         newScore.gameObject.SetActive(true);
 
+        foreach (Transform child in newScore)
+        {
+            child.gameObject.SetActive(true);
+        }
+
         highscoreDisplayList.Add(newScore);
+    }
+    public void SetHighscore()
+    {
+        highPlace.text = "1";
+        highName.text = _high.Name.ToString();
+        highPoints.text = _high.Points.ToString();
+        highAcc.text = _high.Accuracy.ToString();
+        highChain.text = _high.Chain.ToString();
+        highRank.text = _high.Rank.ToString();
     }
 }

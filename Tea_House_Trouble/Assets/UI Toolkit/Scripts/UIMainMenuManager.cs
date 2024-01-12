@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -143,7 +141,6 @@ public class UIMainMenuManager : MonoBehaviour
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            //Debug.Log("CLICKED_IN_MAINMENU");
             _cameraTransitionManager.CheckHit(); 
         }
         if (Input.GetMouseButtonDown(1)) { CameraBackToBase(); }

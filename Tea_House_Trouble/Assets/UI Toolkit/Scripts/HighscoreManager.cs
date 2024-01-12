@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HighscoreManager : MonoBehaviour {
     public static HighscoreManager instanceHighscoreManager;
     public List<Scores> highScores;
     public int currentHigh, currentIndex;
-    public Scores _currentScore;
+    public Scores _currentScore, _high;
     public bool _amAwake;
+
 
     public void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -21,7 +23,7 @@ public class HighscoreManager : MonoBehaviour {
             _currentScore.Name = "EMPTY";
             _amAwake = true;
         }
-        LoadScores();        
+        LoadScores();   
     }
 
     public void AddScore(Scores _newScore) {
@@ -43,18 +45,17 @@ public class HighscoreManager : MonoBehaviour {
             }
         }
     }
-    public void LoadScores() {
+
+    public Scores LoadScores() {
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
         
-        //Debug.Log(PlayerPrefs.GetString("highscoreTable"));
         highScores.Clear();
         highScores = highscores.highscoreTestEntrys;
         if (highscores == null) { AddDummyList(); }
 
-        currentHigh = highScores[0].Points;
-
+        return highScores[0];
     }
 
     private void SafeScores() {
@@ -65,7 +66,6 @@ public class HighscoreManager : MonoBehaviour {
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
 
-        Debug.Log(PlayerPrefs.GetString("highscoreTable"));
         LoadScores();
     }
 
@@ -78,8 +78,8 @@ public class HighscoreManager : MonoBehaviour {
 
     private void AddDummyList() {
         List<Scores> DummyEntries = new List<Scores>() {
-        new Scores { Name = "TinyNuki", Rank = "D", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
         new Scores { Name = "Teaspirit", Rank = "A", Points =4773 , Chain =27 , Miss =0 , Bad =3, Good =0, Perfect =12, Accuracy = 72},
+        new Scores { Name = "TinyNuki", Rank = "D", Points =100 , Chain =7 , Miss =13 , Bad =2 , Good =5, Perfect =12, Accuracy = 14},
      };
         highScores = DummyEntries;
     }
